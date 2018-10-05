@@ -14,6 +14,8 @@
 		471D7D822166D34B00124C87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471D7D802166D34B00124C87 /* LaunchScreen.storyboard */; };
 		471D7D922166E54500124C87 /* UIStoryboards+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D912166E54500124C87 /* UIStoryboards+Helpers.swift */; };
 		471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D932166FAB700124C87 /* QRScannerViewController.swift */; };
+		471D7D972167021D00124C87 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471D7D962167021D00124C87 /* Keyboard.xib */; };
+		471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D992167027E00124C87 /* Keyboard.swift */; };
 		F3F4D2B87D4CF32475BF1580 /* Pods_premier_checkin_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 		471D7D832166D34B00124C87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		471D7D912166E54500124C87 /* UIStoryboards+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboards+Helpers.swift"; sourceTree = "<group>"; };
 		471D7D932166FAB700124C87 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		471D7D962167021D00124C87 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
+		471D7D992167027E00124C87 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_premier_checkin_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB0AE5B4D50A190873F217 /* Pods-premier-checkin-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-premier-checkin-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-premier-checkin-ios/Pods-premier-checkin-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +72,7 @@
 				471D7D772166D34900124C87 /* AppDelegate.swift */,
 				471D7D8B2166E39400124C87 /* Extensions */,
 				471D7D8C2166E39F00124C87 /* ViewControllers */,
+				471D7D982167025700124C87 /* Views */,
 				471D7D8D2166E3C900124C87 /* Ressources */,
 			);
 			path = "premier-checkin-ios";
@@ -94,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				471D7D8E2166E3CF00124C87 /* Storyboards */,
+				471D7D95216701E700124C87 /* Xibs */,
 				471D7D902166E45400124C87 /* XAssets */,
 				471D7D8F2166E3FA00124C87 /* Supporting files */,
 			);
@@ -123,6 +129,22 @@
 				471D7D7E2166D34B00124C87 /* Assets.xcassets */,
 			);
 			path = XAssets;
+			sourceTree = "<group>";
+		};
+		471D7D95216701E700124C87 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				471D7D962167021D00124C87 /* Keyboard.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		471D7D982167025700124C87 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				471D7D992167027E00124C87 /* Keyboard.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8E1B9DAC99855BD04AA2D494 /* Pods */ = {
@@ -204,6 +226,7 @@
 			files = (
 				471D7D822166D34B00124C87 /* LaunchScreen.storyboard in Resources */,
 				471D7D7F2166D34B00124C87 /* Assets.xcassets in Resources */,
+				471D7D972167021D00124C87 /* Keyboard.xib in Resources */,
 				471D7D7D2166D34900124C87 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +287,7 @@
 			files = (
 				471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */,
 				471D7D922166E54500124C87 /* UIStoryboards+Helpers.swift in Sources */,
+				471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */,
 				471D7D7A2166D34900124C87 /* ViewController.swift in Sources */,
 				471D7D782166D34900124C87 /* AppDelegate.swift in Sources */,
 			);
