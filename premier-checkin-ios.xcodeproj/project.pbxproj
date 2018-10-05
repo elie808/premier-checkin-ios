@@ -62,13 +62,61 @@
 			isa = PBXGroup;
 			children = (
 				471D7D772166D34900124C87 /* AppDelegate.swift */,
-				471D7D792166D34900124C87 /* ViewController.swift */,
-				471D7D7B2166D34900124C87 /* Main.storyboard */,
-				471D7D7E2166D34B00124C87 /* Assets.xcassets */,
-				471D7D802166D34B00124C87 /* LaunchScreen.storyboard */,
-				471D7D832166D34B00124C87 /* Info.plist */,
+				471D7D8B2166E39400124C87 /* Extensions */,
+				471D7D8C2166E39F00124C87 /* ViewControllers */,
+				471D7D8D2166E3C900124C87 /* Ressources */,
 			);
 			path = "premier-checkin-ios";
+			sourceTree = "<group>";
+		};
+		471D7D8B2166E39400124C87 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		471D7D8C2166E39F00124C87 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				471D7D792166D34900124C87 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		471D7D8D2166E3C900124C87 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				471D7D8E2166E3CF00124C87 /* Storyboards */,
+				471D7D902166E45400124C87 /* XAssets */,
+				471D7D8F2166E3FA00124C87 /* Supporting files */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		471D7D8E2166E3CF00124C87 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				471D7D802166D34B00124C87 /* LaunchScreen.storyboard */,
+				471D7D7B2166D34900124C87 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		471D7D8F2166E3FA00124C87 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				471D7D832166D34B00124C87 /* Info.plist */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		471D7D902166E45400124C87 /* XAssets */ = {
+			isa = PBXGroup;
+			children = (
+				471D7D7E2166D34B00124C87 /* Assets.xcassets */,
+			);
+			path = XAssets;
 			sourceTree = "<group>";
 		};
 		8E1B9DAC99855BD04AA2D494 /* Pods */ = {
@@ -359,7 +407,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6WQVEM27Z;
 				INFOPLIST_FILE = "premier-checkin-ios/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Elie.premier-checkin-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -375,7 +426,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6WQVEM27Z;
 				INFOPLIST_FILE = "premier-checkin-ios/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Elie.premier-checkin-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
