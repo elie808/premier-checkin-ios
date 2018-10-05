@@ -12,6 +12,8 @@
 		471D7D7D2166D34900124C87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471D7D7B2166D34900124C87 /* Main.storyboard */; };
 		471D7D7F2166D34B00124C87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 471D7D7E2166D34B00124C87 /* Assets.xcassets */; };
 		471D7D822166D34B00124C87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471D7D802166D34B00124C87 /* LaunchScreen.storyboard */; };
+		471D7D922166E54500124C87 /* UIStoryboards+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D912166E54500124C87 /* UIStoryboards+Helpers.swift */; };
+		471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D932166FAB700124C87 /* QRScannerViewController.swift */; };
 		F3F4D2B87D4CF32475BF1580 /* Pods_premier_checkin_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +26,8 @@
 		471D7D7E2166D34B00124C87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		471D7D812166D34B00124C87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		471D7D832166D34B00124C87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		471D7D912166E54500124C87 /* UIStoryboards+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboards+Helpers.swift"; sourceTree = "<group>"; };
+		471D7D932166FAB700124C87 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_premier_checkin_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB0AE5B4D50A190873F217 /* Pods-premier-checkin-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-premier-checkin-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-premier-checkin-ios/Pods-premier-checkin-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +76,7 @@
 		471D7D8B2166E39400124C87 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				471D7D912166E54500124C87 /* UIStoryboards+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -80,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				471D7D792166D34900124C87 /* ViewController.swift */,
+				471D7D932166FAB700124C87 /* QRScannerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -256,6 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */,
+				471D7D922166E54500124C87 /* UIStoryboards+Helpers.swift in Sources */,
 				471D7D7A2166D34900124C87 /* ViewController.swift in Sources */,
 				471D7D782166D34900124C87 /* AppDelegate.swift in Sources */,
 			);
@@ -406,7 +414,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6WQVEM27Z;
-				INFOPLIST_FILE = "premier-checkin-ios/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/premier-checkin-ios/Ressources/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -425,7 +433,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6WQVEM27Z;
-				INFOPLIST_FILE = "premier-checkin-ios/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/premier-checkin-ios/Ressources/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
