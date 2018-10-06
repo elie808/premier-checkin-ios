@@ -14,6 +14,7 @@ public enum StoryboardIdentifier: String {
 
 public enum ViewControllerStoryboardIdentifier: String {
     case MainView = "MainUI"
+    case LoadingView = "LoadingVC"
 }
 
 extension UIStoryboard {
