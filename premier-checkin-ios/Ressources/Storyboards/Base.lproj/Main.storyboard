@@ -39,10 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="agX-05-C19">
-                                <rect key="frame" x="0.0" y="445" width="375" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="0oL-O5-whJ"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="445" width="375" height="2"/>
                                 <color key="progressTintColor" red="0.56470588235294117" green="0.78431372549019607" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="trackTintColor" red="0.19607843137254902" green="0.24705882352941178" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </progressView>
@@ -98,7 +95,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="9RM-6V-Gjj"/>
                                 </constraints>
-                                <color key="textColor" red="0.56470588239999997" green="0.7843137255" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.19607843137254902" green="0.24705882352941178" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -114,7 +111,7 @@
                                     <segue destination="jVS-um-ziy" kind="show" id="oPP-Pf-17Y"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not found. Try again ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibs-wN-z6e">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibs-wN-z6e">
                                 <rect key="frame" x="16" y="16" width="343" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="vHh-RX-Cpu"/>

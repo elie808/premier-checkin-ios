@@ -8,8 +8,16 @@
 
 import UIKit
 
-class CheckInViewController: UIViewController, KeyboardDelegate {
+class CheckInViewController: UIViewController {
 
+    enum CheckInMessage: String {
+        case Empty   = ""
+        case Failed  = "Not found. Try again ..."
+        case Success = "0000 Checked in"
+        case Synced  = "Sync Complete"
+        case DataDeleted = "App data deleted"
+    }
+    
     // MARK: - Outlets
     
     @IBOutlet weak var messageLabel: UILabel!
@@ -20,11 +28,9 @@ class CheckInViewController: UIViewController, KeyboardDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // initialize custom keyboard
+        // initialize custom keyboard & replace system keyboard with custom keyboard
         let keyboardView = Keyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 390))
         keyboardView.delegate = self
-        
-        // replace system keyboard with custom keyboard
         textField.inputView = keyboardView
     }
     
@@ -33,7 +39,15 @@ class CheckInViewController: UIViewController, KeyboardDelegate {
         textField.becomeFirstResponder()
     }
     
-    // MARK: - KeyboardDelegate
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    }
+}
+
+// MARK: - KeyboardDelegate
+
+extension CheckInViewController : KeyboardDelegate {
     
     func keyWasTapped(character: String) {
         textField.insertText(character)
@@ -46,10 +60,4 @@ class CheckInViewController: UIViewController, KeyboardDelegate {
     func searchTapped() {
         //TODO: perform search then Segue
     }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
-
 }
