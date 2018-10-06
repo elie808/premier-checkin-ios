@@ -16,6 +16,8 @@
 		471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D932166FAB700124C87 /* QRScannerViewController.swift */; };
 		471D7D972167021D00124C87 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471D7D962167021D00124C87 /* Keyboard.xib */; };
 		471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D992167027E00124C87 /* Keyboard.swift */; };
+		475C41902167CD1000429EB4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C418F2167CD1000429EB4 /* LoadingViewController.swift */; };
+		475C41942168DE4E00429EB4 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */; };
 		F3F4D2B87D4CF32475BF1580 /* Pods_premier_checkin_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +34,8 @@
 		471D7D932166FAB700124C87 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		471D7D962167021D00124C87 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		471D7D992167027E00124C87 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		475C418F2167CD1000429EB4 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_premier_checkin_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB0AE5B4D50A190873F217 /* Pods-premier-checkin-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-premier-checkin-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-premier-checkin-ios/Pods-premier-checkin-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				471D7D912166E54500124C87 /* UIStoryboards+Helpers.swift */,
+				475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -90,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				471D7D792166D34900124C87 /* ViewController.swift */,
+				475C418F2167CD1000429EB4 /* LoadingViewController.swift */,
 				471D7D932166FAB700124C87 /* QRScannerViewController.swift */,
 			);
 			path = ViewControllers;
@@ -290,6 +296,8 @@
 				471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */,
 				471D7D7A2166D34900124C87 /* ViewController.swift in Sources */,
 				471D7D782166D34900124C87 /* AppDelegate.swift in Sources */,
+				475C41902167CD1000429EB4 /* LoadingViewController.swift in Sources */,
+				475C41942168DE4E00429EB4 /* UIViewController+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
