@@ -11,6 +11,7 @@ import UIKit
 protocol KeyboardDelegate: class {
     func keyWasTapped(character: String)
     func backspaceTapped()
+    func searchTapped()
 }
 
 class Keyboard: UIView {
@@ -39,7 +40,6 @@ class Keyboard: UIView {
     // MARK:- Actions
     
     @IBAction func keyTapped(sender: UIButton) {
- 
         if delegate != nil {
             self.delegate?.keyWasTapped(character: sender.titleLabel!.text!) // could alternatively send a tag value
         }
@@ -48,6 +48,12 @@ class Keyboard: UIView {
     @IBAction func didTapBackspace(sender: UIButton) {
         if delegate != nil {
             self.delegate?.backspaceTapped()
+        }
+    }
+    
+    @IBAction func didTapSearch(sender: UIButton) {
+        if delegate != nil {
+            self.delegate?.searchTapped()()
         }
     }
 }
