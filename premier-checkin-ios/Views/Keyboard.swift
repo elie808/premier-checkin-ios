@@ -53,7 +53,7 @@ class Keyboard: UIView {
     
     @IBAction func didTapSearch(sender: UIButton) {
         if delegate != nil {
-            self.delegate?.searchTapped()()
+            self.delegate?.searchTapped()
         }
     }
 }

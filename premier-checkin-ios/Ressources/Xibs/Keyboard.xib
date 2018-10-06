@@ -187,16 +187,26 @@
                         <constraint firstAttribute="width" constant="253" id="Vag-Yw-9Bs"/>
                     </constraints>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yyg-Jl-Csf">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="lDv-Wf-ZyX"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="dxa-Qa-2yC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="36" id="1uq-kD-m0n"/>
+                <constraint firstItem="yyg-Jl-Csf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9fl-M4-hUt"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dxa-Qa-2yC" secondAttribute="trailing" constant="61" id="cab-GK-RQS"/>
+                <constraint firstItem="yyg-Jl-Csf" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nwk-dM-Uz7"/>
+                <constraint firstItem="yyg-Jl-Csf" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="s9T-ff-T1e"/>
                 <constraint firstItem="dxa-Qa-2yC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="61" id="y8D-iR-W7W"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="57.600000000000001" y="12.143928035982009"/>
+            <point key="canvasLocation" x="56.799999999999997" y="12.143928035982009"/>
         </view>
     </objects>
 </document>

@@ -12,6 +12,7 @@ class CheckInViewController: UIViewController, KeyboardDelegate {
 
     // MARK: - Outlets
     
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
     // MARK: - View Life Cycle
@@ -20,7 +21,7 @@ class CheckInViewController: UIViewController, KeyboardDelegate {
         super.viewDidLoad()
         
         // initialize custom keyboard
-        let keyboardView = Keyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 400))
+        let keyboardView = Keyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 390))
         keyboardView.delegate = self
         
         // replace system keyboard with custom keyboard
@@ -43,7 +44,7 @@ class CheckInViewController: UIViewController, KeyboardDelegate {
     }
     
     func searchTapped() {
-        //TODO: perform Segue
+        //TODO: perform search then Segue
     }
     
     // MARK: - Navigation
