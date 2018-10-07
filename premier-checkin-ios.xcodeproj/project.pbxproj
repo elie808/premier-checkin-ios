@@ -20,6 +20,7 @@
 		475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41962168E90F00429EB4 /* UIAppearanceManager.swift */; };
 		475C41992168EA4300429EB4 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41982168EA4300429EB4 /* KeyboardButton.swift */; };
 		475C419B2168EDE300429EB4 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C419A2168EDE300429EB4 /* CheckInViewController.swift */; };
+		475C419D2169924700429EB4 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C419C2169924700429EB4 /* EventViewController.swift */; };
 		F3F4D2B87D4CF32475BF1580 /* Pods_premier_checkin_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		475C41962168E90F00429EB4 /* UIAppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAppearanceManager.swift; sourceTree = "<group>"; };
 		475C41982168EA4300429EB4 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		475C419A2168EDE300429EB4 /* CheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
+		475C419C2169924700429EB4 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_premier_checkin_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB0AE5B4D50A190873F217 /* Pods-premier-checkin-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-premier-checkin-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-premier-checkin-ios/Pods-premier-checkin-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				475C419A2168EDE300429EB4 /* CheckInViewController.swift */,
+				475C419C2169924700429EB4 /* EventViewController.swift */,
 				475C418F2167CD1000429EB4 /* LoadingViewController.swift */,
 				471D7D932166FAB700124C87 /* QRScannerViewController.swift */,
 			);
@@ -310,6 +313,7 @@
 				471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */,
 				475C419B2168EDE300429EB4 /* CheckInViewController.swift in Sources */,
 				471D7D782166D34900124C87 /* AppDelegate.swift in Sources */,
+				475C419D2169924700429EB4 /* EventViewController.swift in Sources */,
 				475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */,
 				475C41992168EA4300429EB4 /* KeyboardButton.swift in Sources */,
 				475C41902167CD1000429EB4 /* LoadingViewController.swift in Sources */,

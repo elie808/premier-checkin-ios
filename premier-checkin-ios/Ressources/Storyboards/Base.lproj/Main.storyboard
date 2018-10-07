@@ -12,7 +12,7 @@
         <!--Loading View Controller-->
         <scene sceneID="EFZ-Ij-2Xb">
             <objects>
-                <viewController storyboardIdentifier="LoadingVC" id="9V6-ND-u44" customClass="LoadingViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingViewController" id="9V6-ND-u44" customClass="LoadingViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8TG-7m-fQN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,6 +51,7 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="updateProgress:" destination="9V6-ND-u44" eventType="touchDown" id="bwy-aP-Fpx"/>
+                                    <segue destination="LRI-CX-K4n" kind="show" id="CRp-3e-aqn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -78,12 +79,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgl-sY-fIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="128.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="262" y="-251"/>
         </scene>
         <!--Premier check in-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MainUI" id="BYZ-38-t0r" customClass="CheckInViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CheckinViewController" id="BYZ-38-t0r" customClass="CheckInViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,10 +191,77 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZN-dV-7Hd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1100" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1052" y="134"/>
+        </scene>
+        <!--Enter event code-->
+        <scene sceneID="jWI-x7-GCp">
+            <objects>
+                <viewController storyboardIdentifier="EventViewController" id="Kqe-H3-3hj" customClass="EventViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u9O-JV-nJ0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mwX-1o-hcw">
+                                <rect key="frame" x="16" y="84" width="343" height="54"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.56470588239999997" green="0.7843137255" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mwX-1o-hcw" firstAttribute="leading" secondItem="xXo-pt-JMa" secondAttribute="leading" constant="16" id="BNC-Mh-yXH"/>
+                            <constraint firstItem="mwX-1o-hcw" firstAttribute="top" secondItem="xXo-pt-JMa" secondAttribute="top" constant="84" id="ZDd-pK-yTl"/>
+                            <constraint firstItem="xXo-pt-JMa" firstAttribute="trailing" secondItem="mwX-1o-hcw" secondAttribute="trailing" constant="16" id="s7a-pU-uUR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xXo-pt-JMa"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Enter event code" id="ofw-q4-L68">
+                        <barButtonItem key="rightBarButtonItem" image="settings_icon" id="xc7-ff-8Rg">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="didTapSettings:" destination="Kqe-H3-3hj" id="ucY-v4-Y6b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="mwX-1o-hcw" id="YTI-8k-d9n"/>
+                        <segue destination="t9i-KN-lj5" kind="presentation" identifier="eventCodeToCheckinVC" id="o4I-Ty-NPm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UDA-zm-0hj" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2039" y="-640"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dbl-f8-1pN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LRI-CX-K4n" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="pIo-Xf-Ysb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kqe-H3-3hj" kind="relationship" relationship="rootViewController" id="Vsx-FR-iX8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yvh-vD-U5z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052" y="-640"/>
         </scene>
     </scenes>
     <resources>
         <image name="settings_icon" width="37.5" height="37.5"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="o4I-Ty-NPm"/>
+    </inferredMetricsTieBreakers>
 </document>
