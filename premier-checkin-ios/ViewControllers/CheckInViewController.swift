@@ -64,6 +64,6 @@ extension CheckInViewController : KeyboardDelegate {
     }
     
     func searchTapped() {
-        //TODO: perform search then Segue
+        performSegue(withIdentifier: "duplicatesVC", sender: nil)
     }
 }

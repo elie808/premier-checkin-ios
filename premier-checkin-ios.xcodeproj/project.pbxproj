@@ -21,6 +21,9 @@
 		475C41992168EA4300429EB4 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41982168EA4300429EB4 /* KeyboardButton.swift */; };
 		475C419B2168EDE300429EB4 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C419A2168EDE300429EB4 /* CheckInViewController.swift */; };
 		475C419D2169924700429EB4 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C419C2169924700429EB4 /* EventViewController.swift */; };
+		475C419F21699DF400429EB4 /* DuplicatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C419E21699DF400429EB4 /* DuplicatesViewController.swift */; };
+		475C41A32169A64F00429EB4 /* DuplicatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41A22169A64F00429EB4 /* DuplicatesTableViewCell.swift */; };
+		475C41A52169A84100429EB4 /* ParticipantCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41A42169A84100429EB4 /* ParticipantCheckInViewController.swift */; };
 		F3F4D2B87D4CF32475BF1580 /* Pods_premier_checkin_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,9 @@
 		475C41982168EA4300429EB4 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		475C419A2168EDE300429EB4 /* CheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
 		475C419C2169924700429EB4 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		475C419E21699DF400429EB4 /* DuplicatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicatesViewController.swift; sourceTree = "<group>"; };
+		475C41A22169A64F00429EB4 /* DuplicatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuplicatesTableViewCell.swift; path = "premier-checkin-ios/Views/DuplicatesTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		475C41A42169A84100429EB4 /* ParticipantCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCheckInViewController.swift; sourceTree = "<group>"; };
 		592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_premier_checkin_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB0AE5B4D50A190873F217 /* Pods-premier-checkin-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-premier-checkin-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-premier-checkin-ios/Pods-premier-checkin-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,7 +109,9 @@
 			children = (
 				475C419A2168EDE300429EB4 /* CheckInViewController.swift */,
 				475C419C2169924700429EB4 /* EventViewController.swift */,
+				475C419E21699DF400429EB4 /* DuplicatesViewController.swift */,
 				475C418F2167CD1000429EB4 /* LoadingViewController.swift */,
+				475C41A42169A84100429EB4 /* ParticipantCheckInViewController.swift */,
 				471D7D932166FAB700124C87 /* QRScannerViewController.swift */,
 			);
 			path = ViewControllers;
@@ -156,6 +164,7 @@
 		471D7D982167025700124C87 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				475C41A22169A64F00429EB4 /* DuplicatesTableViewCell.swift */,
 				471D7D992167027E00124C87 /* Keyboard.swift */,
 				475C41982168EA4300429EB4 /* KeyboardButton.swift */,
 			);
@@ -311,7 +320,10 @@
 				471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */,
 				471D7D922166E54500124C87 /* UIStoryboards+Helpers.swift in Sources */,
 				471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */,
+				475C419F21699DF400429EB4 /* DuplicatesViewController.swift in Sources */,
 				475C419B2168EDE300429EB4 /* CheckInViewController.swift in Sources */,
+				475C41A52169A84100429EB4 /* ParticipantCheckInViewController.swift in Sources */,
+				475C41A32169A64F00429EB4 /* DuplicatesTableViewCell.swift in Sources */,
 				471D7D782166D34900124C87 /* AppDelegate.swift in Sources */,
 				475C419D2169924700429EB4 /* EventViewController.swift in Sources */,
 				475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */,

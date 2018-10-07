@@ -116,6 +116,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 captureSession.stopRunning()
                 
                 print("QR code detected", metadataObj.stringValue!)
+                performSegue(withIdentifier: "qrToParticipantCHeckin", sender: nil)
             }
         }
     }
