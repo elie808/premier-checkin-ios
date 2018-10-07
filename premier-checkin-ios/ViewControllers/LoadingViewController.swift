@@ -22,7 +22,10 @@ class LoadingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        show(alert: "App is offline", message:"You need to be connected when you first load the app. Connect to WiFi or turn on mobile data.", buttonTitle: "Try again")
+//        show(alert: "App is offline", message: "You need to be connected when you first load the app. Connect to WiFi or turn on mobile data.",
+//             buttonTitle: "Try again", onSuccess: {
+//                print("Trying again")
+//        })
     }
     
     // MARK: - Actions

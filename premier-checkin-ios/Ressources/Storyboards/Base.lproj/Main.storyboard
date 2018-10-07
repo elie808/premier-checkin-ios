@@ -88,29 +88,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zdq-LY-6JT">
-                                <rect key="frame" x="16" y="84" width="267" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.56470588235294117" green="0.78431372549019607" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="9RM-6V-Gjj"/>
-                                </constraints>
-                                <color key="textColor" red="0.19607843137254902" green="0.24705882352941178" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggz-pI-SvP">
-                                <rect key="frame" x="299" y="84" width="60" height="60"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="sV3-63-MSi"/>
-                                    <constraint firstAttribute="height" constant="60" id="xbS-UA-wPI"/>
-                                </constraints>
-                                <state key="normal" title="QR"/>
-                                <connections>
-                                    <segue destination="jVS-um-ziy" kind="show" id="oPP-Pf-17Y"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9WS-kb-i54">
+                                <rect key="frame" x="16" y="84" width="343" height="60"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zdq-LY-6JT">
+                                        <rect key="frame" x="0.0" y="3" width="275" height="54"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.56470588235294117" green="0.78431372549019607" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.19607843137254902" green="0.24705882352941178" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggz-pI-SvP">
+                                        <rect key="frame" x="283" y="0.0" width="60" height="60"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Ivw-ZL-XOU"/>
+                                            <constraint firstAttribute="height" constant="60" id="ZeX-as-dLj"/>
+                                        </constraints>
+                                        <state key="normal" title="QR"/>
+                                        <connections>
+                                            <segue destination="jVS-um-ziy" kind="show" id="oPP-Pf-17Y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibs-wN-z6e">
                                 <rect key="frame" x="16" y="16" width="343" height="28"/>
                                 <constraints>
@@ -123,20 +125,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ggz-pI-SvP" firstAttribute="leading" secondItem="Zdq-LY-6JT" secondAttribute="trailing" constant="16" id="Gh1-HC-lzL"/>
-                            <constraint firstItem="Zdq-LY-6JT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Hk3-1V-MSq"/>
+                            <constraint firstAttribute="trailing" secondItem="9WS-kb-i54" secondAttribute="trailing" constant="16" id="1zK-7B-7JZ"/>
                             <constraint firstItem="Ibs-wN-z6e" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="KVa-1o-uJf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ibs-wN-z6e" secondAttribute="trailing" constant="16" id="Nat-mp-7dc"/>
-                            <constraint firstItem="Ggz-pI-SvP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="84" id="b3z-LQ-S9T"/>
+                            <constraint firstItem="9WS-kb-i54" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="WsK-6r-xXj"/>
+                            <constraint firstItem="9WS-kb-i54" firstAttribute="top" secondItem="Ibs-wN-z6e" secondAttribute="bottom" constant="40" id="aJA-qT-1m3"/>
                             <constraint firstItem="Ibs-wN-z6e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="cfX-eN-i2m"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ggz-pI-SvP" secondAttribute="trailing" constant="16" id="kq6-hO-kTF"/>
-                            <constraint firstItem="Zdq-LY-6JT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="84" id="tPr-wY-YsC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Premier check in" id="1hs-id-dSh">
                         <barButtonItem key="rightBarButtonItem" image="settings_icon" id="4q5-Kq-804">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="didTapSettings:" destination="BYZ-38-t0r" id="g4r-1s-Ahz"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

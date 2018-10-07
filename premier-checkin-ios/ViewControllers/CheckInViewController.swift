@@ -39,6 +39,12 @@ class CheckInViewController: UIViewController {
         textField.becomeFirstResponder()
     }
     
+    // MARK: - Actions
+    
+    @IBAction func didTapSettings(_ sender: UIBarButtonItem) {
+        present(settingsAlertController(), animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
