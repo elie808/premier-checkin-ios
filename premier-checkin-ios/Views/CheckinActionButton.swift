@@ -32,10 +32,7 @@ class CheckinActionButton: UIButton {
     
     override func draw(_ rect: CGRect) {
         addRoundedCorners()
-        
-        self.layer.borderWidth = borderWidth
-        self.layer.borderColor = borderColor.cgColor
-        self.layer.masksToBounds = true
+        addBorder(width: borderWidth, color: borderColor)
     }
 
 }
