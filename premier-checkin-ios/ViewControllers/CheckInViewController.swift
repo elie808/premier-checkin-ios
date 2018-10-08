@@ -48,6 +48,12 @@ class CheckInViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+        case Segue.Checkin.toDuplicatesVC:
+            print("duplicates")
+        default: return
+        }
     }
 }
 
@@ -64,6 +70,6 @@ extension CheckInViewController : KeyboardDelegate {
     }
     
     func searchTapped() {
-        performSegue(withIdentifier: "duplicatesVC", sender: nil)
+        performSegue(withIdentifier: Segue.Checkin.toDuplicatesVC, sender: nil)
     }
 }

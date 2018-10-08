@@ -35,8 +35,25 @@ class DuplicatesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
     
-    // MARK: - UITableViewDataSource
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let myLabel : UILabel = UILabel(frame: CGRect(x: 16, y: 0, width: self.tableView.frame.width, height: 50))
+        myLabel.text = "Duplicates Found"
+        myLabel.textColor = #colorLiteral(red: 0.1960784314, green: 0.2470588235, blue: 0.3843137255, alpha: 1)
+        myLabel.font = myLabel.font.withSize(25)
+        
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 50))
+        header.addSubview(myLabel)
+        
+        return header
+    }
+    
+    // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
@@ -46,7 +63,7 @@ class DuplicatesViewController: UIViewController, UITableViewDelegate, UITableVi
      }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "participantCheckin", sender: nil)
+        performSegue(withIdentifier: Segue.Duplicates.toParticipantCheckinVC, sender: nil)
     }
     
     // MARK: - Actions

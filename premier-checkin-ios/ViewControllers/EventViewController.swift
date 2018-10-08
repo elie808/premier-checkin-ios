@@ -43,6 +43,12 @@ class EventViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+        case Segue.Event.toCheckinNVC:
+            print("checkin")
+        default: return
+        }
     }
 }
 
@@ -59,6 +65,6 @@ extension EventViewController : KeyboardDelegate {
     }
     
     func searchTapped() {
-        performSegue(withIdentifier: "eventCodeToCheckinVC", sender: nil)
+        performSegue(withIdentifier: Segue.Event.toCheckinNVC, sender: nil)
     }
 }

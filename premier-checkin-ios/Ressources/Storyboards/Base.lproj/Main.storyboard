@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="t9i-KN-lj5" kind="show" id="P4I-cK-i9c"/>
+                                    <segue destination="t9i-KN-lj5" kind="show" identifier="LoadingToCheckinNavigationVC" id="P4I-cK-i9c"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tZN-Ry-A5G">
@@ -51,7 +51,7 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="updateProgress:" destination="9V6-ND-u44" eventType="touchDown" id="bwy-aP-Fpx"/>
-                                    <segue destination="LRI-CX-K4n" kind="show" id="CRp-3e-aqn"/>
+                                    <segue destination="LRI-CX-K4n" kind="show" identifier="LoadingToEventNavigationVC" id="CRp-3e-aqn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -109,7 +109,7 @@
                                         </constraints>
                                         <state key="normal" title="QR"/>
                                         <connections>
-                                            <segue destination="jVS-um-ziy" kind="show" id="oPP-Pf-17Y"/>
+                                            <segue destination="jVS-um-ziy" kind="show" identifier="CheckinToQRScannerVC" id="oPP-Pf-17Y"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -146,8 +146,8 @@
                     <connections>
                         <outlet property="messageLabel" destination="Ibs-wN-z6e" id="0T9-z7-3fx"/>
                         <outlet property="textField" destination="Zdq-LY-6JT" id="NXl-H6-N3X"/>
-                        <segue destination="tTC-Fp-t1r" kind="show" identifier="duplicatesVC" id="5Fn-Ja-HYx"/>
-                        <segue destination="raL-RG-Zgh" kind="show" id="PNV-OB-K7Q"/>
+                        <segue destination="tTC-Fp-t1r" kind="show" identifier="CheckinToDuplicatesVC" id="5Fn-Ja-HYx"/>
+                        <segue destination="raL-RG-Zgh" kind="show" identifier="CheckinToParticipantCheckinVC" id="PNV-OB-K7Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -165,6 +165,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="108" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wWt-fg-nfK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexColor" red="0.76695421009999998" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellID" rowHeight="108" id="e08-yW-BVN" customClass="DuplicatesTableViewCell" customModule="premier_checkin_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="108"/>
@@ -230,7 +231,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="wWt-fg-nfK" id="v2B-Cb-LXq"/>
-                        <segue destination="raL-RG-Zgh" kind="show" identifier="participantCheckin" id="Zap-Z4-G1R"/>
+                        <segue destination="raL-RG-Zgh" kind="show" identifier="DuplicatesToParticipantCheckinVC" id="Zap-Z4-G1R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJF-cJ-nVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -352,7 +353,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Premier check in" id="1lx-Cc-WaX"/>
                     <connections>
-                        <segue destination="raL-RG-Zgh" kind="show" identifier="qrToParticipantCHeckin" id="bld-kC-FDd"/>
+                        <segue destination="raL-RG-Zgh" kind="show" identifier="QRToParticipantCheckinVC" id="bld-kC-FDd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ObZ-94-ATH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -413,7 +414,7 @@
                     <navigationItem key="navigationItem" title="Enter event code" id="ofw-q4-L68"/>
                     <connections>
                         <outlet property="textField" destination="mwX-1o-hcw" id="YTI-8k-d9n"/>
-                        <segue destination="t9i-KN-lj5" kind="presentation" identifier="eventCodeToCheckinVC" id="o4I-Ty-NPm"/>
+                        <segue destination="t9i-KN-lj5" kind="presentation" identifier="EventCodeToCheckinNavigationVC" id="o4I-Ty-NPm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDA-zm-0hj" sceneMemberID="firstResponder"/>

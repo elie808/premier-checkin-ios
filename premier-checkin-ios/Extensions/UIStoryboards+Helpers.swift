@@ -29,3 +29,29 @@ extension UIStoryboard {
 
 }
 
+struct Segue {
+    
+    struct Loading {
+        static let toEventNVC = "LoadingToEventNavigationVC"
+        static let toCheckinNVC = "LoadingToCheckinNavigationVC"
+    }
+
+    struct Event {
+        static let toCheckinNVC = "EventCodeToCheckinNavigationVC"
+    }
+    
+    struct Checkin {
+        static let toQRScannerVC = "CheckinToQRScannerVC"
+        static let toDuplicatesVC = "CheckinToDuplicatesVC"
+        static let toParticipantCheckinVC = "CheckinToParticipantCheckinVC"
+    }
+    
+    struct Duplicates {
+        static let toParticipantCheckinVC = "DuplicatesToParticipantCheckinVC"
+    }
+    
+    struct QRScanner {
+        static let toParticipantCheckinVC = "QRToParticipantCheckinVC"
+    }
+}
+
