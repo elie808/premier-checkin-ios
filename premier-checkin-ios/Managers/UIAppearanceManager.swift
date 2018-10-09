@@ -14,7 +14,7 @@ final class UIAppearanceManager {
     static func customize() {
         
 //        // Status Bar Appearance
-//        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle = .lightContent
 //
 //        // UITabBarItem Appearance
 //        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.butlrBlack], for: .normal)
