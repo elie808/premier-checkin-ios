@@ -25,7 +25,7 @@
                                     <segue destination="t9i-KN-lj5" kind="show" identifier="LoadingToCheckinNavigationVC" id="P4I-cK-i9c"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tZN-Ry-A5G">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="tZN-Ry-A5G">
                                 <rect key="frame" x="57.5" y="114" width="260" height="260"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="260" id="8BX-Xb-akB"/>
@@ -100,14 +100,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggz-pI-SvP">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggz-pI-SvP">
                                         <rect key="frame" x="283" y="0.0" width="60" height="60"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="Ivw-ZL-XOU"/>
                                             <constraint firstAttribute="height" constant="60" id="ZeX-as-dLj"/>
                                         </constraints>
-                                        <state key="normal" title="QR"/>
+                                        <state key="normal" image="QR_button"/>
                                         <connections>
                                             <segue destination="jVS-um-ziy" kind="show" identifier="CheckinToQRScannerVC" id="oPP-Pf-17Y"/>
                                         </connections>
@@ -174,9 +173,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZL4-q7-Njw">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="male_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="ZL4-q7-Njw">
                                                     <rect key="frame" x="16" y="10" width="88" height="88"/>
-                                                    <color key="backgroundColor" red="1" green="0.3139137098" blue="0.2446470657" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="88" id="6o0-gP-1b2"/>
                                                         <constraint firstAttribute="width" constant="88" id="TCT-jF-agu"/>
@@ -247,7 +245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q32-RA-WdJ">
-                                <rect key="frame" x="16" y="16" width="343" height="353.5"/>
+                                <rect key="frame" x="16" y="16" width="343" height="349"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5473" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fB-OJ-E8P">
                                         <rect key="frame" x="83.5" y="0.0" width="176.5" height="91"/>
@@ -262,21 +260,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="prv-9z-tPQ">
-                                        <rect key="frame" x="119.5" y="187.5" width="104" height="50"/>
+                                        <rect key="frame" x="125.5" y="187.5" width="92" height="45.5"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="imM-Os-IPR">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="M_gender_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="imM-Os-IPR">
+                                                <rect key="frame" x="0.0" y="0.0" width="38" height="45.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XI9-mK-JeT">
-                                                <rect key="frame" x="58" y="0.0" width="46" height="50"/>
+                                                <rect key="frame" x="46" y="0.0" width="46" height="45.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                                 <color key="textColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j3Y-RT-IMp">
-                                        <rect key="frame" x="109" y="253.5" width="125" height="100"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tshirt_icon" translatesAutoresizingMaskIntoConstraints="NO" id="j3Y-RT-IMp">
+                                        <rect key="frame" x="109" y="249" width="125" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="D5p-4j-T9Y"/>
                                             <constraint firstAttribute="height" constant="100" id="hvh-9K-Fnu"/>
@@ -526,12 +524,17 @@
         </scene>
     </scenes>
     <resources>
+        <image name="M_gender_symbol" width="38" height="38"/>
+        <image name="QR_button" width="77" height="77"/>
+        <image name="Tshirt_icon" width="124" height="100"/>
         <image name="X_icon" width="75" height="75"/>
         <image name="checkmark_icon" width="75" height="75"/>
-        <image name="settings_icon" width="37.5" height="37.5"/>
+        <image name="loading_screen_logo" width="277.5" height="279.5"/>
+        <image name="male_avatar" width="88" height="88"/>
+        <image name="settings_icon" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="o4I-Ty-NPm"/>
+        <segue reference="P4I-cK-i9c"/>
         <segue reference="Zap-Z4-G1R"/>
     </inferredMetricsTieBreakers>
 </document>

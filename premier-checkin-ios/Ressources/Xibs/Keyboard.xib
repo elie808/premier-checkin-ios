@@ -144,11 +144,10 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="D2O-it-F16">
                             <rect key="frame" x="0.0" y="255" width="253" height="75"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4e3-Pj-9gl" customClass="KeyboardButton" customModule="premier_checkin_ios" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4e3-Pj-9gl" customClass="KeyboardButton" customModule="premier_checkin_ios" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                    <state key="normal" title="&lt;">
+                                    <state key="normal" image="backspace_button">
                                         <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
@@ -166,11 +165,10 @@
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="Zpj-4R-chS"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAA-vG-Pr5" customClass="KeyboardButton" customModule="premier_checkin_ios" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAA-vG-Pr5" customClass="KeyboardButton" customModule="premier_checkin_ios" customModuleProvider="target">
                                     <rect key="frame" x="178" y="0.0" width="75" height="75"/>
                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                    <state key="normal" title="OO">
+                                    <state key="normal" image="search_button">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
@@ -209,4 +207,8 @@
             <point key="canvasLocation" x="56.799999999999997" y="12.143928035982009"/>
         </view>
     </objects>
+    <resources>
+        <image name="backspace_button" width="60" height="43"/>
+        <image name="search_button" width="60.5" height="61.5"/>
+    </resources>
 </document>
