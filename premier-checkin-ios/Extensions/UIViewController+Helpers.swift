@@ -12,12 +12,13 @@ extension UIViewController {
     
     // MARK: - AlertControllers
     
-    func show(alert title:String, message:String, buttonTitle:String, onSuccess success: @escaping () -> Void)  {
+    func show(alert title:String, message:String, buttonTitle:String, onSuccess success: (() -> Void)?)  {
         
         let actionSheet : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
         actionSheet.addAction(UIAlertAction(title: buttonTitle, style: UIAlertAction.Style.default, handler: { (action) in
-            success()
+            guard let successClosure = success else { return }
+            successClosure()
         }))
         
         present(actionSheet, animated: true, completion: nil)
@@ -29,15 +30,13 @@ extension UIViewController {
         let actionSheet : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
         actionSheet.addAction(UIAlertAction(title: buttonOneTitle, style: .default, handler: { (action) in
-            if confirm != nil {
-                confirm!()
-            }
+            guard let confirmClosure = confirm else { return }
+            confirmClosure()
         }))
         
         actionSheet.addAction(UIAlertAction(title: buttonTwoTitle, style: .destructive, handler: { (action) in
-            if cancel != nil {
-                cancel!()
-            }
+            guard let cancelClosure = cancel else { return }
+            cancelClosure()
         }))
         
         present(actionSheet, animated: true, completion: nil)
@@ -94,26 +93,26 @@ extension UIViewController {
             
             let unsyncedData = false
 
-            if unsyncedData == true {
+//            if unsyncedData == true {
+            
+//                self.show(twoButtonAlert: "Warning",
+//                          message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data",
+//                          buttonOneTitle: "Back", buttonTwoTitle: "Continue",
+//                          onConfirm: nil, onCancel: nil)
                 
-                self.show(twoButtonAlert: "Warning",
-                          message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data",
-                          buttonOneTitle: "Back", buttonTwoTitle: "Continue",
-                          onConfirm: nil, onCancel: nil)
-                
-            } else {
-                
+//            } else {
+            
                 self.show(twoButtonAlert: "Warning",
                           message: "Your data for the current event will be deleted.",
                           buttonOneTitle: "Back", buttonTwoTitle: "Delete",
                           onConfirm: nil, onCancel: nil)
-            }
+//            }
         }
         
     }
     
     func show(adminCode message:String, title:String,
-              onSuccess success: @escaping (_ adminCode: String) -> Void) {
+              onSuccess success: ((_ adminCode: String) -> Void)?) {
         
         let actionSheet : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
@@ -131,7 +130,9 @@ extension UIViewController {
                 
                 if (adminCodeTextField?.text?.count)! > 0 {
                     print((adminCodeTextField?.text)!)
-                    success((adminCodeTextField?.text)!)
+                    
+                    guard let successClosure = success else { return }
+                    successClosure((adminCodeTextField?.text)!)
                 }
             }
         }))
