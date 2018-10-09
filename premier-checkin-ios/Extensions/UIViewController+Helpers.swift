@@ -23,17 +23,21 @@ extension UIViewController {
         present(actionSheet, animated: true, completion: nil)
     }
     
-    func show(twoButtonAlert title:String, message:String, buttonOneTitle:String, buttonTwoTitle:String, onConfirm confirm: @escaping (_ nothing: String) -> Void,
-              onCancel cancel: @escaping (_ nothing: String) -> Void)  {
+    func show(twoButtonAlert title:String, message:String, buttonOneTitle:String, buttonTwoTitle:String, onConfirm confirm:(() -> Void)?,
+              onCancel cancel: (() -> Void)?)  {
         
         let actionSheet : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
         actionSheet.addAction(UIAlertAction(title: buttonOneTitle, style: .default, handler: { (action) in
-            confirm("")
+            if confirm != nil {
+                confirm!()
+            }
         }))
         
         actionSheet.addAction(UIAlertAction(title: buttonTwoTitle, style: .destructive, handler: { (action) in
-            cancel("")
+            if cancel != nil {
+                cancel!()
+            }
         }))
         
         present(actionSheet, animated: true, completion: nil)
@@ -84,25 +88,26 @@ extension UIViewController {
     }
     
     func deleteData() {
-        
+
         show(adminCode: "Enter the event admin code to delete the app check in data", title: "Enter admin code") { (AdminCode) in
             print(AdminCode)
             
-//            let unsyncedData = true
-            
-            self.show(twoButtonAlert: "Warning", message: "Your data for the current event will be deleted.",
-                      buttonOneTitle: "Back", buttonTwoTitle: "Delete", onConfirm: { (shi) in
-                        
-//                        self.show(twoButtonAlert: "Warning", message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data", buttonOneTitle: "Back", buttonTwoTitle: "Delete", onConfirm: { (shi) in
-//                            print("ENTERING CONFIRM")
-//                        }, onCancel: { (shi) in
-//                            print("ENTERING CANCEL")
-//                        })
-                        
-            }, onCancel: { (shi) in
-                
-            })
+            let unsyncedData = false
 
+            if unsyncedData == true {
+                
+                self.show(twoButtonAlert: "Warning",
+                          message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data",
+                          buttonOneTitle: "Back", buttonTwoTitle: "Continue",
+                          onConfirm: nil, onCancel: nil)
+                
+            } else {
+                
+                self.show(twoButtonAlert: "Warning",
+                          message: "Your data for the current event will be deleted.",
+                          buttonOneTitle: "Back", buttonTwoTitle: "Delete",
+                          onConfirm: nil, onCancel: nil)
+            }
         }
         
     }
