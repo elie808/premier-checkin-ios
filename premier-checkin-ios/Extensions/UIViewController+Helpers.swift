@@ -66,11 +66,21 @@ extension UIViewController {
     }
     
     func showAbout() {
-        print("About")
+        let storyBoard : UIStoryboard = UIStoryboard.Main
+        let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.WebNVC.rawValue) as! UINavigationController
+        let vc = navigationCtrl.children[0] as! WebViewController
+        vc.URLString = "https://www.google.com"
+        vc.title = "About"
+        present(navigationCtrl, animated: true, completion: nil)
     }
     
     func showEventViewController() {
-        print("Event")
+        let storyBoard : UIStoryboard = UIStoryboard.Main
+        let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.WebNVC.rawValue) as! UINavigationController
+        let vc = navigationCtrl.children[0] as! WebViewController
+        vc.URLString = "https://www.apple.com"
+        vc.title = "Event"
+        present(navigationCtrl, animated: true, completion: nil)
     }
     
     func deleteData() {
@@ -83,11 +93,11 @@ extension UIViewController {
             self.show(twoButtonAlert: "Warning", message: "Your data for the current event will be deleted.",
                       buttonOneTitle: "Back", buttonTwoTitle: "Delete", onConfirm: { (shi) in
                         
-                        self.show(twoButtonAlert: "Warning", message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data", buttonOneTitle: "Back", buttonTwoTitle: "Delete", onConfirm: { (shi) in
-                            print("ENTERING CONFIRM")
-                        }, onCancel: { (shi) in
-                            print("ENTERING CANCEL")
-                        })
+//                        self.show(twoButtonAlert: "Warning", message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data", buttonOneTitle: "Back", buttonTwoTitle: "Delete", onConfirm: { (shi) in
+//                            print("ENTERING CONFIRM")
+//                        }, onCancel: { (shi) in
+//                            print("ENTERING CANCEL")
+//                        })
                         
             }, onCancel: { (shi) in
                 

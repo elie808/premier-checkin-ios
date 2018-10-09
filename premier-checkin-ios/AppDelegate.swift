@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: StoryboardIdentifier.Main.rawValue, bundle: nil)
+        let storyBoard : UIStoryboard = UIStoryboard.Main
         window?.rootViewController = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.Loading.rawValue)
         
         return true
