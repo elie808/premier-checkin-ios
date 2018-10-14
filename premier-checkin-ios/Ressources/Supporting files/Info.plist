@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>The app needs permission to access your camera to enable QR scanning.</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>

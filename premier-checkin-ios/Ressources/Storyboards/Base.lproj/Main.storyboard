@@ -368,17 +368,31 @@
                     <view key="view" contentMode="scaleToFill" id="wZV-vh-Sbo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_frame" translatesAutoresizingMaskIntoConstraints="NO" id="g2Z-Hb-bHu">
+                                <rect key="frame" x="67.5" y="155.5" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="YZJ-Wf-y0H"/>
+                                    <constraint firstAttribute="height" constant="240" id="xhM-dE-jHe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g2Z-Hb-bHu" firstAttribute="centerX" secondItem="0dp-ly-1Ff" secondAttribute="centerX" id="VcZ-Do-gxG"/>
+                            <constraint firstItem="g2Z-Hb-bHu" firstAttribute="centerY" secondItem="0dp-ly-1Ff" secondAttribute="centerY" id="WUR-jR-EuB"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0dp-ly-1Ff"/>
                     </view>
                     <navigationItem key="navigationItem" title="Premier check in" id="1lx-Cc-WaX"/>
                     <connections>
+                        <outlet property="qrCodeFrameView" destination="g2Z-Hb-bHu" id="4rT-Ss-T0z"/>
                         <segue destination="raL-RG-Zgh" kind="show" identifier="QRToParticipantCheckinVC" id="bld-kC-FDd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ObZ-94-ATH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2038" y="901"/>
+            <point key="canvasLocation" x="2038" y="962"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="90l-3B-nM6">
@@ -528,6 +542,7 @@
         <image name="QR_button" width="77" height="77"/>
         <image name="Tshirt_icon" width="124" height="100"/>
         <image name="X_icon" width="75" height="75"/>
+        <image name="camera_frame" width="354" height="344"/>
         <image name="checkmark_icon" width="75" height="75"/>
         <image name="loading_screen_logo" width="277.5" height="279.5"/>
         <image name="male_avatar" width="88" height="88"/>

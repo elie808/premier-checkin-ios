@@ -97,6 +97,7 @@
 				471D7D8B2166E39400124C87 /* Extensions */,
 				475C41952168E8FB00429EB4 /* Managers */,
 				473E6C7C217025C20085ED22 /* Models */,
+				473E6C83217029570085ED22 /* Networking */,
 				471D7D8C2166E39F00124C87 /* ViewControllers */,
 				471D7D982167025700124C87 /* Views */,
 				471D7D8D2166E3C900124C87 /* Ressources */,
@@ -189,6 +190,13 @@
 				473E6C81217026B40085ED22 /* Participant.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		473E6C83217029570085ED22 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		475C41952168E8FB00429EB4 /* Managers */ = {

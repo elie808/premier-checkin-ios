@@ -12,9 +12,14 @@ import AVFoundation
 
 class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
+    // MARK: - Outlets
+    
+    @IBOutlet weak var qrCodeFrameView:UIImageView?
+    
+    // MARK: - Properties
+    
     var captureSession = AVCaptureSession()
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
-    var qrCodeFrameView:UIView?
     
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                                       AVMetadataObject.ObjectType.code39,
@@ -29,6 +34,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                                       AVMetadataObject.ObjectType.dataMatrix,
                                       AVMetadataObject.ObjectType.interleaved2of5,
                                       AVMetadataObject.ObjectType.qr]
+    
+    // MARK: - Views Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,21 +76,17 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         videoPreviewLayer?.frame = view.layer.bounds
         view.layer.addSublayer(videoPreviewLayer!)
         
-        // Start video capture.
-        captureSession.startRunning()
-        
-        // Move other subviews on view to forefront
-        // view.bringSubview(toFront: someView)
-        
         // Initialize QR Code Frame to highlight the QR code
-        qrCodeFrameView = UIView()
-        
         if let qrCodeFrameView = qrCodeFrameView {
-            qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
-            qrCodeFrameView.layer.borderWidth = 2
-            view.addSubview(qrCodeFrameView)
             view.bringSubviewToFront(qrCodeFrameView)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+     
+        // Start video capture.
+        captureSession.startRunning()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -96,7 +99,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects.count == 0 {
-            qrCodeFrameView?.frame = CGRect.zero
             print("No QR code is detected")
             return
         }
@@ -105,10 +107,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
         if metadataObj.type == AVMetadataObject.ObjectType.qr {
-            
-            // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
-            qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
                 
@@ -121,14 +119,14 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         }
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        switch segue.identifier {
+        case Segue.QRScanner.toParticipantCheckinVC:
+            print("checkin")
+        default: return
+        }
     }
-    */
-
 }
