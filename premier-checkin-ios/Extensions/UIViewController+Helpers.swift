@@ -91,7 +91,7 @@ extension UIViewController {
         show(adminCode: "Enter the event admin code to delete the app check in data", title: "Enter admin code") { (AdminCode) in
             print(AdminCode)
             
-            let unsyncedData = false
+//            let unsyncedData = false
 
 //            if unsyncedData == true {
             

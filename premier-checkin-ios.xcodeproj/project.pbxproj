@@ -15,7 +15,6 @@
 		471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D932166FAB700124C87 /* QRScannerViewController.swift */; };
 		471D7D972167021D00124C87 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471D7D962167021D00124C87 /* Keyboard.xib */; };
 		471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D992167027E00124C87 /* Keyboard.swift */; };
-		473E6C802170261A0085ED22 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E6C7F2170261A0085ED22 /* Event.swift */; };
 		473E6C82217026B40085ED22 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E6C81217026B40085ED22 /* Participant.swift */; };
 		475C41902167CD1000429EB4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C418F2167CD1000429EB4 /* LoadingViewController.swift */; };
 		475C41942168DE4E00429EB4 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */; };
@@ -43,7 +42,6 @@
 		471D7D932166FAB700124C87 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		471D7D962167021D00124C87 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		471D7D992167027E00124C87 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
-		473E6C7F2170261A0085ED22 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		473E6C81217026B40085ED22 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		475C418F2167CD1000429EB4 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 		473E6C7C217025C20085ED22 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				473E6C7F2170261A0085ED22 /* Event.swift */,
 				473E6C81217026B40085ED22 /* Participant.swift */,
 			);
 			path = Models;
@@ -354,7 +351,6 @@
 				475C41A52169A84100429EB4 /* ParticipantCheckInViewController.swift in Sources */,
 				475C41A32169A64F00429EB4 /* DuplicatesTableViewCell.swift in Sources */,
 				471D7D782166D34900124C87 /* AppDelegate.swift in Sources */,
-				473E6C802170261A0085ED22 /* Event.swift in Sources */,
 				475C419D2169924700429EB4 /* EventViewController.swift in Sources */,
 				475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */,
 				475C41992168EA4300429EB4 /* KeyboardButton.swift in Sources */,
