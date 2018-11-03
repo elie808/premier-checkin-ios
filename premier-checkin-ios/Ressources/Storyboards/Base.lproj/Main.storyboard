@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCD-qH-EPl">
-                                <rect key="frame" x="81" y="617" width="212" height="30"/>
+                                <rect key="frame" x="81" y="617" width="242" height="30"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Checkin"/>
                                 <connections>
                                     <segue destination="t9i-KN-lj5" kind="show" identifier="LoadingToCheckinNavigationVC" id="P4I-cK-i9c"/>
                                 </connections>
@@ -44,11 +44,11 @@
                                 <color key="trackTintColor" red="0.19607843137254902" green="0.24705882352941178" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKU-Zo-iYF">
-                                <rect key="frame" x="164" y="557" width="46" height="30"/>
+                                <rect key="frame" x="164" y="557" width="76" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cYm-Ii-59F"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Event View"/>
                                 <connections>
                                     <action selector="updateProgress:" destination="9V6-ND-u44" eventType="touchDown" id="bwy-aP-Fpx"/>
                                     <segue destination="LRI-CX-K4n" kind="show" identifier="LoadingToEventNavigationVC" id="CRp-3e-aqn"/>
@@ -145,8 +145,7 @@
                     <connections>
                         <outlet property="messageLabel" destination="Ibs-wN-z6e" id="0T9-z7-3fx"/>
                         <outlet property="textField" destination="Zdq-LY-6JT" id="NXl-H6-N3X"/>
-                        <segue destination="tTC-Fp-t1r" kind="show" identifier="CheckinToDuplicatesVC" id="5Fn-Ja-HYx"/>
-                        <segue destination="raL-RG-Zgh" kind="show" identifier="CheckinToParticipantCheckinVC" id="PNV-OB-K7Q"/>
+                        <segue destination="8GZ-qa-pK3" kind="show" identifier="CheckinToParticipantCheckinVC" id="Ov9-4m-k94"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -158,11 +157,11 @@
             <objects>
                 <viewController title="Premier check in" id="tTC-Fp-t1r" customClass="DuplicatesViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fqg-QQ-r4g">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="108" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wWt-fg-nfK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexColor" red="0.76695421009999998" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -234,18 +233,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJF-cJ-nVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2829.5999999999999" y="-160.56971514242881"/>
+            <point key="canvasLocation" x="3476" y="-1211"/>
+        </scene>
+        <!--Participant Check In View Controller-->
+        <scene sceneID="UD6-B2-gck">
+            <objects>
+                <viewController id="8GZ-qa-pK3" customClass="ParticipantCheckInViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C7Y-fv-SCX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.76695421009999998" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Exm-Vm-jFl"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mp3-fq-2oJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2831" y="606"/>
         </scene>
         <!--Premier check in-->
         <scene sceneID="8ck-AS-xG9">
             <objects>
                 <viewController title="Premier check in" id="raL-RG-Zgh" customClass="ParticipantCheckInViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ort-uD-jUI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q32-RA-WdJ">
-                                <rect key="frame" x="16" y="16" width="343" height="349"/>
+                                <rect key="frame" x="16" y="36" width="343" height="349"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5473" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fB-OJ-E8P">
                                         <rect key="frame" x="83.5" y="0.0" width="176.5" height="91"/>
@@ -283,7 +297,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5i-Rk-gVj" customClass="CheckinActionButton" customModule="premier_checkin_ios" customModuleProvider="target">
-                                <rect key="frame" x="35" y="435" width="100" height="100"/>
+                                <rect key="frame" x="35" y="551" width="100" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="bAR-bE-eaa"/>
@@ -306,7 +320,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgl-nN-LrD" customClass="CheckinActionButton" customModule="premier_checkin_ios" customModuleProvider="target">
-                                <rect key="frame" x="240" y="435" width="100" height="100"/>
+                                <rect key="frame" x="240" y="551" width="100" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="8JP-v5-HRA"/>
@@ -349,17 +363,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="ageLabel" destination="XI9-mK-JeT" id="35X-HQ-xLJ"/>
-                        <outlet property="genderImageView" destination="imM-Os-IPR" id="f3E-KW-ndF"/>
-                        <outlet property="nameLabel" destination="79Z-FG-AoS" id="2iq-kg-UOY"/>
-                        <outlet property="numberLabel" destination="1fB-OJ-E8P" id="hd5-6G-lhJ"/>
-                        <outlet property="sizeImageView" destination="j3Y-RT-IMp" id="DeV-8D-ifR"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVs-I9-ybC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2829.5999999999999" y="604.94752623688157"/>
+            <point key="canvasLocation" x="4228" y="-1210"/>
         </scene>
         <!--Premier check in-->
         <scene sceneID="3cd-Ha-Ddo">
@@ -387,7 +394,7 @@
                     <navigationItem key="navigationItem" title="Premier check in" id="1lx-Cc-WaX"/>
                     <connections>
                         <outlet property="qrCodeFrameView" destination="g2Z-Hb-bHu" id="4rT-Ss-T0z"/>
-                        <segue destination="raL-RG-Zgh" kind="show" identifier="QRToParticipantCheckinVC" id="bld-kC-FDd"/>
+                        <segue destination="8GZ-qa-pK3" kind="show" identifier="QRToParticipantCheckinVC" id="dwH-QZ-KdW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ObZ-94-ATH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -549,7 +556,7 @@
         <image name="settings_icon" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="o4I-Ty-NPm"/>
-        <segue reference="bld-kC-FDd"/>
+        <segue reference="P4I-cK-i9c"/>
+        <segue reference="Ov9-4m-k94"/>
     </inferredMetricsTieBreakers>
 </document>

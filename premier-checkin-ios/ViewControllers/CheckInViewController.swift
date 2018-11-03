@@ -10,12 +10,14 @@ import UIKit
 
 class CheckInViewController: UIViewController {
 
-    enum CheckInMessage: String {
+    enum FeedbackMessage: String {
         case Empty   = ""
         case Failed  = "Not found. Try again ..."
         case Success = "0000 Checked in"
         case Synced  = "Sync Complete"
         case DataDeleted = "App data deleted"
+        case EmptyText = "Enter a participant's number"
+        case UserNotFound = "Participant not found"
     }
     
     // MARK: - Outlets
@@ -34,9 +36,41 @@ class CheckInViewController: UIViewController {
         textField.inputView = keyboardView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        messageLabel.text = ""
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         textField.becomeFirstResponder()
+    }
+    
+    // MARK: - Helpers
+    
+    func checkDBForParticipant() {
+        
+        if let text = textField.text {
+            if text.count > 0 {
+                if (self != nil) { //TODO: Perform check in DB for match
+                    performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: nil)
+                } else {
+                    showError(message: FeedbackMessage.UserNotFound.rawValue)
+                }
+            } else {
+                showError(message: FeedbackMessage.EmptyText.rawValue)
+            }
+        }
+    }
+    
+    func showSuccess(message : String) {
+        messageLabel.textColor = UIColor.green
+        messageLabel.text = message
+    }
+   
+    func showError(message : String) {
+        messageLabel.textColor = UIColor.red
+        messageLabel.text = message
     }
     
     // MARK: - Actions
@@ -50,8 +84,9 @@ class CheckInViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
-        case Segue.Checkin.toDuplicatesVC:
-            print("duplicates")
+        case Segue.Checkin.toParticipantCheckinVC:
+            let vc : ParticipantCheckInViewController = segue.destination as! ParticipantCheckInViewController
+            vc.title = "Premiere Checkin (30)"
         default: return
         }
     }
@@ -70,6 +105,6 @@ extension CheckInViewController : KeyboardDelegate {
     }
     
     func searchTapped() {
-        performSegue(withIdentifier: Segue.Checkin.toDuplicatesVC, sender: nil)
+        checkDBForParticipant()
     }
 }

@@ -11,5 +11,6 @@ target 'premier-checkin-ios' do
   pod 'SwiftyUserDefaults','~> 3.0'
   pod 'CryptoSwift'
   pod 'SVProgressHUD'
-  
+  pod 'RealmSwift'
+
 end

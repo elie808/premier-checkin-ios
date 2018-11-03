@@ -56,10 +56,11 @@ final class UIAppearanceManager {
 
 extension UIView {
     
-    func applyKeyboardButtonGradient() {
+    func applyKeyboardButtonGradient(color1: UIColor, color2: UIColor) {
         
         let gradient = CAGradientLayer()
         gradient.colors = [#colorLiteral(red: 0.1960784314, green: 0.2470588235, blue: 0.3843137255, alpha: 1).cgColor, #colorLiteral(red: 0.3529411765, green: 0.4039215686, blue: 0.5411764706, alpha: 1).cgColor]
+        gradient.colors = [color1.cgColor, color2.cgColor]
         gradient.locations = [0.0, 1.0]
         gradient.frame = self.bounds
         self.layer.insertSublayer(gradient, at: 0)
