@@ -30,6 +30,7 @@
 		47E57DA0218F2A0B00542BF0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */; };
 		47E57DA3218F448300542BF0 /* SingleCheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57DA2218F448300542BF0 /* SingleCheckinViewController.swift */; };
 		47E57DA5218F44A200542BF0 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57DA4218F44A200542BF0 /* GroupCollectionViewCell.swift */; };
+		47E57DA8218F545B00542BF0 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57DA7218F545B00542BF0 /* String+Helpers.swift */; };
 		F3F4D2B87D4CF32475BF1580 /* Pods_premier_checkin_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		47E57DA2218F448300542BF0 /* SingleCheckinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCheckinViewController.swift; sourceTree = "<group>"; };
 		47E57DA4218F44A200542BF0 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		47E57DA7218F545B00542BF0 /* String+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
 		592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_premier_checkin_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB0AE5B4D50A190873F217 /* Pods-premier-checkin-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-premier-checkin-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-premier-checkin-ios/Pods-premier-checkin-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +116,7 @@
 			children = (
 				471D7D912166E54500124C87 /* UIStoryboards+Helpers.swift */,
 				475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */,
+				47E57DA7218F545B00542BF0 /* String+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47E57DA8218F545B00542BF0 /* String+Helpers.swift in Sources */,
 				473E6C82217026B40085ED22 /* Participant.swift in Sources */,
 				471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */,
 				471D7D922166E54500124C87 /* UIStoryboards+Helpers.swift in Sources */,

@@ -117,8 +117,14 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
                 //TODO: extract code, check if single or group in DB, perform segue
                 
-                // performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: nil)
-                performSegue(withIdentifier: Segue.QRScanner.toGroupCheckinVC, sender: nil)
+                // "https://www.premieronline.com/qr.php?qr=763618&h=c30ac811d5f26ad074907843c192a8b0"
+                if let qrURL = metadataObj.stringValue {
+    
+                    let regID = qrURL.slice(from: "?qr=", to: "&h=")
+                    
+                    // performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: nil)
+                    performSegue(withIdentifier: Segue.QRScanner.toGroupCheckinVC, sender: nil)
+                }
             }
         }
     }
