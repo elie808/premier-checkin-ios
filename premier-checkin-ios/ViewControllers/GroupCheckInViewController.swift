@@ -8,17 +8,15 @@
 
 import UIKit
 
-class ParticipantCheckInViewController: UIViewController {
+class GroupCheckInViewController: UIViewController {
 
     // MARK: - Properties
     
     // MARK: - Outlets
     
-    @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var genderImageView: UIImageView!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var sizeImageView: UIImageView!
+    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Views Life Cycle
     
@@ -59,5 +57,17 @@ class ParticipantCheckInViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension GroupCheckInViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    
 }

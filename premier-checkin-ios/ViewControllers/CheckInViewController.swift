@@ -85,7 +85,7 @@ class CheckInViewController: UIViewController {
         
         switch segue.identifier {
         case Segue.Checkin.toParticipantCheckinVC:
-            let vc : ParticipantCheckInViewController = segue.destination as! ParticipantCheckInViewController
+            let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
             vc.title = "Premiere Checkin (30)"
         default: return
         }
