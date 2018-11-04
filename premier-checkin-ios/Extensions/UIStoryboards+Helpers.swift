@@ -10,6 +10,7 @@ import UIKit
 
 public enum StoryboardIdentifier: String {
     case Main = "Main"
+    case Support = "Support"
 }
 
 public enum ViewControllerStoryboardIdentifier: String {
@@ -18,6 +19,8 @@ public enum ViewControllerStoryboardIdentifier: String {
     case Loading = "LoadingViewController"
     case WebView = "WebViewController"
     case WebNVC = "WebNavigationViewController"
+    case AboutNVC = "AboutNavigationViewController"
+    case AboutView = "AboutViewController"
 }
 
 extension UIStoryboard {
@@ -25,6 +28,13 @@ extension UIStoryboard {
     class var Main: UIStoryboard {
         struct Static {
             static let instance: UIStoryboard = UIStoryboard(name: StoryboardIdentifier.Main.rawValue, bundle: nil)
+        }
+        return Static.instance
+    }
+    
+    class var Support: UIStoryboard {
+        struct Static {
+            static let instance: UIStoryboard = UIStoryboard(name: StoryboardIdentifier.Support.rawValue, bundle: nil)
         }
         return Static.instance
     }

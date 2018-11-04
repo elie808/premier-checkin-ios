@@ -69,19 +69,18 @@ extension UIViewController {
     }
     
     func showAbout() {
-        let storyBoard : UIStoryboard = UIStoryboard.Main
-        let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.WebNVC.rawValue) as! UINavigationController
-        let vc = navigationCtrl.children[0] as! WebViewController
-        vc.URLString = "https://www.google.com"
+        let storyBoard : UIStoryboard = UIStoryboard.Support
+        let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.AboutNVC.rawValue) as! UINavigationController
+        let vc = navigationCtrl.children[0] as! AboutViewController
         vc.title = "About"
         present(navigationCtrl, animated: true, completion: nil)
     }
     
     func showEventViewController() {
-        let storyBoard : UIStoryboard = UIStoryboard.Main
+        let storyBoard : UIStoryboard = UIStoryboard.Support
         let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.WebNVC.rawValue) as! UINavigationController
         let vc = navigationCtrl.children[0] as! WebViewController
-        vc.URLString = "https://www.apple.com"
+        vc.URLString = "https://www.premieronline.com/event/walkon2018"
         vc.title = "Event"
         present(navigationCtrl, animated: true, completion: nil)
     }

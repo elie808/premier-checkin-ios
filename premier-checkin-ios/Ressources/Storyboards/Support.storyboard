@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Premier check in-->
+        <scene sceneID="9BG-j7-BR1">
+            <objects>
+                <viewController title="Premier check in" id="tTC-Fp-t1r" customClass="DuplicatesViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fqg-QQ-r4g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="108" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wWt-fg-nfK">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexColor" red="0.76695421009999998" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellID" rowHeight="108" id="e08-yW-BVN" customClass="DuplicatesTableViewCell" customModule="premier_checkin_ios" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="108"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e08-yW-BVN" id="8K7-uP-244">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="male_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="ZL4-q7-Njw">
+                                                    <rect key="frame" x="16" y="10" width="88" height="88"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="88" id="6o0-gP-1b2"/>
+                                                        <constraint firstAttribute="width" constant="88" id="TCT-jF-agu"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abdulraheem Abdulrahman Abduljameel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FpU-6A-Axi">
+                                                    <rect key="frame" x="112" y="11" width="248" height="86"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ZL4-q7-Njw" secondAttribute="bottom" constant="10" id="3w8-xu-tBr"/>
+                                                <constraint firstItem="FpU-6A-Axi" firstAttribute="leading" secondItem="ZL4-q7-Njw" secondAttribute="trailing" constant="8" id="4E7-R1-1KN"/>
+                                                <constraint firstItem="FpU-6A-Axi" firstAttribute="bottom" secondItem="8K7-uP-244" secondAttribute="bottomMargin" id="6Kf-f4-bxP"/>
+                                                <constraint firstItem="ZL4-q7-Njw" firstAttribute="top" secondItem="8K7-uP-244" secondAttribute="top" constant="10" id="8zS-lE-u1n"/>
+                                                <constraint firstItem="FpU-6A-Axi" firstAttribute="trailing" secondItem="8K7-uP-244" secondAttribute="trailingMargin" id="CsT-ds-l1V"/>
+                                                <constraint firstItem="FpU-6A-Axi" firstAttribute="top" secondItem="8K7-uP-244" secondAttribute="topMargin" id="D4F-TF-Rft"/>
+                                                <constraint firstItem="ZL4-q7-Njw" firstAttribute="leading" secondItem="8K7-uP-244" secondAttribute="leading" constant="16" id="KsV-rf-AJ5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="FpU-6A-Axi" id="vgB-1d-3t8"/>
+                                            <outlet property="profileImageView" destination="ZL4-q7-Njw" id="2Od-uo-uix"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="tTC-Fp-t1r" id="X0n-LC-3I8"/>
+                                    <outlet property="delegate" destination="tTC-Fp-t1r" id="dcS-0u-XE9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wWt-fg-nfK" firstAttribute="top" secondItem="7je-dV-mNp" secondAttribute="top" id="47u-Nb-mA5"/>
+                            <constraint firstItem="wWt-fg-nfK" firstAttribute="leading" secondItem="7je-dV-mNp" secondAttribute="leading" id="9pp-Mo-x0o"/>
+                            <constraint firstItem="wWt-fg-nfK" firstAttribute="trailing" secondItem="7je-dV-mNp" secondAttribute="trailing" id="THE-Eu-W6k"/>
+                            <constraint firstItem="wWt-fg-nfK" firstAttribute="bottom" secondItem="7je-dV-mNp" secondAttribute="bottom" id="Wsu-nK-RqU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7je-dV-mNp"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Premier check in" id="32k-ku-iIu">
+                        <barButtonItem key="rightBarButtonItem" image="settings_icon" id="Izq-Gm-0N2">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="didTapSettings:" destination="tTC-Fp-t1r" id="8T9-Ry-ZG9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="wWt-fg-nfK" id="v2B-Cb-LXq"/>
+                        <segue destination="raL-RG-Zgh" kind="show" identifier="DuplicatesToParticipantCheckinVC" id="Zap-Z4-G1R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RJF-cJ-nVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2990" y="-2087"/>
+        </scene>
+        <!--Premier check in-->
+        <scene sceneID="8ck-AS-xG9">
+            <objects>
+                <viewController title="Premier check in" id="raL-RG-Zgh" customClass="GroupCheckInViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ort-uD-jUI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q32-RA-WdJ">
+                                <rect key="frame" x="16" y="36" width="343" height="349"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5473" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fB-OJ-E8P">
+                                        <rect key="frame" x="83.5" y="0.0" width="176.5" height="91"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="76"/>
+                                        <color key="textColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abdulraheem Abdulrahman Abduljameel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79Z-FG-AoS">
+                                        <rect key="frame" x="0.5" y="107" width="342" height="64.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                        <color key="textColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="prv-9z-tPQ">
+                                        <rect key="frame" x="125.5" y="187.5" width="92" height="45.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="M_gender_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="imM-Os-IPR">
+                                                <rect key="frame" x="0.0" y="0.0" width="38" height="45.5"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XI9-mK-JeT">
+                                                <rect key="frame" x="46" y="0.0" width="46" height="45.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                                <color key="textColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tshirt_icon" translatesAutoresizingMaskIntoConstraints="NO" id="j3Y-RT-IMp">
+                                        <rect key="frame" x="109" y="249" width="125" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="D5p-4j-T9Y"/>
+                                            <constraint firstAttribute="height" constant="100" id="hvh-9K-Fnu"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5i-Rk-gVj" customClass="CheckinActionButton" customModule="premier_checkin_ios" customModuleProvider="target">
+                                <rect key="frame" x="35" y="551" width="100" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="bAR-bE-eaa"/>
+                                    <constraint firstAttribute="width" constant="100" id="kaa-Kh-CqW"/>
+                                </constraints>
+                                <state key="normal" image="X_icon"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgl-nN-LrD" customClass="CheckinActionButton" customModule="premier_checkin_ios" customModuleProvider="target">
+                                <rect key="frame" x="240" y="551" width="100" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="8JP-v5-HRA"/>
+                                    <constraint firstAttribute="height" constant="100" id="u7R-TI-gti"/>
+                                </constraints>
+                                <state key="normal" image="checkmark_icon"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.56470588239999997" green="0.7843137255" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7KZ-2n-rSe" firstAttribute="trailing" secondItem="Pgl-nN-LrD" secondAttribute="trailing" constant="35" id="8Ei-xt-NGo"/>
+                            <constraint firstItem="7KZ-2n-rSe" firstAttribute="bottom" secondItem="S5i-Rk-gVj" secondAttribute="bottom" constant="16" id="HYJ-cB-rKr"/>
+                            <constraint firstAttribute="trailing" secondItem="q32-RA-WdJ" secondAttribute="trailing" constant="16" id="Wfi-0Z-nPh"/>
+                            <constraint firstItem="q32-RA-WdJ" firstAttribute="top" secondItem="7KZ-2n-rSe" secondAttribute="top" constant="16" id="d58-e5-HjT"/>
+                            <constraint firstItem="7KZ-2n-rSe" firstAttribute="bottom" secondItem="Pgl-nN-LrD" secondAttribute="bottom" constant="16" id="dVd-AZ-TRu"/>
+                            <constraint firstItem="q32-RA-WdJ" firstAttribute="leading" secondItem="ort-uD-jUI" secondAttribute="leading" constant="16" id="mJH-eE-B9l"/>
+                            <constraint firstItem="S5i-Rk-gVj" firstAttribute="leading" secondItem="7KZ-2n-rSe" secondAttribute="leading" constant="35" id="qdn-mE-6si"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7KZ-2n-rSe"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Premier check in" id="go9-2L-QeA">
+                        <barButtonItem key="rightBarButtonItem" image="settings_icon" id="AcV-5f-RJR">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RVs-I9-ybC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3742" y="-2087"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="9dN-nM-Paq">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="eAk-jO-Mke" customClass="WebViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hVJ-kd-2sk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdD-0a-yaD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="kdD-0a-yaD" firstAttribute="trailing" secondItem="XVQ-yV-VOu" secondAttribute="trailing" id="Guv-N3-906"/>
+                            <constraint firstItem="kdD-0a-yaD" firstAttribute="top" secondItem="XVQ-yV-VOu" secondAttribute="top" id="Ujo-6N-EI0"/>
+                            <constraint firstItem="kdD-0a-yaD" firstAttribute="bottom" secondItem="XVQ-yV-VOu" secondAttribute="bottom" id="sct-wj-lgd"/>
+                            <constraint firstItem="kdD-0a-yaD" firstAttribute="leading" secondItem="XVQ-yV-VOu" secondAttribute="leading" id="vTm-px-PEA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XVQ-yV-VOu"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wdg-ue-lNM">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="lpp-Lv-gmR">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="didTapDone:" destination="eAk-jO-Mke" id="K6h-2a-qkv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="kdD-0a-yaD" id="0qJ-No-8RK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N65-Rp-Svy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2039" y="-1367"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="qqg-By-KeS">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" id="wkD-ev-3Sx" customClass="AboutViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dFO-AI-zNR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUe-UD-jEu">
+                                <rect key="frame" x="16" y="8" width="343" height="587"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Premier Online is the region's leading provider of online event registration and services.
+
+The Check In app is designed to give event hosts the ability to scan ticket numbers and registration QR Codes in order to check in the registrants to the event. Registrants would have registered via Premier Online or would have received a ticket from their employers or other parties to participate in the event.  
+
+The app will cache the registrants' data when it launches and attempt to sync the check ins live via a mobile data connection. If a connection cannot be established or is unstable, the app will keep the information locally on the device until it establishes a connection and syncs it to our servers. 
+
+Data is deleted when prompted to by the operator or auto-deleted post event (for privacy). 
+
+Caring. Safe. Premier.
+ 
+
+Copyright © 2018 Premier Sports</string>
+                                <color key="textColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aUe-UD-jEu" firstAttribute="leading" secondItem="PY7-VD-IdH" secondAttribute="leading" constant="16" id="4eY-h4-YhZ"/>
+                            <constraint firstItem="aUe-UD-jEu" firstAttribute="top" secondItem="PY7-VD-IdH" secondAttribute="top" constant="8" id="LXQ-jk-Fw2"/>
+                            <constraint firstItem="PY7-VD-IdH" firstAttribute="bottom" secondItem="aUe-UD-jEu" secondAttribute="bottom" constant="8" id="bdz-X8-1Bt"/>
+                            <constraint firstItem="PY7-VD-IdH" firstAttribute="trailing" secondItem="aUe-UD-jEu" secondAttribute="trailing" constant="16" id="wnm-ON-l4e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PY7-VD-IdH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MFa-L9-Gnm">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="yIr-CS-SZM">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="didTapDone:" destination="wkD-ev-3Sx" id="cE4-qB-UeT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oGw-6G-lwQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2037.5999999999999" y="-2087.4062968515746"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7zO-G4-1uP">
+            <objects>
+                <navigationController storyboardIdentifier="WebNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="VDW-pa-mtT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="QDY-6i-qln">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eAk-jO-Mke" kind="relationship" relationship="rootViewController" id="56m-D9-dID"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxn-kJ-dHg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052" y="-1367"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4zy-Ej-UZv">
+            <objects>
+                <navigationController storyboardIdentifier="AboutNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="bE6-ll-lbc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="2dP-lQ-aXF">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wkD-ev-3Sx" kind="relationship" relationship="rootViewController" id="nO7-qC-Kua"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5rd-XA-qTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052" y="-2087"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="M_gender_symbol" width="38" height="38"/>
+        <image name="Tshirt_icon" width="124" height="100"/>
+        <image name="X_icon" width="75" height="75"/>
+        <image name="checkmark_icon" width="75" height="75"/>
+        <image name="male_avatar" width="88" height="88"/>
+        <image name="settings_icon" width="28" height="28"/>
+    </resources>
+</document>
