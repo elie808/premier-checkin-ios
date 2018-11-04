@@ -53,7 +53,8 @@ class CheckInViewController: UIViewController {
         if let text = textField.text {
             if text.count > 0 {
                 if (self != nil) { //TODO: Perform check in DB for match
-                    performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: nil)
+                    // performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: nil)
+                    performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: nil)
                 } else {
                     showError(message: FeedbackMessage.UserNotFound.rawValue)
                 }
@@ -84,9 +85,15 @@ class CheckInViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
-        case Segue.Checkin.toParticipantCheckinVC:
+
+        case Segue.Checkin.toGroupCheckinVC:
             let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
             vc.title = "Premiere Checkin (30)"
+            
+        case Segue.Checkin.toParticipantCheckinVC:
+            let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
+            vc.title = "Premiere Checkin"
+            
         default: return
         }
     }

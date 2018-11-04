@@ -44,15 +44,18 @@ struct Segue {
     struct Checkin {
         static let toQRScannerVC = "CheckinToQRScannerVC"
         static let toDuplicatesVC = "CheckinToDuplicatesVC"
+        static let toGroupCheckinVC = "CheckinToGroupCheckinVC"
         static let toParticipantCheckinVC = "CheckinToParticipantCheckinVC"
     }
     
     struct Duplicates {
         static let toParticipantCheckinVC = "DuplicatesToParticipantCheckinVC"
+        static let toGroupCheckinVC = "DuplicatesToGroupCheckinVC"
     }
     
     struct QRScanner {
         static let toParticipantCheckinVC = "QRToParticipantCheckinVC"
+        static let toGroupCheckinVC = "QRToGroupCheckinVC"
     }
 }
 

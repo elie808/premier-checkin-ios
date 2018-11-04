@@ -16,7 +16,10 @@ class GroupCheckInViewController: UIViewController {
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var adultCollectionView: UICollectionView!
+    @IBOutlet weak var childCollectionView: UICollectionView!
+    @IBOutlet weak var adultCountLabel : UILabel!
+    @IBOutlet weak var childCountLabel : UILabel!
     
     // MARK: - Views Life Cycle
     
@@ -26,26 +29,10 @@ class GroupCheckInViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func configureView(with objb:String) {
-        
-//        numberLabel.text = ""
-//        nameLabel.text = ""
-//        genderImageView.image = UIImage(named: "")
-//        ageLabel.text = ""
-//        sizeImageView.image = UIImage(named: "")
-    }
-    
     // MARK: - Actions
-    
-    @IBAction func didTapSettings(_ sender: UIBarButtonItem) {
-        present(settingsAlertController(), animated: true, completion: nil)
-    }
-    
-    @IBAction func didTapDismiss(_ sender: UIButton) {
-    }
-    
+        
     @IBAction func didTapAccept(_ sender: UIButton) {
-        show(alert: "Error", message: "Already Checked In", buttonTitle: "OK") {}
+//        show(alert: "Error", message: "Already Checked In", buttonTitle: "OK") {}
     }
     
     /*
@@ -62,12 +49,42 @@ class GroupCheckInViewController: UIViewController {
 extension GroupCheckInViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        
+        if collectionView == adultCollectionView {
+            return 30
+        } else if collectionView == childCollectionView {
+            return 1
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        
+        if collectionView == adultCollectionView {
+        
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "adultCell", for: indexPath) as! GroupCollectionViewCell
+            return cell
+            
+        } else if collectionView == childCollectionView {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "childCell", for: indexPath) as! GroupCollectionViewCell
+        
+            return cell
+            
+        } else {
+            
+            return UICollectionViewCell()
+        }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == adultCollectionView {
+            
+        } else if collectionView == childCollectionView {
+   
+        }
+    }
     
 }

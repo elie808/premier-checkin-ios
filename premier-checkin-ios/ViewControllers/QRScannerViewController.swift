@@ -114,7 +114,11 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 captureSession.stopRunning()
                 
                 print("QR code detected", metadataObj.stringValue!)
-                performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: nil)
+
+                //TODO: extract code, check if single or group in DB, perform segue
+                
+                // performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: nil)
+                performSegue(withIdentifier: Segue.QRScanner.toGroupCheckinVC, sender: nil)
             }
         }
     }
@@ -124,8 +128,13 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
+        
+        case Segue.QRScanner.toGroupCheckinVC:
+            print("group checkin")
+        
         case Segue.QRScanner.toParticipantCheckinVC:
             print("checkin")
+            
         default: return
         }
     }
