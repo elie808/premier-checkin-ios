@@ -15,7 +15,10 @@
 		471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D932166FAB700124C87 /* QRScannerViewController.swift */; };
 		471D7D972167021D00124C87 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471D7D962167021D00124C87 /* Keyboard.xib */; };
 		471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D7D992167027E00124C87 /* Keyboard.swift */; };
-		473E6C82217026B40085ED22 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E6C81217026B40085ED22 /* Participant.swift */; };
+		47425703219082DF0006BDAE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47425702219082DF0006BDAE /* Event.swift */; };
+		47425705219087CD0006BDAE /* TTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47425704219087CD0006BDAE /* TTicket.swift */; };
+		474257072190883A0006BDAE /* ITicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474257062190883A0006BDAE /* ITicket.swift */; };
+		47425709219088D10006BDAE /* ETicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47425708219088D10006BDAE /* ETicket.swift */; };
 		475C41902167CD1000429EB4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C418F2167CD1000429EB4 /* LoadingViewController.swift */; };
 		475C41942168DE4E00429EB4 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */; };
 		475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41962168E90F00429EB4 /* UIAppearanceManager.swift */; };
@@ -48,7 +51,10 @@
 		471D7D932166FAB700124C87 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		471D7D962167021D00124C87 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		471D7D992167027E00124C87 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
-		473E6C81217026B40085ED22 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		47425702219082DF0006BDAE /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		47425704219087CD0006BDAE /* TTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTicket.swift; sourceTree = "<group>"; };
+		474257062190883A0006BDAE /* ITicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITicket.swift; sourceTree = "<group>"; };
+		47425708219088D10006BDAE /* ETicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETicket.swift; sourceTree = "<group>"; };
 		475C418F2167CD1000429EB4 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		475C41962168E90F00429EB4 /* UIAppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAppearanceManager.swift; sourceTree = "<group>"; };
@@ -200,7 +206,10 @@
 		473E6C7C217025C20085ED22 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				473E6C81217026B40085ED22 /* Participant.swift */,
+				47425702219082DF0006BDAE /* Event.swift */,
+				47425704219087CD0006BDAE /* TTicket.swift */,
+				474257062190883A0006BDAE /* ITicket.swift */,
+				47425708219088D10006BDAE /* ETicket.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -382,10 +391,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				47E57DA8218F545B00542BF0 /* String+Helpers.swift in Sources */,
-				473E6C82217026B40085ED22 /* Participant.swift in Sources */,
 				471D7D942166FAB700124C87 /* QRScannerViewController.swift in Sources */,
 				47E57DAA218F5D3600542BF0 /* AboutViewController.swift in Sources */,
 				471D7D922166E54500124C87 /* UIStoryboards+Helpers.swift in Sources */,
+				47425705219087CD0006BDAE /* TTicket.swift in Sources */,
 				471D7D9A2167027E00124C87 /* Keyboard.swift in Sources */,
 				47E57DA5218F44A200542BF0 /* GroupCollectionViewCell.swift in Sources */,
 				475C419F21699DF400429EB4 /* DuplicatesViewController.swift in Sources */,
@@ -393,6 +402,9 @@
 				475C41A52169A84100429EB4 /* GroupCheckInViewController.swift in Sources */,
 				475C41A32169A64F00429EB4 /* DuplicatesTableViewCell.swift in Sources */,
 				471D7D782166D34900124C87 /* AppDelegate.swift in Sources */,
+				474257072190883A0006BDAE /* ITicket.swift in Sources */,
+				47425703219082DF0006BDAE /* Event.swift in Sources */,
+				47425709219088D10006BDAE /* ETicket.swift in Sources */,
 				475C419D2169924700429EB4 /* EventViewController.swift in Sources */,
 				47E57DA0218F2A0B00542BF0 /* NetworkManager.swift in Sources */,
 				475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */,

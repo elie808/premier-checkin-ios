@@ -8,6 +8,12 @@
 
 import UIKit
 
-class Event: NSObject {
-
+struct Event : Decodable {
+    var url_logo : String
+    var url_event : String
+    var event_title : String
+    var delete_code : String
+    var t_tickets : [TTicket]
+    var i_tickets : [ITicket]
+    var e_tickets : [ETicket]
 }
