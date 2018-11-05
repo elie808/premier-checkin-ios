@@ -53,7 +53,7 @@ extension UIViewController {
         let secret = "ZnX59SzKHgzuYuVjoE5s"
         let eventCode = "3796204"
         
-        let Url = "https://www.premieronline.com/webservice/checkin/index.php?secret=\(secret)&code=\(eventCode)"
+        let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(eventCode)&secret=\(secret)"
         
         guard let serviceUrl = URL(string: Url) else { return }
         
