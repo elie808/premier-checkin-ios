@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LoadingViewController: UIViewController {
 
@@ -22,15 +23,25 @@ class LoadingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        //TODO: Check if the app is online before segueing
+        
 //        show(alert: "App is offline", message: "You need to be connected when you first load the app. Connect to WiFi or turn on mobile data.",
 //             buttonTitle: "Try again", onSuccess: {
 //                print("Trying again")
 //        })
+        
+        let realm = try! Realm()
+        
+        if realm.isEmpty == true {
+            performSegue(withIdentifier: Segue.Loading.toEventNVC, sender: nil)
+        } else {
+            performSegue(withIdentifier: Segue.Loading.toCheckinNVC, sender: nil)
+        }
     }
     
     // MARK: - Actions
     
-    //TODO: Remove when web download implemented
     @IBAction func updateProgress(_ sender: UIButton) {
         progressView.setProgress(0.7, animated: true)
     }
