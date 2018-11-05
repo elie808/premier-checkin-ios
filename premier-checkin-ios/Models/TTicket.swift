@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct TTicket: Decodable {
-    var reg_id : String
-    var sync_id : String
-    var company : String
-    var ticket_type : String
-    var checkin_date : String?
+class TTicket: Object, Decodable {
+    
+    @objc dynamic var reg_id  = ""
+    @objc dynamic var sync_id = ""
+    @objc dynamic var company = ""
+    @objc dynamic var ticket_type = ""
+    @objc dynamic var checkin_date : String?
+    
+    override class func primaryKey() -> String? {
+        return "reg_id"
+    }
 }

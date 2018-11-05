@@ -7,13 +7,50 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct Event : Decodable {
-    var url_logo : String
-    var url_event : String
-    var event_title : String
-    var delete_code : String
-    var t_tickets : [TTicket]
-    var i_tickets : [ITicket]
-    var e_tickets : [ETicket]
+class Event: Object, Decodable {
+    
+    @objc dynamic var url_logo  = ""
+    @objc dynamic var url_event = ""
+    @objc dynamic var event_title = ""
+    @objc dynamic var delete_code = ""
+    var t_tickets = List<TTicket>()
+    var i_tickets = List<ITicket>()
+    var e_tickets = List<ETicket>()
+    
+    override class func primaryKey() -> String? {
+        return "url_event"
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case url_logo
+        case url_event
+        case event_title
+        case delete_code
+        case t_tickets = "t_tickets"
+        case i_tickets = "i_tickets"
+        case e_tickets = "e_tickets"
+    }
+    
+    public required convenience init(from decoder: Decoder) throws {
+        self.init()
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.url_logo  = try container.decode(String.self, forKey: .url_logo)
+        self.url_event = try container.decode(String.self, forKey: .url_event)
+        self.event_title = try container.decode(String.self, forKey: .event_title)
+        self.delete_code = try container.decode(String.self, forKey: .delete_code)
+        
+        // Map JSON Array response into Realm List
+        let tTickets = try container.decodeIfPresent([TTicket].self, forKey: .t_tickets) ?? [TTicket()]
+        t_tickets.append(objectsIn: tTickets)
+        
+        let iTickets = try container.decodeIfPresent([ITicket].self, forKey: .i_tickets) ?? [ITicket()]
+        i_tickets.append(objectsIn: iTickets)
+        
+        let eTickets = try container.decodeIfPresent([ETicket].self, forKey: .e_tickets) ?? [ETicket()]
+        e_tickets.append(objectsIn: eTickets)
+    }
 }
