@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 extension UIViewController {
     
@@ -51,7 +52,7 @@ extension UIViewController {
         
         let syncNowAction   = UIAlertAction(title: "Sync Now", style: UIAlertAction.Style.default)  { (action) in self.syncData() }
         let aboutAction     = UIAlertAction(title: "About", style: UIAlertAction.Style.default)     { (action) in self.showAbout() }
-        let eventPageAction = UIAlertAction(title: "Event Page", style: UIAlertAction.Style.default) { (action) in self.showEventViewController() }
+        let eventPageAction = UIAlertAction(title: "Event Page", style: UIAlertAction.Style.default) { (action) in self.showEventWebPageViewController() }
         let deleteEventAction = UIAlertAction(title: "Delete Event Data", style: UIAlertAction.Style.destructive) { (action) in self.deleteData() }
         let cancelAction    = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
@@ -76,7 +77,7 @@ extension UIViewController {
         present(navigationCtrl, animated: true, completion: nil)
     }
     
-    func showEventViewController() {
+    func showEventWebPageViewController() {
         let storyBoard : UIStoryboard = UIStoryboard.Support
         let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.WebNVC.rawValue) as! UINavigationController
         let vc = navigationCtrl.children[0] as! WebViewController
@@ -85,28 +86,48 @@ extension UIViewController {
         present(navigationCtrl, animated: true, completion: nil)
     }
     
+    func showEventViewController() {
+        let storyBoard : UIStoryboard = UIStoryboard.Main
+        let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.EventNVC.rawValue) as! UINavigationController
+//        let vc = navigationCtrl.children[0] as! EventViewController
+        present(navigationCtrl, animated: true, completion: nil)
+    }
+    
     func deleteData() {
 
-        show(adminCode: "Enter the event admin code to delete the app check in data", title: "Enter admin code") { (AdminCode) in
-            print(AdminCode)
-            
-//            let unsyncedData = false
-
-//            if unsyncedData == true {
-            
-//                self.show(twoButtonAlert: "Warning",
-//                          message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data",
-//                          buttonOneTitle: "Back", buttonTwoTitle: "Continue",
-//                          onConfirm: nil, onCancel: nil)
-                
-//            } else {
-            
-                self.show(twoButtonAlert: "Warning",
-                          message: "Your data for the current event will be deleted.",
-                          buttonOneTitle: "Back", buttonTwoTitle: "Delete",
-                          onConfirm: nil, onCancel: nil)
-//            }
+        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
+        let realmURLs = [realmURL, realmURL.appendingPathExtension("lock"), realmURL.appendingPathExtension("note"), realmURL.appendingPathExtension("management") ]
+        
+        for URL in realmURLs {
+            do {
+                try FileManager.default.removeItem(at: URL)
+            } catch {
+                // handle error
+            }
         }
+        
+        showEventViewController()
+        
+//        show(adminCode: "Enter the event admin code to delete the app check in data", title: "Enter admin code") { (AdminCode) in
+//            print(AdminCode)
+//
+////            let unsyncedData = false
+//
+////            if unsyncedData == true {
+//
+////                self.show(twoButtonAlert: "Warning",
+////                          message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data",
+////                          buttonOneTitle: "Back", buttonTwoTitle: "Continue",
+////                          onConfirm: nil, onCancel: nil)
+//
+////            } else {
+//
+//                self.show(twoButtonAlert: "Warning",
+//                          message: "Your data for the current event will be deleted.",
+//                          buttonOneTitle: "Back", buttonTwoTitle: "Delete",
+//                          onConfirm: nil, onCancel: nil)
+////            }
+//        }
         
     }
     

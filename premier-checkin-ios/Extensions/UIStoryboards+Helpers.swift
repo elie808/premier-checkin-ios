@@ -16,6 +16,7 @@ public enum StoryboardIdentifier: String {
 public enum ViewControllerStoryboardIdentifier: String {
     case Checkin = "CheckinViewController"
     case Event = "EventViewController"
+    case EventNVC = "EventNavigationViewController"
     case Loading = "LoadingViewController"
     case WebView = "WebViewController"
     case WebNVC = "WebNavigationViewController"
