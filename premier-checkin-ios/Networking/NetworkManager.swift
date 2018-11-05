@@ -48,40 +48,14 @@ extension UIViewController {
     }
     
     
-    func post() {
+    func post<T : Decodable>(url: String, completion: @escaping (T) -> ()) {
         
-        let secret = "ZnX59SzKHgzuYuVjoE5s"
-        let eventCode = "3796204"
-        
-        let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(eventCode)&secret=\(secret)"
-        
-        guard let serviceUrl = URL(string: Url) else { return }
+        guard let serviceUrl = URL(string: url) else { return }
         
         let dict1 = ["sync_id": "t2", "quantity": "1", "checkin_date": ""]
         let dict2 = ["sync_id": "e2236744", "quantity": "20", "checkin_date": "1541073901"]
         
         let parameterDictionary = ["data" : [dict1, dict2] ]
-        
-        //        [
-        //            {
-        //                "sync_id": "i695578",
-        //                "quantity": "1",
-        //                "checkin_date": ""
-        //            },
-        //            {
-        //
-        //            }
-        //        ]
-        //
-        //        let jsonObject: [String: Any] = [
-        //            "type_id": 1,
-        //            "model_id": 1,
-        //            "data": [
-        //                "startDate": "10/04/2015 12:45",
-        //                "endDate": "10/04/2015 16:00"
-        //            ],
-        //            "custom": savedData
-        //        ]
         
         var request = URLRequest(url: serviceUrl)
         request.httpMethod = "POST"
@@ -100,7 +74,7 @@ extension UIViewController {
             print("\n \n REQUEST: \n \n", request.httpMethod!)
             
             SVProgressHUD.dismiss()
-            //            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            // UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             if let response = response {
                 print("\n \n RESPONSE: \n \n", response)
