@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CheckInViewController: UIViewController {
 
@@ -48,13 +49,26 @@ class CheckInViewController: UIViewController {
     
     // MARK: - Helpers
     
+    func showSuccess(message : String) {
+        messageLabel.textColor = UIColor.green
+        messageLabel.text = message
+    }
+    
+    func showError(message : String) {
+        messageLabel.textColor = UIColor.red
+        messageLabel.text = message
+    }
+    
     func checkDBForParticipant() {
         
-        if let text = textField.text {
-            if text.count > 0 {
-                if (self != nil) { //TODO: Perform check in DB for match
-                    // performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: nil)
-                    performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: nil)
+        if let regID = textField.text {
+            if regID.count > 0 {
+                if let result = searchDB(forID: regID) {
+                    if result is ETicket {
+                        performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: nil)
+                    } else {
+                        performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: nil)
+                    }
                 } else {
                     showError(message: FeedbackMessage.UserNotFound.rawValue)
                 }
@@ -64,14 +78,37 @@ class CheckInViewController: UIViewController {
         }
     }
     
-    func showSuccess(message : String) {
-        messageLabel.textColor = UIColor.green
-        messageLabel.text = message
-    }
-   
-    func showError(message : String) {
-        messageLabel.textColor = UIColor.red
-        messageLabel.text = message
+    func searchDB(forID regID : String) -> Any? {
+        
+        let realm = try! Realm()
+        
+        let tTicketPrefix = "T" + regID
+        let tPredicate = NSPredicate(format: "reg_id = %@", tTicketPrefix) // only used for t_tickets
+        let predicate = NSPredicate(format: "reg_id = %@", regID) // used for the other tickets
+        
+        let tTickets = realm.objects(TTicket.self).filter(tPredicate)
+        
+        if tTickets.isEmpty == true {
+            
+            let eTickets = realm.objects(ETicket.self).filter(predicate)
+            
+            if eTickets.isEmpty == true {
+                
+                let iTickets = realm.objects(ITicket.self).filter(predicate)
+                
+                if iTickets.isEmpty == true {
+                    return nil
+                } else {
+                    return iTickets.first
+                }
+                
+            } else {
+                return eTickets.first
+            }
+            
+        } else {
+            return tTickets.first
+        }
     }
     
     // MARK: - Actions
@@ -91,7 +128,7 @@ class CheckInViewController: UIViewController {
             vc.title = "Premiere Checkin (30)"
             
         case Segue.Checkin.toParticipantCheckinVC:
-            let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
+            let vc : SingleCheckinViewController = segue.destination as! SingleCheckinViewController
             vc.title = "Premiere Checkin"
             
         default: return
@@ -104,10 +141,12 @@ class CheckInViewController: UIViewController {
 extension CheckInViewController : KeyboardDelegate {
     
     func keyWasTapped(character: String) {
+        messageLabel.text = ""
         textField.insertText(character)
     }
     
     func backspaceTapped() {
+        messageLabel.text = ""
         textField.deleteBackward()
     }
     
