@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EventViewController: UIViewController {
 
@@ -18,7 +19,7 @@ class EventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // initialize custom keyboard & replace system keyboard with custom keyboard
         let keyboardView = Keyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 390))
         keyboardView.delegate = self
@@ -70,77 +71,27 @@ extension EventViewController : KeyboardDelegate {
     func searchTapped() {
         
         guard let eventCode = textField.text  else { return }
+ 
+        let secret = "ZnX59SzKHgzuYuVjoE5s"
+        let urlString = "https://www.premieronline.com/webservice/checkin/index.php?secret=\(secret)&code=\(eventCode)"
         
-//        //TODO: Get from UserDefaults
-//        let secret = "ZnX59SzKHgzuYuVjoE5s"
-//        let info = ""//"optionaltexthere"
-//
-//        let urlString = "https://www.premieronline.com/webservice/checkin/index.php?secret=\(secret)&code=\(eventCode)&info=\(info)"
-//
-//        get(url: urlString) { (event : Event_z) in
-//
-//            print(event.url_logo)
-//
-////            TODO: needs to be performed on main thread
-////             self.performSegue(withIdentifier: Segue.Event.toCheckinNVC, sender: nil)
-//         }
-//
-//
-//        // Use them like regular Swift objects
-//        let myDog = Event_z()
-//        myDog.url_logo = "Rex"
-//        print("name of dog: \(myDog.url_logo)")
-//
-//        // Get the default Realm
-//        let realm = try! Realm()
-//
-//        // Persist your data easily
-////        try! realm.write {
-////            realm.add(myDog)
-////        }
-        
+        get(url: urlString, completion: { (event:Event) in
+            
+            DispatchQueue.main.async {
+                
+                // Get the default Realm
+                let realm = try! Realm()
+                
+                // Persist your data easily
+                try! realm.write {
+                    realm.add(event)
+                    self.performSegue(withIdentifier: Segue.Event.toCheckinNVC, sender: nil)
+                }
+            }
+            
+        }) { zabre in
+            print(zabre.error)
+        }
     }
 }
-
-//class Event_z: Decodable {
-//    var url_logo : String = ""
-//    var tickets : [QuantumValue] = []
-//}
-//
-//class companyTicket: Object, Decodable {
-//    @objc dynamic var reg_id : String = ""
-//    @objc dynamic var sync_id : String = ""
-//    @objc dynamic var company : String = ""
-//}
-//
-//class singleTicket: Object, Decodable {
-//    @objc dynamic var reg_id : String = ""
-//    @objc dynamic var sync_id : String = ""
-//    @objc dynamic var age : String = ""
-//}
-//
-//
-//enum QuantumValue: Decodable {
-//
-//    case companyTx(companyTicket), singleTx(singleTicket)
-//
-//    init(from decoder: Decoder) throws {
-//
-//        if let companyTx = try? decoder.singleValueContainer().decode(companyTicket.self) {
-//            self = .companyTx(companyTx)
-//            return
-//        }
-//
-//        if let singleTx = try? decoder.singleValueContainer().decode(singleTicket.self) {
-//            self = .singleTx(singleTx)
-//            return
-//        }
-//
-//        throw QuantumError.missingValue
-//    }
-//
-//    enum QuantumError:Error {
-//        case missingValue
-//    }
-//}
 
