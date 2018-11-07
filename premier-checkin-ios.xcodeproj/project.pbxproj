@@ -28,6 +28,7 @@
 		475C419F21699DF400429EB4 /* DuplicatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C419E21699DF400429EB4 /* DuplicatesViewController.swift */; };
 		475C41A32169A64F00429EB4 /* DuplicatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41A22169A64F00429EB4 /* DuplicatesTableViewCell.swift */; };
 		475C41A52169A84100429EB4 /* GroupCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C41A42169A84100429EB4 /* GroupCheckInViewController.swift */; };
+		4781E793219268C600D62AE8 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4781E792219268C600D62AE8 /* Checkin.swift */; };
 		478AC549216BD357007A1AE2 /* CheckinActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AC548216BD357007A1AE2 /* CheckinActionButton.swift */; };
 		478AC54B216CB9E4007A1AE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AC54A216CB9E4007A1AE2 /* WebViewController.swift */; };
 		47E57DA0218F2A0B00542BF0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */; };
@@ -64,6 +65,7 @@
 		475C419E21699DF400429EB4 /* DuplicatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicatesViewController.swift; sourceTree = "<group>"; };
 		475C41A22169A64F00429EB4 /* DuplicatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuplicatesTableViewCell.swift; path = "premier-checkin-ios/Views/DuplicatesTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		475C41A42169A84100429EB4 /* GroupCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCheckInViewController.swift; sourceTree = "<group>"; };
+		4781E792219268C600D62AE8 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 		478AC548216BD357007A1AE2 /* CheckinActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActionButton.swift; sourceTree = "<group>"; };
 		478AC54A216CB9E4007A1AE2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				47425704219087CD0006BDAE /* TTicket.swift */,
 				474257062190883A0006BDAE /* ITicket.swift */,
 				47425708219088D10006BDAE /* ETicket.swift */,
+				4781E792219268C600D62AE8 /* Checkin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				47E57DA0218F2A0B00542BF0 /* NetworkManager.swift in Sources */,
 				475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */,
 				475C41992168EA4300429EB4 /* KeyboardButton.swift in Sources */,
+				4781E793219268C600D62AE8 /* Checkin.swift in Sources */,
 				475C41902167CD1000429EB4 /* LoadingViewController.swift in Sources */,
 				47E57DA3218F448300542BF0 /* SingleCheckinViewController.swift in Sources */,
 				475C41942168DE4E00429EB4 /* UIViewController+Helpers.swift in Sources */,
