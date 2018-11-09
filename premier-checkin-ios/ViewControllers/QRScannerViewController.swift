@@ -14,6 +14,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     // MARK: - Outlets
     
+    @IBOutlet weak var messageLabel : UILabel!
     @IBOutlet weak var qrCodeFrameView:UIImageView?
     
     // MARK: - Properties
@@ -79,6 +80,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         // Initialize QR Code Frame to highlight the QR code
         if let qrCodeFrameView = qrCodeFrameView {
             view.bringSubviewToFront(qrCodeFrameView)
+            view.bringSubviewToFront(messageLabel)
         }
     }
     
@@ -112,18 +114,15 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 
                 print(metadataObj.stringValue!)
                 captureSession.stopRunning()
-                
-                print("QR code detected", metadataObj.stringValue!)
-
-                //TODO: extract code, check if single or group in DB, perform segue
-                
+            
+                // TODO: extract code, check if single or group in DB, perform segue
+                // print("\n \n QR code detected \n", metadataObj.stringValue!)
                 // "https://www.premieronline.com/qr.php?qr=763618&h=c30ac811d5f26ad074907843c192a8b0"
                 if let qrURL = metadataObj.stringValue {
     
                     let regID = qrURL.slice(from: "?qr=", to: "&h=")
                     
-                    // performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: nil)
-                    performSegue(withIdentifier: Segue.QRScanner.toGroupCheckinVC, sender: nil)
+                    checkDBForParticipant(with: regID!)
                 }
             }
         }
@@ -136,12 +135,57 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         switch segue.identifier {
         
         case Segue.QRScanner.toGroupCheckinVC:
-            print("group checkin")
-        
+            let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
+            if let ticket = sender {
+                if ticket is ETicket {
+                    vc.title = "Premiere Checkin"
+                    vc.passedETicket = ticket as! ETicket
+                }
+            }
+                
         case Segue.QRScanner.toParticipantCheckinVC:
-            print("checkin")
+            let vc : SingleCheckinViewController = segue.destination as! SingleCheckinViewController
+            if let ticket = sender {
+                if (ticket is ITicket) {
+                    vc.title = "Premiere Checkin"
+                    vc.passedITicket = ticket as? ITicket
+                } else if (ticket is TTicket) {
+                    vc.passedTTicket = ticket as? TTicket
+                }
+            }
             
         default: return
         }
     }
+    
+    // MARK: - Helpers
+    
+    func showSuccess(message : String) {
+        messageLabel.textColor = UIColor.green
+        messageLabel.text = message
+    }
+    
+    func showError(message : String) {
+        messageLabel.textColor = UIColor.red
+        messageLabel.text = message
+    }
+    
+    func checkDBForParticipant(with regID : String) {
+        if regID.count > 0 {
+            if let result = searchDB(forID: regID) {
+                if result is ETicket {
+                    performSegue(withIdentifier: Segue.QRScanner.toGroupCheckinVC, sender: result)
+                } else {
+                    performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: nil)
+                }
+            } else {
+                showError(message: FeedbackMessage.UserNotFound.rawValue)
+                captureSession.startRunning()
+            }
+        } else {
+            showError(message: FeedbackMessage.EmptyText.rawValue)
+            captureSession.startRunning()
+        }
+    }
+    
 }
