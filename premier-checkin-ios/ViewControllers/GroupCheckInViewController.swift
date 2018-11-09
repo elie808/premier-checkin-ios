@@ -7,10 +7,24 @@
 //
 
 import UIKit
+import RealmSwift
+import Alamofire
 
 class GroupCheckInViewController: UIViewController {
 
     // MARK: - Properties
+    
+    struct adultModel {
+        var selected : Bool = false
+    }
+    
+    struct childModel {
+        var selected : Bool = false
+    }
+    
+    var passedETicket : ETicket = ETicket()
+    var adultsDataSource : [adultModel] = []
+    var childrenDataSource : [childModel] = []
     
     // MARK: - Outlets
     
@@ -25,14 +39,113 @@ class GroupCheckInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configViewController()
     }
     
     // MARK: - Helpers
     
-    // MARK: - Actions
+    func configViewController() {
         
+        for _ in 0 ..< (passedETicket.adult?.checkins_pending)! {
+            adultsDataSource.append(adultModel())
+        }
+        
+        for _ in 0 ..< (passedETicket.child?.checkins_pending)! {
+            childrenDataSource.append(childModel())
+        }
+        
+        adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
+        childCountLabel.text = "CHILD (\(childrenDataSource.count))"
+    }
+    
+    fileprivate func addToCache(_ postData: [SyncObject]) {
+        
+        let realm = try! Realm()
+
+        for postObj in postData {
+
+            let predicate = NSPredicate(format: "sync_id = %@", postObj.sync_id) // used for the other tickets
+            let postObjs = realm.objects(SyncObject.self).filter(predicate)
+
+            if let obj = postObjs.first {
+                try! realm.write {
+                    obj.checkin_date = postObj.checkin_date
+                    obj.quantity = postObj.quantity
+                }
+            }
+        }
+    }
+    
+    fileprivate func removeFromCache(_ postData: [SyncObject]) {
+        
+        let realm = try! Realm()
+
+        for postObj in postData {
+
+            let predicate = NSPredicate(format: "sync_id = %@", postObj.sync_id) // used for the other tickets
+            let postObjs = realm.objects(SyncObject.self).filter(predicate)
+            try! realm.write {
+                realm.delete(postObjs)
+            }
+        }
+    }
+    
+    // MARK: - Actions
+    
     @IBAction func didTapAccept(_ sender: UIButton) {
-//        show(alert: "Error", message: "Already Checked In", buttonTitle: "OK") {}
+
+        //        show(alert: "Error", message: "Already Checked In", buttonTitle: "OK") {}
+        
+        let secret = "ZnX59SzKHgzuYuVjoE5s"
+        let eventCode = "3796204"
+        let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(eventCode)&secret=\(secret)"
+        
+        let selectedAdults = adultsDataSource.filter{ ($0.selected == true) }.count
+        let selectedChildren = childrenDataSource.filter{ ($0.selected == true) }.count
+        
+        let currentTime = Int64(NSDate().timeIntervalSince1970)
+        
+        var postData : [SyncObject] = []
+        
+        if selectedAdults > 0 {
+            postData.append(SyncObject(sync_id: (passedETicket.adult?.sync_id)!, quantity: String(selectedAdults), checkin_date: String(currentTime)))
+        }
+        
+        if selectedChildren > 0 {
+            postData.append(SyncObject(sync_id: (passedETicket.child?.sync_id)!, quantity: String(selectedChildren), checkin_date: String(currentTime)))
+        }
+        
+        addToCache(postData)
+        
+        var dictArray : [Any] = []
+        for syncObj in postData {
+            dictArray.append(syncObj.convertToDict())
+        }
+        
+        let params = ["data" : dictArray]
+        
+        //TODO: CREATE A OBJECT TO DICTIONARY METHOD !!!!!!!!!!
+        
+//        let params = ["data" : [ ["sync_id": "i695578", "quantity": "1", "checkin_date": ""], ["sync_id": "e2236744", "quantity": "1", "checkin_date": ""] ] ]
+//        let dataZ = SyncObject(sync_id: "i695578", quantity: "1", checkin_date: "")
+
+//        let enconder = JSONEncoder()
+//        let encoded = try? enconder.encode(toSend)
+        
+        post(url: Url, parameterDictionary: params) { (checkinObj : Checkin) in
+
+            print("\n \n JSON: \n", checkinObj)
+
+//            TODO: Update DB (Event table) with success checkin_dates & checkins_pending
+//            self.removeFromCache(postData)
+        }
+        
+        
+//        Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default).responseData { (xxx) in
+//            print("SHI: ", xxx)
+//        }
+
     }
     
     /*
@@ -51,9 +164,9 @@ extension GroupCheckInViewController : UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == adultCollectionView {
-            return 30
+            return adultsDataSource.count
         } else if collectionView == childCollectionView {
-            return 1
+            return childrenDataSource.count
         } else {
             return 0
         }
@@ -64,12 +177,25 @@ extension GroupCheckInViewController : UICollectionViewDelegate, UICollectionVie
         if collectionView == adultCollectionView {
         
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "adultCell", for: indexPath) as! GroupCollectionViewCell
+            
+            if adultsDataSource[indexPath.row].selected == true {
+                cell.logoImageView.image = UIImage(named: "adult_selected")
+            } else {
+                cell.logoImageView.image = UIImage(named: "adult_unselected")
+            }
+            
             return cell
             
         } else if collectionView == childCollectionView {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "childCell", for: indexPath) as! GroupCollectionViewCell
         
+            if childrenDataSource[indexPath.row].selected == true {
+                cell.logoImageView.image = UIImage(named: "child_selected")
+            } else {
+                cell.logoImageView.image = UIImage(named: "child_unselected")
+            }
+            
             return cell
             
         } else {
@@ -81,10 +207,21 @@ extension GroupCheckInViewController : UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == adultCollectionView {
-            
+            if adultsDataSource[indexPath.row].selected == true {
+                adultsDataSource[indexPath.row].selected = false
+            } else {
+                adultsDataSource[indexPath.row].selected = true
+            }
         } else if collectionView == childCollectionView {
-   
+            
+            if childrenDataSource[indexPath.row].selected == true {
+               childrenDataSource[indexPath.row].selected = false
+            } else {
+                childrenDataSource[indexPath.row].selected = true
+            }
         }
+        
+        collectionView.reloadData()
     }
     
 }
