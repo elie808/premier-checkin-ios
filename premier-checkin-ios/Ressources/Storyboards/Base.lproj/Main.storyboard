@@ -221,30 +221,30 @@
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="333"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hYA-G3-b9X">
-                                            <size key="itemSize" width="68" height="69"/>
+                                            <size key="itemSize" width="85" height="85"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="adultCell" id="EHk-75-Mla" customClass="GroupCollectionViewCell" customModule="premier_checkin_ios" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="68" height="69"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="adultCell" id="EHk-75-Mla" customClass="GroupCollectionViewCell" customModule="premier_checkin_ios" customModuleProvider="target">
+                                                <rect key="frame" x="42.5" y="0.0" width="85" height="85"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="69"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZQ-Km-iAL">
-                                                            <rect key="frame" x="5" y="7" width="57" height="55"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adult_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="JZQ-Km-iAL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
-                                                <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="JZQ-Km-iAL" firstAttribute="centerX" secondItem="EHk-75-Mla" secondAttribute="centerX" id="Zkb-aK-Czb"/>
-                                                    <constraint firstItem="JZQ-Km-iAL" firstAttribute="centerY" secondItem="EHk-75-Mla" secondAttribute="centerY" id="h2g-Ri-973"/>
-                                                    <constraint firstItem="JZQ-Km-iAL" firstAttribute="leading" secondItem="EHk-75-Mla" secondAttribute="leadingMargin" constant="-11" id="mQo-Uo-dIQ"/>
-                                                    <constraint firstItem="JZQ-Km-iAL" firstAttribute="top" secondItem="EHk-75-Mla" secondAttribute="topMargin" constant="-13" id="n5X-Qy-D86"/>
+                                                    <constraint firstItem="JZQ-Km-iAL" firstAttribute="leading" secondItem="EHk-75-Mla" secondAttribute="leading" id="LW3-K1-1wB"/>
+                                                    <constraint firstAttribute="trailing" secondItem="JZQ-Km-iAL" secondAttribute="trailing" id="Njb-2m-lHf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="JZQ-Km-iAL" secondAttribute="bottom" id="Qnz-y8-9V6"/>
+                                                    <constraint firstItem="JZQ-Km-iAL" firstAttribute="top" secondItem="EHk-75-Mla" secondAttribute="top" id="pO9-QS-oBk"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="logoImageView" destination="JZQ-Km-iAL" id="vNB-vD-U9R"/>
@@ -263,26 +263,31 @@
                                             <constraint firstAttribute="width" constant="165" id="Ce8-hK-pZ6"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g6n-Vm-rMN">
-                                            <size key="itemSize" width="64" height="64"/>
+                                            <size key="itemSize" width="85" height="85"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="childCell" id="jed-LT-Hls" customClass="GroupCollectionViewCell" customModule="premier_checkin_ios" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                <rect key="frame" x="40" y="0.0" width="85" height="85"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-7a-24e">
-                                                            <rect key="frame" x="7" y="5" width="49" height="54"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="child_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-7a-24e">
+                                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
-                                                <color key="backgroundColor" red="0.56470588239999997" green="0.7843137255" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="tyz-7a-24e" secondAttribute="trailing" id="4zE-2E-vGa"/>
+                                                    <constraint firstItem="tyz-7a-24e" firstAttribute="leading" secondItem="jed-LT-Hls" secondAttribute="leading" id="MNq-Xf-HaD"/>
+                                                    <constraint firstItem="tyz-7a-24e" firstAttribute="top" secondItem="jed-LT-Hls" secondAttribute="top" id="iNc-yr-rQt"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tyz-7a-24e" secondAttribute="bottom" id="qMM-aP-J4s"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="logoImageView" destination="tyz-7a-24e" id="LaI-oE-0xK"/>
                                                 </connections>
@@ -327,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mp3-fq-2oJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2831" y="134"/>
+            <point key="canvasLocation" x="2829.5999999999999" y="133.5832083958021"/>
         </scene>
         <!--Single Checkin View Controller-->
         <scene sceneID="rTg-Yo-cwA">
@@ -537,8 +542,10 @@
     </scenes>
     <resources>
         <image name="QR_button" width="77" height="77"/>
+        <image name="adult_unselected" width="67.5" height="67.5"/>
         <image name="camera_frame" width="354" height="344"/>
         <image name="checkmark_icon" width="75" height="75"/>
+        <image name="child_unselected" width="69.5" height="69.5"/>
         <image name="loading_screen_logo" width="277.5" height="279.5"/>
         <image name="settings_icon" width="28" height="28"/>
     </resources>
