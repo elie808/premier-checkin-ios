@@ -76,23 +76,18 @@ extension UIViewController {
         return data.map { String($0) }.joined(separator: "&")
     }
     
-    func post<T : Codable>(url: String, parameterDictionary : [String : Any], completion: @escaping (T) -> ()) {
+    func post<T : Codable>(url: String, parameterDictionary : [String:Any], completion: @escaping (T) -> ()) {
         
         guard let serviceUrl = URL(string: url) else { return }
         
         var request = URLRequest(url: serviceUrl)
         request.httpMethod = "POST"
-        request.setValue("application/form-data", forHTTPHeaderField: "Content-Type")
-//        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+//        request.setValue("application/form-data", forHTTPHeaderField: "Content-Type")
 //        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        ////
-        let postString = getPostString(params: parameterDictionary)
-        request.httpBody = postString.data(using: .utf8)
-        /////
-        
-//        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameterDictionary, options: []) else { return }
-//        request.httpBody = httpBody
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameterDictionary, options: []) else { return }
+        request.httpBody = httpBody
         
         print("\n HTTP BODY: \n", request.httpBody!)
         
@@ -114,7 +109,7 @@ extension UIViewController {
                 do {
                   
                     guard let response = try? JSONDecoder().decode(T.self, from: data) else {
-                        
+                        print("\n \n ERROR DECODING: ", data)
                         return
                     }
 
