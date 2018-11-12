@@ -20,7 +20,8 @@ class ITicket: Object, Decodable {
     @objc dynamic var gender = ""
     @objc dynamic var age = ""
     @objc dynamic var tshirt_size : String?
-    @objc dynamic var checkin_date : String?
+    @objc dynamic var checkins_pending : Int = 0
+//    @objc dynamic var checkin_date : String?
     
     override class func primaryKey() -> String? {
         return "reg_id"

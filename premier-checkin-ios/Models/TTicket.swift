@@ -14,7 +14,8 @@ class TTicket: Object, Decodable {
     @objc dynamic var reg_id  = ""
     @objc dynamic var sync_id = ""
     @objc dynamic var title = ""
-    @objc dynamic var checkin_date : String?
+    @objc dynamic var checkins_pending : Int = 0
+//    @objc dynamic var checkin_date : String?
     
     override class func primaryKey() -> String? {
         return "reg_id"
