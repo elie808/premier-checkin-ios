@@ -31,6 +31,7 @@
 		4781E793219268C600D62AE8 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4781E792219268C600D62AE8 /* Checkin.swift */; };
 		478AC549216BD357007A1AE2 /* CheckinActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AC548216BD357007A1AE2 /* CheckinActionButton.swift */; };
 		478AC54B216CB9E4007A1AE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AC54A216CB9E4007A1AE2 /* WebViewController.swift */; };
+		47E3AEF82199C2150090734C /* STicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3AEF72199C2150090734C /* STicket.swift */; };
 		47E57DA0218F2A0B00542BF0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */; };
 		47E57DA3218F448300542BF0 /* SingleCheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57DA2218F448300542BF0 /* SingleCheckinViewController.swift */; };
 		47E57DA5218F44A200542BF0 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57DA4218F44A200542BF0 /* GroupCollectionViewCell.swift */; };
@@ -68,6 +69,7 @@
 		4781E792219268C600D62AE8 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 		478AC548216BD357007A1AE2 /* CheckinActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActionButton.swift; sourceTree = "<group>"; };
 		478AC54A216CB9E4007A1AE2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		47E3AEF72199C2150090734C /* STicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STicket.swift; sourceTree = "<group>"; };
 		47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		47E57DA2218F448300542BF0 /* SingleCheckinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCheckinViewController.swift; sourceTree = "<group>"; };
 		47E57DA4218F44A200542BF0 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				47425702219082DF0006BDAE /* Event.swift */,
 				47425704219087CD0006BDAE /* TTicket.swift */,
+				47E3AEF72199C2150090734C /* STicket.swift */,
 				474257062190883A0006BDAE /* ITicket.swift */,
 				47425708219088D10006BDAE /* ETicket.swift */,
 				4781E792219268C600D62AE8 /* Checkin.swift */,
@@ -408,6 +411,7 @@
 				474257072190883A0006BDAE /* ITicket.swift in Sources */,
 				47425703219082DF0006BDAE /* Event.swift in Sources */,
 				47425709219088D10006BDAE /* ETicket.swift in Sources */,
+				47E3AEF82199C2150090734C /* STicket.swift in Sources */,
 				475C419D2169924700429EB4 /* EventViewController.swift in Sources */,
 				47E57DA0218F2A0B00542BF0 /* NetworkManager.swift in Sources */,
 				475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */,

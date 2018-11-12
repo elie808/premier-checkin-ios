@@ -16,6 +16,7 @@ class Event: Object, Decodable {
     @objc dynamic var event_title = ""
     @objc dynamic var delete_code = ""
     var t_tickets = List<TTicket>()
+    var s_tickets = List<STicket>()
     var i_tickets = List<ITicket>()
     var e_tickets = List<ETicket>()
     
@@ -29,6 +30,7 @@ class Event: Object, Decodable {
         case event_title
         case delete_code
         case t_tickets = "t_tickets"
+        case s_tickets = "s_tickets"
         case i_tickets = "i_tickets"
         case e_tickets = "e_tickets"
     }
@@ -46,6 +48,9 @@ class Event: Object, Decodable {
         // Map JSON Array response into Realm List
         let tTickets = try container.decodeIfPresent([TTicket].self, forKey: .t_tickets) ?? [TTicket()]
         t_tickets.append(objectsIn: tTickets)
+
+        let sTickets = try container.decodeIfPresent([STicket].self, forKey: .s_tickets) ?? [STicket()]
+        s_tickets.append(objectsIn: sTickets)
         
         let iTickets = try container.decodeIfPresent([ITicket].self, forKey: .i_tickets) ?? [ITicket()]
         i_tickets.append(objectsIn: iTickets)
