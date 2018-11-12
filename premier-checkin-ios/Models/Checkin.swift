@@ -37,10 +37,10 @@ class SyncObject: Object, Codable {
     @objc dynamic var sync_id = ""
     @objc dynamic var quantity = ""
     @objc dynamic var checkin_date : String?
-    @objc dynamic var checkins_pending : String?
+    @objc dynamic var checkins_pending : String = ""
     @objc dynamic var response_code : String = ""
     @objc dynamic var response_message : String = ""
-
+    
     convenience init(sync_id: String, quantity: String, checkin_date: String) {
         self.init()
 
@@ -76,11 +76,11 @@ class SyncObject: Object, Codable {
         let dicc = [
                 CodingKeys.sync_id.rawValue : self.sync_id,
                 CodingKeys.quantity.rawValue : self.quantity,
-                CodingKeys.checkin_date.rawValue : self.checkin_date,
+                CodingKeys.checkin_date.rawValue : self.checkin_date!,
                 CodingKeys.checkins_pending.rawValue : self.checkins_pending,
                 CodingKeys.response_code.rawValue : self.response_code,
                 CodingKeys.response_message.rawValue : self.response_message
-        ]
+            ] as [String : Any]
         
         return dicc as [String : Any]
     }
@@ -92,7 +92,7 @@ class SyncObject: Object, Codable {
 
         self.sync_id  = try container.decode(String.self, forKey: .sync_id)
         self.quantity = try container.decode(String.self, forKey: .quantity)
-        self.checkin_date = try container.decode(String.self, forKey: .checkin_date)
+//        self.checkin_date = try container.decode(String.self, forKey: .checkin_date)
         self.checkins_pending  = try container.decode(String.self, forKey: .checkins_pending)
         self.response_code = try container.decode(String.self, forKey: .response_code)
         self.response_message = try container.decode(String.self, forKey: .response_message)
