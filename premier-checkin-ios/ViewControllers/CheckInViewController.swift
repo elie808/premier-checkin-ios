@@ -22,7 +22,7 @@ class CheckInViewController: UIViewController {
         super.viewDidLoad()
         
 //        763388
-        textField.text = "736338"
+        textField.text = "751126"
         
         // initialize custom keyboard & replace system keyboard with custom keyboard
         let keyboardView = Keyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 390))
@@ -91,6 +91,7 @@ extension CheckInViewController {
         messageLabel.text = message
     }
     
+    /// search DB if participant exists
     func checkDBForParticipant(with regID : String) {
         if regID.count > 0 {
             if let result = searchDB(forID: regID) {
@@ -98,8 +99,11 @@ extension CheckInViewController {
                 switch result {
                     
                 case is ETicket:
-                    //TODO: CHeck if checkins_pending > 0 for both adult/kids
-                    performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
+                    if ( ((result as! ETicket).adult?.checkins_pending)! > 0 ) || (((result as! ETicket).child?.checkins_pending)! > 0) {
+                        performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
+                    } else {
+                        showError(message: FeedbackMessage.CheckinLimitExceeded.rawValue)
+                    }
                 
                 case is STicket:
                     if (result as! STicket).checkins_pending > 0 {
@@ -127,20 +131,6 @@ extension CheckInViewController {
                     showError(message: FeedbackMessage.Failed.rawValue)
                 }
 
-//                if (result is ETicket) {
-//                    performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
-//                } else if result is STicket {
-//                    if (result as! STicket).checkins_pending > 0 {
-//                        performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
-//                    } else {
-//                        showError(message: FeedbackMessage.CheckinLimitExceeded.rawValue)
-//                    }
-//                } else {
-//
-////                    if result is TTicket
-//
-//                    performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: result)
-//                }
             } else {
                 showError(message: FeedbackMessage.UserNotFound.rawValue)
             }
