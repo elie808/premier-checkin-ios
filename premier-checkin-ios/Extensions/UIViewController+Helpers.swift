@@ -94,10 +94,31 @@ extension UIViewController {
     }
     
     func deleteData() {
-
+        
+        var message = ""
+        let realm = try! Realm()
+        let deleteCode = realm.objects(Event.self).first?.delete_code
+        
+        if self.cacheEmpty() == false {
+            message = "You have check-in data that hasn’t been uploaded to the server yet! By clicking continue you will lose that data. Enter the event admin code to delete all data."
+        } else {
+            message = "All your data for the current event will be deleted. Enter the event admin code to delete all data."
+        }
+        
+        show(adminCode: message, title: "Enter admin code") { (AdminCode) in
+            
+            if (AdminCode == deleteCode) {
+                self.emptyDB()
+                self.showEventViewController()
+            }
+        }
+    }
+    
+    func emptyDB() {
+        
         let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
         let realmURLs = [realmURL, realmURL.appendingPathExtension("lock"), realmURL.appendingPathExtension("note"), realmURL.appendingPathExtension("management") ]
-        
+
         for URL in realmURLs {
             do {
                 try FileManager.default.removeItem(at: URL)
@@ -105,30 +126,6 @@ extension UIViewController {
                 // handle error
             }
         }
-        
-        showEventViewController()
-        
-//        show(adminCode: "Enter the event admin code to delete the app check in data", title: "Enter admin code") { (AdminCode) in
-//            print(AdminCode)
-//
-////            let unsyncedData = false
-//
-////            if unsyncedData == true {
-//
-////                self.show(twoButtonAlert: "Warning",
-////                          message: "You have Check-in Data that hasn’t been uploaded to the server. By clicking continue you will lose that data",
-////                          buttonOneTitle: "Back", buttonTwoTitle: "Continue",
-////                          onConfirm: nil, onCancel: nil)
-//
-////            } else {
-//
-//                self.show(twoButtonAlert: "Warning",
-//                          message: "Your data for the current event will be deleted.",
-//                          buttonOneTitle: "Back", buttonTwoTitle: "Delete",
-//                          onConfirm: nil, onCancel: nil)
-////            }
-//        }
-        
     }
     
     func show(adminCode message:String, title:String,
@@ -140,7 +137,7 @@ extension UIViewController {
             textField.placeholder = "Admin code"
         }
         
-        actionSheet.addAction(UIAlertAction(title: "Back", style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         
         actionSheet.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: { (action) in
             
@@ -148,9 +145,7 @@ extension UIViewController {
                 
                 let adminCodeTextField = actionSheet.textFields?.first
                 
-                if (adminCodeTextField?.text?.count)! > 0 {
-                    print((adminCodeTextField?.text)!)
-                    
+                if ( (adminCodeTextField?.text?.count)! > 0 && adminCodeTextField?.text?.isEmpty == false){
                     guard let successClosure = success else { return }
                     successClosure((adminCodeTextField?.text)!)
                 }
