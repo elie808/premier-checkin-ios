@@ -32,10 +32,6 @@ class EventViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         textField.becomeFirstResponder()
-        
-//        show(alert: "Error", message: "Incorrect event code", buttonTitle: "Try again", onSuccess: {
-//            print("Trying again")
-//        })
     }
     
     // MARK: - Actions
@@ -49,8 +45,7 @@ class EventViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
-        case Segue.Event.toCheckinNVC:
-            print("checkin")
+//        case Segue.Event.toCheckinNVC:
         default: return
         }
     }
@@ -78,20 +73,26 @@ extension EventViewController : KeyboardDelegate {
         get(url: urlString, completion: { (event:Event) in
             
             DispatchQueue.main.async {
-                
-                // Get the default Realm
+            
                 let realm = try! Realm()
-                
-                // Persist your data easily
+
                 try! realm.write {
                     realm.add(event)
                     self.performSegue(withIdentifier: Segue.Event.toCheckinNVC, sender: nil)
                 }
             }
-            
-        }) { zabre in
-            print(zabre.error)
+
+        }) { (error) in
+
+            switch error {
+                
+            case .NotFound:
+                self.show(alert: "Error", message: "Incorrect event code", buttonTitle: "Try again", onSuccess:nil)
+                
+            default: return
+            }
         }
     }
+    
 }
 

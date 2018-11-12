@@ -43,59 +43,11 @@ class GroupCheckInViewController: UIViewController {
         configViewController()
     }
     
-    // MARK: - Helpers
-    
-    func configViewController() {
-        
-        for _ in 0 ..< (passedETicket.adult?.checkins_pending)! {
-            adultsDataSource.append(adultModel())
-        }
-        
-        for _ in 0 ..< (passedETicket.child?.checkins_pending)! {
-            childrenDataSource.append(childModel())
-        }
-        
-        adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
-        childCountLabel.text = "CHILD (\(childrenDataSource.count))"
-    }
-    
-    fileprivate func addToCache(_ postData: [SyncObject]) {
-        
-        let realm = try! Realm()
-
-        for postObj in postData {
-
-            let predicate = NSPredicate(format: "sync_id = %@", postObj.sync_id) // used for the other tickets
-            let postObjs = realm.objects(SyncObject.self).filter(predicate)
-
-            if let obj = postObjs.first {
-                try! realm.write {
-                    obj.checkin_date = postObj.checkin_date
-                    obj.quantity = postObj.quantity
-                }
-            }
-        }
-    }
-    
-    fileprivate func removeFromCache(_ postData: [SyncObject]) {
-        
-        let realm = try! Realm()
-
-        for postObj in postData {
-
-            let predicate = NSPredicate(format: "sync_id = %@", postObj.sync_id) // used for the other tickets
-            let postObjs = realm.objects(SyncObject.self).filter(predicate)
-            try! realm.write {
-                realm.delete(postObjs)
-            }
-        }
-    }
-    
     // MARK: - Actions
     
     @IBAction func didTapAccept(_ sender: UIButton) {
 
-        //        show(alert: "Error", message: "Already Checked In", buttonTitle: "OK") {}
+//        show(alert: "Error", message: "Already Checked In", buttonTitle: "OK") {}
         
         let secret = "ZnX59SzKHgzuYuVjoE5s"
         let eventCode = "3796204"
@@ -116,36 +68,52 @@ class GroupCheckInViewController: UIViewController {
             postData.append(SyncObject(sync_id: (passedETicket.child?.sync_id)!, quantity: String(selectedChildren), checkin_date: String(currentTime)))
         }
         
-        addToCache(postData)
+        // POST when there's data
+        if postData.isEmpty == false && postData.count > 0 {
         
-        var dictArray : [Any] = []
-        for syncObj in postData {
-            dictArray.append(syncObj.convertToDict())
+            var dictArray : [Any] = []
+            for syncObj in postData {
+                dictArray.append(syncObj.convertToDict())
+            }
+            
+            let params = ["data" : dictArray]
+            
+            addToCache(postData)
+            
+            post(url: Url, parameterDictionary: params, completion: { (response:Checkin) in
+                
+                print("\n \n Updates")
+                response.updates.forEach() { print($0) }
+                print("Errors")
+                response.errors.forEach() { print($0) }
+                
+                // remove from cache all the returned objects (success/error)
+                var removeFromCacheData : [SyncObject] = []
+                removeFromCacheData.append(contentsOf: response.updates)
+                removeFromCacheData.append(contentsOf: response.errors)
+                
+                // update DB with the successfully processed records
+                var updateDBData : [SyncObject] = []
+                updateDBData.append(contentsOf: response.updates)
+                
+                DispatchQueue.main.async {
+                    self.removeFromCache(removeFromCacheData)
+                    self.updateDBWithValues(updateDBData)
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+               
+            }) { (error) in
+                
+//                switch error {
+//
+//                case .NotFound:
+//                    self.show(alert: "Error", message: "Incorrect event code", buttonTitle: "Try again", onSuccess:nil)
+//
+//                default: return
+//                }
+            }
+        
         }
-        
-        let params = ["data" : dictArray]
-        
-        //TODO: CREATE A OBJECT TO DICTIONARY METHOD !!!!!!!!!!
-        
-//        let params = ["data" : [ ["sync_id": "i695578", "quantity": "1", "checkin_date": ""], ["sync_id": "e2236744", "quantity": "1", "checkin_date": ""] ] ]
-//        let dataZ = SyncObject(sync_id: "i695578", quantity: "1", checkin_date: "")
-
-//        let enconder = JSONEncoder()
-//        let encoded = try? enconder.encode(toSend)
-        
-        post(url: Url, parameterDictionary: params) { (checkinObj : Checkin) in
-
-            print("\n \n JSON: \n", checkinObj)
-
-//            TODO: Update DB (Event table) with success checkin_dates & checkins_pending
-//            self.removeFromCache(postData)
-        }
-        
-        
-//        Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default).responseData { (xxx) in
-//            print("SHI: ", xxx)
-//        }
-
     }
     
     /*
@@ -222,6 +190,70 @@ extension GroupCheckInViewController : UICollectionViewDelegate, UICollectionVie
         }
         
         collectionView.reloadData()
+    }
+    
+}
+
+// MARK: - Helpers
+
+extension GroupCheckInViewController {
+    
+    func configViewController() {
+        
+        for _ in 0 ..< (passedETicket.adult?.checkins_pending)! {
+            adultsDataSource.append(adultModel())
+        }
+        
+        for _ in 0 ..< (passedETicket.child?.checkins_pending)! {
+            childrenDataSource.append(childModel())
+        }
+        
+        adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
+        childCountLabel.text = "CHILD (\(childrenDataSource.count))"
+    }
+    
+    func updateDBWithValues(_ updatedRecords: [SyncObject]) {
+        
+        let realm = try! Realm()
+        
+        for postObj in updatedRecords {
+            
+            if let existingObj = searchDB(forSyncID: postObj.sync_id) {
+                
+                print("\n \n \n Existing Obj: ", existingObj)
+                
+                // update object if existing
+                switch existingObj {
+
+                case is GroupTicket:
+                    try! realm.write {
+                        (existingObj as! GroupTicket).checkins_pending = Int(postObj.checkins_pending)!
+                    }
+                    
+                case is STicket:
+                    try! realm.write {
+                        (existingObj as! STicket).checkins_pending = Int(postObj.checkins_pending)!
+                    }
+                    
+                case is TTicket:
+                    try! realm.write {
+                        (existingObj as! TTicket).checkins_pending = Int(postObj.checkins_pending)!
+                    }
+                    
+                case is ITicket:
+                    try! realm.write {
+                        (existingObj as! ITicket).checkins_pending = Int(postObj.checkins_pending)!
+                    }
+
+                default:
+                    return
+                }
+                
+                let updatedObj = searchDB(forSyncID: postObj.sync_id)
+                print("\n \n Updated Obj: \n", updatedObj!)
+            }
+            
+        }
     }
     
 }

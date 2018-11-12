@@ -22,7 +22,7 @@ class CheckInViewController: UIViewController {
         super.viewDidLoad()
         
 //        763388
-        textField.text = "751126"
+        textField.text = "761412"
         
         // initialize custom keyboard & replace system keyboard with custom keyboard
         let keyboardView = Keyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 390))
