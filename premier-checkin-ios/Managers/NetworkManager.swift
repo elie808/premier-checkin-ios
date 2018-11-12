@@ -43,12 +43,12 @@ extension UIViewController {
         let url = URL(string: url)
         
         SVProgressHUD.show()
-//        DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = true }
+        DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = true }
         
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
             SVProgressHUD.dismiss()
-//            DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = false }
+            DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = false }
             
             if let err = error {
                 print("Network Error: ", err)
@@ -94,12 +94,12 @@ extension UIViewController {
         request.httpBody = httpBody
         
         SVProgressHUD.show()
-//        DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = true }
+        DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = true }
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             SVProgressHUD.dismiss()
-//            DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = false }
+            DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = false }
             
             if let err = error {
                 print("Network Error: ", err)
