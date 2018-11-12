@@ -32,6 +32,7 @@ class CheckInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         messageLabel.text = ""
+        textField.text = ""
     }
     
     override func viewDidAppear(_ animated: Bool) {
