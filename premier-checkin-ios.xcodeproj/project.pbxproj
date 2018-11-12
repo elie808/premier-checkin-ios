@@ -32,6 +32,7 @@
 		478AC549216BD357007A1AE2 /* CheckinActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AC548216BD357007A1AE2 /* CheckinActionButton.swift */; };
 		478AC54B216CB9E4007A1AE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AC54A216CB9E4007A1AE2 /* WebViewController.swift */; };
 		47E3AEF82199C2150090734C /* STicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3AEF72199C2150090734C /* STicket.swift */; };
+		47E3AEFA219A076D0090734C /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3AEF9219A076D0090734C /* DBManager.swift */; };
 		47E57DA0218F2A0B00542BF0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */; };
 		47E57DA3218F448300542BF0 /* SingleCheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57DA2218F448300542BF0 /* SingleCheckinViewController.swift */; };
 		47E57DA5218F44A200542BF0 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57DA4218F44A200542BF0 /* GroupCollectionViewCell.swift */; };
@@ -70,6 +71,7 @@
 		478AC548216BD357007A1AE2 /* CheckinActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActionButton.swift; sourceTree = "<group>"; };
 		478AC54A216CB9E4007A1AE2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		47E3AEF72199C2150090734C /* STicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STicket.swift; sourceTree = "<group>"; };
+		47E3AEF9219A076D0090734C /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		47E57DA2218F448300542BF0 /* SingleCheckinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCheckinViewController.swift; sourceTree = "<group>"; };
 		47E57DA4218F44A200542BF0 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -117,7 +119,6 @@
 				471D7D8B2166E39400124C87 /* Extensions */,
 				475C41952168E8FB00429EB4 /* Managers */,
 				473E6C7C217025C20085ED22 /* Models */,
-				473E6C83217029570085ED22 /* Networking */,
 				471D7D8C2166E39F00124C87 /* ViewControllers */,
 				471D7D982167025700124C87 /* Views */,
 				471D7D8D2166E3C900124C87 /* Ressources */,
@@ -220,18 +221,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		473E6C83217029570085ED22 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		475C41952168E8FB00429EB4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				475C41962168E90F00429EB4 /* UIAppearanceManager.swift */,
+				47E3AEF9219A076D0090734C /* DBManager.swift */,
+				47E57D9F218F2A0B00542BF0 /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -418,6 +413,7 @@
 				475C41992168EA4300429EB4 /* KeyboardButton.swift in Sources */,
 				4781E793219268C600D62AE8 /* Checkin.swift in Sources */,
 				475C41902167CD1000429EB4 /* LoadingViewController.swift in Sources */,
+				47E3AEFA219A076D0090734C /* DBManager.swift in Sources */,
 				47E57DA3218F448300542BF0 /* SingleCheckinViewController.swift in Sources */,
 				475C41942168DE4E00429EB4 /* UIViewController+Helpers.swift in Sources */,
 				478AC54B216CB9E4007A1AE2 /* WebViewController.swift in Sources */,

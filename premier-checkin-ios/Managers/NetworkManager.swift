@@ -18,6 +18,8 @@ enum FeedbackMessage: String {
     case DataDeleted = "App data deleted"
     case EmptyText = "Enter a participant's number"
     case UserNotFound = "Participant not found"
+    case UserAlreadyCheckedin = "Participant already checked in"
+    case CheckinLimitExceeded = "Check in limit reached"
 }
 
 struct Errors : Decodable {
@@ -108,58 +110,19 @@ extension UIViewController {
             if let data = data {
                 do {
                   
-                    guard let response = try? JSONDecoder().decode(T.self, from: data) else {
-                        print("\n \n ERROR DECODING: ", data)
-                        return
-                    }
+//                    guard let response = try? JSONDecoder().decode(T.self, from: data) else {
+//                        print("\n \n ERROR DECODING: ", data)
+//                        return
+//                    }
 
-//                    let json = try JSONDecoder().decode(T.self, from: data)
-//                    print("\n \n JSON: \n", json)
+                    let response = try JSONDecoder().decode(T.self, from: data)
                     
                     completion(response)
                     
-                } catch {
-                    print(error)
+                } catch let error {
+                    print("\n \n ERROR DECODING: ", error)
                 }
             }
             }.resume()
     }
-
-    //------ DB STuff
-    
-    func searchDB(forID regID : String) -> Any? {
-        
-        let realm = try! Realm()
-        
-        let tTicketPrefix = "T" + regID
-        let tPredicate = NSPredicate(format: "reg_id = %@", tTicketPrefix) // only used for t_tickets
-        let predicate = NSPredicate(format: "reg_id = %@", regID) // used for the other tickets
-        
-        let tTickets = realm.objects(TTicket.self).filter(tPredicate)
-        
-        if tTickets.isEmpty == true {
-            
-            let eTickets = realm.objects(ETicket.self).filter(predicate)
-            
-            if eTickets.isEmpty == true {
-                
-                let iTickets = realm.objects(ITicket.self).filter(predicate)
-                
-                if iTickets.isEmpty == true {
-                    return nil
-                } else {
-                    return iTickets.first
-                }
-                
-            } else {
-                return eTickets.first
-            }
-            
-        } else {
-            return tTickets.first
-        }
-    }
-    
-    
-}
 
