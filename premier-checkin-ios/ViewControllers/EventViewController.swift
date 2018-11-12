@@ -87,7 +87,9 @@ extension EventViewController : KeyboardDelegate {
             switch error {
                 
             case .NotFound:
-                self.show(alert: "Error", message: "Incorrect event code", buttonTitle: "Try again", onSuccess:nil)
+                DispatchQueue.main.async {
+                    self.show(alert: "Error", message: "Incorrect event code", buttonTitle: "Try again", onSuccess:nil)
+                }
                 
             default: return
             }

@@ -37,7 +37,7 @@ class SyncObject: Object, Codable {
     @objc dynamic var sync_id = ""
     @objc dynamic var quantity = ""
     @objc dynamic var checkin_date : String?
-    @objc dynamic var checkins_pending : String = ""
+    @objc dynamic var checkins_pending : Int = 0
     @objc dynamic var response_code : String = ""
     @objc dynamic var response_message : String = ""
     
@@ -93,7 +93,7 @@ class SyncObject: Object, Codable {
         self.sync_id  = try container.decode(String.self, forKey: .sync_id)
         self.quantity = try container.decode(String.self, forKey: .quantity)
 //        self.checkin_date = try container.decode(String.self, forKey: .checkin_date)
-        self.checkins_pending  = try container.decode(String.self, forKey: .checkins_pending)
+        self.checkins_pending  = try container.decode(Int.self, forKey: .checkins_pending)
         self.response_code = try container.decode(String.self, forKey: .response_code)
         self.response_message = try container.decode(String.self, forKey: .response_message)
     }
