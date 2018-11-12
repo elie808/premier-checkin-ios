@@ -212,48 +212,4 @@ extension GroupCheckInViewController {
         childCountLabel.text = "CHILD (\(childrenDataSource.count))"
     }
     
-    func updateDBWithValues(_ updatedRecords: [SyncObject]) {
-        
-        let realm = try! Realm()
-        
-        for postObj in updatedRecords {
-            
-            if let existingObj = searchDB(forSyncID: postObj.sync_id) {
-                
-                print("\n \n \n Existing Obj: ", existingObj)
-                
-                // update object if existing
-                switch existingObj {
-
-                case is GroupTicket:
-                    try! realm.write {
-                        (existingObj as! GroupTicket).checkins_pending = postObj.checkins_pending
-                    }
-                    
-                case is STicket:
-                    try! realm.write {
-                        (existingObj as! STicket).checkins_pending = postObj.checkins_pending
-                    }
-                    
-                case is TTicket:
-                    try! realm.write {
-                        (existingObj as! TTicket).checkins_pending = postObj.checkins_pending
-                    }
-                    
-                case is ITicket:
-                    try! realm.write {
-                        (existingObj as! ITicket).checkins_pending = postObj.checkins_pending
-                    }
-
-                default:
-                    return
-                }
-                
-                let updatedObj = searchDB(forSyncID: postObj.sync_id)
-                print("\n \n Updated Obj: \n", updatedObj!)
-            }
-            
-        }
-    }
-    
 }
