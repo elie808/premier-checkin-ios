@@ -10,16 +10,6 @@ import UIKit
 import RealmSwift
 
 class CheckInViewController: UIViewController {
-
-    enum FeedbackMessage: String {
-        case Empty   = ""
-        case Failed  = "Not found. Try again ..."
-        case Success = "0000 Checked in"
-        case Synced  = "Sync Complete"
-        case DataDeleted = "App data deleted"
-        case EmptyText = "Enter a participant's number"
-        case UserNotFound = "Participant not found"
-    }
     
     // MARK: - Outlets
     
@@ -30,6 +20,9 @@ class CheckInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        763388
+        textField.text = "736338"
         
         // initialize custom keyboard & replace system keyboard with custom keyboard
         let keyboardView = Keyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 390))
@@ -47,70 +40,6 @@ class CheckInViewController: UIViewController {
         textField.becomeFirstResponder()
     }
     
-    // MARK: - Helpers
-    
-    func showSuccess(message : String) {
-        messageLabel.textColor = UIColor.green
-        messageLabel.text = message
-    }
-    
-    func showError(message : String) {
-        messageLabel.textColor = UIColor.red
-        messageLabel.text = message
-    }
-    
-    func checkDBForParticipant() {
-        
-        if let regID = textField.text {
-            if regID.count > 0 {
-                if let result = searchDB(forID: regID) {
-                    if result is ETicket {
-                        performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: nil)
-                    } else {
-                        performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: nil)
-                    }
-                } else {
-                    showError(message: FeedbackMessage.UserNotFound.rawValue)
-                }
-            } else {
-                showError(message: FeedbackMessage.EmptyText.rawValue)
-            }
-        }
-    }
-    
-    func searchDB(forID regID : String) -> Any? {
-        
-        let realm = try! Realm()
-        
-        let tTicketPrefix = "T" + regID
-        let tPredicate = NSPredicate(format: "reg_id = %@", tTicketPrefix) // only used for t_tickets
-        let predicate = NSPredicate(format: "reg_id = %@", regID) // used for the other tickets
-        
-        let tTickets = realm.objects(TTicket.self).filter(tPredicate)
-        
-        if tTickets.isEmpty == true {
-            
-            let eTickets = realm.objects(ETicket.self).filter(predicate)
-            
-            if eTickets.isEmpty == true {
-                
-                let iTickets = realm.objects(ITicket.self).filter(predicate)
-                
-                if iTickets.isEmpty == true {
-                    return nil
-                } else {
-                    return iTickets.first
-                }
-                
-            } else {
-                return eTickets.first
-            }
-            
-        } else {
-            return tTickets.first
-        }
-    }
-    
     // MARK: - Actions
     
     @IBAction func didTapSettings(_ sender: UIBarButtonItem) {
@@ -125,14 +54,108 @@ class CheckInViewController: UIViewController {
 
         case Segue.Checkin.toGroupCheckinVC:
             let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
-            vc.title = "Premiere Checkin (30)"
+            if let ticket = sender {
+                if ticket is ETicket {
+                    vc.title = "Premiere Checkin"
+                    vc.passedETicket = ticket as! ETicket
+                }
+            }
             
         case Segue.Checkin.toParticipantCheckinVC:
             let vc : SingleCheckinViewController = segue.destination as! SingleCheckinViewController
-            vc.title = "Premiere Checkin"
+            if let ticket = sender {
+                if (ticket is ITicket) {
+                    vc.title = "Premiere Checkin"
+                    vc.passedITicket = ticket as? ITicket
+                } else if (ticket is TTicket) {
+                    vc.passedTTicket = ticket as? TTicket
+                }
+            }
             
         default: return
         }
+    }
+}
+
+// MARK: - Helpers
+
+extension CheckInViewController {
+    
+    func showSuccess(message : String) {
+        messageLabel.textColor = UIColor.green
+        messageLabel.text = message
+    }
+    
+    func showError(message : String) {
+        messageLabel.textColor = UIColor.red
+        messageLabel.text = message
+    }
+    
+    func checkDBForParticipant(with regID : String) {
+        if regID.count > 0 {
+            if let result = searchDB(forID: regID) {
+                
+                switch result {
+                    
+                case is ETicket:
+                    //TODO: CHeck if checkins_pending > 0 for both adult/kids
+                    performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
+                
+                case is STicket:
+                    if (result as! STicket).checkins_pending > 0 {
+                        //TODO: CHange segue
+                        performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
+                    } else {
+                        showError(message: FeedbackMessage.CheckinLimitExceeded.rawValue)
+                    }
+                
+                case is TTicket:
+                    if (result as! TTicket).checkins_pending > 0 {
+                        performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: result)
+                    } else {
+                        showError(message: FeedbackMessage.UserAlreadyCheckedin.rawValue)
+                    }
+                
+                case is ITicket:
+                    if (result as! ITicket).checkins_pending > 0 {
+                        performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: result)
+                    } else {
+                        showError(message: FeedbackMessage.UserAlreadyCheckedin.rawValue)
+                    }
+                    
+                default:
+                    showError(message: FeedbackMessage.Failed.rawValue)
+                }
+
+//                if (result is ETicket) {
+//                    performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
+//                } else if result is STicket {
+//                    if (result as! STicket).checkins_pending > 0 {
+//                        performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
+//                    } else {
+//                        showError(message: FeedbackMessage.CheckinLimitExceeded.rawValue)
+//                    }
+//                } else {
+//
+////                    if result is TTicket
+//
+//                    performSegue(withIdentifier: Segue.Checkin.toParticipantCheckinVC, sender: result)
+//                }
+            } else {
+                showError(message: FeedbackMessage.UserNotFound.rawValue)
+            }
+        } else {
+            showError(message: FeedbackMessage.EmptyText.rawValue)
+        }
+    }
+
+}
+
+extension CheckInViewController : UITextFieldDelegate {
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        messageLabel.text = ""
+        return true
     }
 }
 
@@ -151,6 +174,8 @@ extension CheckInViewController : KeyboardDelegate {
     }
     
     func searchTapped() {
-        checkDBForParticipant()
+        if let regID = textField.text {
+            checkDBForParticipant(with: regID)
+        }
     }
 }
