@@ -110,13 +110,15 @@ class SingleCheckinViewController: UIViewController {
                 
             }) { (error) in
                 
-                //                switch error {
-                //
-                //                case .NotFound:
-                //                    self.show(alert: "Error", message: "Incorrect event code", buttonTitle: "Try again", onSuccess:nil)
-                //
-                //                default: return
-                //                }
+                switch error {
+                    
+                case .NetworkError:
+                    self.show(alert: "Error", message: "Failed to reach server. This check-in will be saved in the local cache.", buttonTitle: "Ok", onSuccess: {
+                        _ = self.navigationController?.popViewController(animated: true)
+                    })
+                    
+                default: return
+                }
             }
         }
     }
