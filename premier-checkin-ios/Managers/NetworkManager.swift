@@ -53,6 +53,7 @@ extension UIViewController {
             if let err = error {
                 print("Network Error: ", err)
                 errors(.NetworkError)
+                return
             }
             
             guard let data = data else { return }
@@ -104,6 +105,7 @@ extension UIViewController {
             if let err = error {
                 print("Network Error: ", err)
                 errors(.NetworkError)
+                return
             }
 
             guard let data = data else { return }

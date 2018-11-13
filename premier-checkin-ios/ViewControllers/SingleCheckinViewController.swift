@@ -56,9 +56,7 @@ class SingleCheckinViewController: UIViewController {
     
     @IBAction func didTapAccept(_ sender: UIButton) {
         
-        let secret = "ZnX59SzKHgzuYuVjoE5s"
-        let eventCode = "3796204"
-        let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(eventCode)&secret=\(secret)"
+        let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(Defaults.eventCode)&secret=\(Defaults.appSecret)"
         
         var postData : [SyncObject] = []
         var syncID = ""
@@ -105,17 +103,20 @@ class SingleCheckinViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.removeFromCache(removeFromCacheData)
                     self.updateDBWithValues(updateDBData)
+                    Defaults.saveLastSyncDate()
                     _ = self.navigationController?.popViewController(animated: true)
                 }
                 
             }) { (error) in
-                
                 switch error {
                     
                 case .NetworkError:
-                    self.show(alert: "Error", message: "Failed to reach server. This check-in will be saved in the local cache.", buttonTitle: "Ok", onSuccess: {
-                        _ = self.navigationController?.popViewController(animated: true)
-                    })
+                   
+                    DispatchQueue.main.async {
+                        self.show(alert: "Error", message: "Failed to reach server. This check-in will be saved in the local cache.", buttonTitle: "Ok", onSuccess: {
+                            _ = self.navigationController?.popViewController(animated: true)
+                        })
+                    }
                     
                 default: return
                 }

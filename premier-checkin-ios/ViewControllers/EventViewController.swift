@@ -25,8 +25,7 @@ class EventViewController: UIViewController {
         keyboardView.delegate = self
         textField.inputView = keyboardView
         
-        //TODO: Remove after testing
-        textField.text = "3796204"
+//        textField.text = "3796204"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,13 +66,14 @@ extension EventViewController : KeyboardDelegate {
         
         guard let eventCode = textField.text  else { return }
  
-        let secret = "ZnX59SzKHgzuYuVjoE5s"
-        let urlString = "https://www.premieronline.com/webservice/checkin/index.php?secret=\(secret)&code=\(eventCode)"
+        let urlString = "https://www.premieronline.com/webservice/checkin/index.php?secret=\(Defaults.appSecret)&code=\(eventCode)"
         
         get(url: urlString, completion: { (event:Event) in
             
             DispatchQueue.main.async {
             
+                Defaults.saveEventCode(code: eventCode)
+                
                 let realm = try! Realm()
 
                 try! realm.write {

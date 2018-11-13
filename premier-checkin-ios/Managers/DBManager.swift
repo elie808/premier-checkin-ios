@@ -178,4 +178,28 @@ extension UIViewController {
         }
     }
     
+    func emptyCache() {
+        
+        let realm = try! Realm()
+        let cacheObj = realm.objects(SyncObject.self)
+        
+        try! realm.write {
+            realm.delete(cacheObj)
+        }
+    }
+    
+    func emptyDB() {
+        
+        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
+        let realmURLs = [realmURL, realmURL.appendingPathExtension("lock"), realmURL.appendingPathExtension("note"), realmURL.appendingPathExtension("management") ]
+        
+        for URL in realmURLs {
+            do {
+                try FileManager.default.removeItem(at: URL)
+            } catch {
+                // handle error
+            }
+        }
+    }
+    
 }

@@ -7,20 +7,35 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UIAppearanceManager.customize()
+        Defaults.persistDefaults()
         
         let storyBoard : UIStoryboard = UIStoryboard.Main
         window?.rootViewController = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.Loading.rawValue)
+        
+        // Get on-disk location of the default Realm
+        let realm = try! Realm()
+        print("Realm is located at:", realm.configuration.fileURL!)
+        
+//        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
+//        let realmURLs = [realmURL, realmURL.appendingPathExtension("lock"), realmURL.appendingPathExtension("note"), realmURL.appendingPathExtension("management") ]
+//
+//        for URL in realmURLs {
+//            do {
+//                try FileManager.default.removeItem(at: URL)
+//            } catch {
+//                // handle error
+//            }
+//        }
         
         return true
     }
@@ -49,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     // MARK: - Core Data stack
-    
+    /*
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -92,5 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    */
 }
 
