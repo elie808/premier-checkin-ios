@@ -133,16 +133,25 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
-        
+            
+        case Segue.QRScanner.toSpecialGroupCheckinVC:
+            let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
+            if let ticket = sender {
+                if ticket is STicket {
+                    vc.title = "Premiere Checkin"
+                    vc.passedSTicket = ticket as? STicket
+                }
+            }
+            
         case Segue.QRScanner.toGroupCheckinVC:
             let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
             if let ticket = sender {
                 if ticket is ETicket {
                     vc.title = "Premiere Checkin"
-                    vc.passedETicket = ticket as! ETicket
+                    vc.passedETicket = ticket as? ETicket
                 }
             }
-                
+            
         case Segue.QRScanner.toParticipantCheckinVC:
             let vc : SingleCheckinViewController = segue.destination as! SingleCheckinViewController
             if let ticket = sender {
@@ -157,6 +166,32 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         default: return
         }
     }
+        
+//        switch segue.identifier {
+//
+//        case Segue.QRScanner.toGroupCheckinVC:
+//            let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
+//            if let ticket = sender {
+//                if ticket is ETicket {
+//                    vc.title = "Premiere Checkin"
+//                    vc.passedETicket = ticket as! ETicket
+//                }
+//            }
+//
+//        case Segue.QRScanner.toParticipantCheckinVC:
+//            let vc : SingleCheckinViewController = segue.destination as! SingleCheckinViewController
+//            if let ticket = sender {
+//                if (ticket is ITicket) {
+//                    vc.title = "Premiere Checkin"
+//                    vc.passedITicket = ticket as? ITicket
+//                } else if (ticket is TTicket) {
+//                    vc.passedTTicket = ticket as? TTicket
+//                }
+//            }
+//
+//        default: return
+//        }
+//    }
     
     // MARK: - Helpers
     
@@ -173,19 +208,74 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     func checkDBForParticipant(with regID : String) {
         if regID.count > 0 {
             if let result = searchDB(forID: regID) {
-                if result is ETicket {
-                    performSegue(withIdentifier: Segue.QRScanner.toGroupCheckinVC, sender: result)
-                } else {
-                    performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: nil)
+                
+                switch result {
+                    
+                case is ETicket:
+                    if ( ((result as! ETicket).adult?.checkins_pending)! > 0 ) || (((result as! ETicket).child?.checkins_pending)! > 0) {
+                        performSegue(withIdentifier: Segue.QRScanner.toGroupCheckinVC, sender: result)
+                    } else {
+                        showError(message: FeedbackMessage.CheckinLimitExceeded.rawValue)
+                        captureSession.startRunning()
+                    }
+                    
+                case is ITicket:
+                    if (result as! ITicket).checkins_pending > 0 {
+                        performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: result)
+                    } else {
+                        showError(message: FeedbackMessage.UserAlreadyCheckedin.rawValue)
+                        captureSession.startRunning()
+                    }
+                    ////////////
+                case is STicket:
+                    if (result as! STicket).checkins_pending > 0 {
+                        performSegue(withIdentifier: Segue.QRScanner.toSpecialGroupCheckinVC, sender: result)
+                    } else {
+                        showError(message: FeedbackMessage.CheckinLimitExceeded.rawValue)
+                        captureSession.startRunning()
+                    }
+                    
+                case is TTicket:
+                    if (result as! TTicket).checkins_pending > 0 {
+                        performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: result)
+                    } else {
+                        showError(message: FeedbackMessage.UserAlreadyCheckedin.rawValue)
+                        captureSession.startRunning()
+                    }
+                    
+                default:
+                    showError(message: FeedbackMessage.Failed.rawValue)
+                    captureSession.startRunning()
                 }
+                
             } else {
+             
                 showError(message: FeedbackMessage.UserNotFound.rawValue)
                 captureSession.startRunning()
             }
         } else {
+            
             showError(message: FeedbackMessage.EmptyText.rawValue)
             captureSession.startRunning()
         }
     }
+        
+        
+   ///////////
+//        if regID.count > 0 {
+//            if let result = searchDB(forID: regID) {
+//                if result is ETicket {
+//                    performSegue(withIdentifier: Segue.QRScanner.toGroupCheckinVC, sender: result)
+//                } else {
+//                    performSegue(withIdentifier: Segue.QRScanner.toParticipantCheckinVC, sender: nil)
+//                }
+//            } else {
+//                showError(message: FeedbackMessage.UserNotFound.rawValue)
+//                captureSession.startRunning()
+//            }
+//        } else {
+//            showError(message: FeedbackMessage.EmptyText.rawValue)
+//            captureSession.startRunning()
+//        }
     
 }

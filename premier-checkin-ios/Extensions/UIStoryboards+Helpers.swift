@@ -68,6 +68,7 @@ struct Segue {
     struct QRScanner {
         static let toParticipantCheckinVC = "QRToParticipantCheckinVC"
         static let toGroupCheckinVC = "QRToGroupCheckinVC"
+        static let toSpecialGroupCheckinVC = "QRToSpecialGroupCheckinVC"
     }
 }
 

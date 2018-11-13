@@ -457,6 +457,7 @@
                         <outlet property="qrCodeFrameView" destination="g2Z-Hb-bHu" id="4rT-Ss-T0z"/>
                         <segue destination="8GZ-qa-pK3" kind="show" identifier="QRToGroupCheckinVC" id="dwH-QZ-KdW"/>
                         <segue destination="02h-wY-gHj" kind="show" identifier="QRToParticipantCheckinVC" id="y41-9C-3MG"/>
+                        <segue destination="8GZ-qa-pK3" kind="show" identifier="QRToSpecialGroupCheckinVC" id="lh2-FS-i9d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ObZ-94-ATH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -563,7 +564,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="o4I-Ty-NPm"/>
-        <segue reference="XQf-Jq-cjt"/>
-        <segue reference="5wp-KU-3Ou"/>
+        <segue reference="y41-9C-3MG"/>
+        <segue reference="lh2-FS-i9d"/>
     </inferredMetricsTieBreakers>
 </document>
