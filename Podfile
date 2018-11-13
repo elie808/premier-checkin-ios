@@ -12,5 +12,6 @@ target 'premier-checkin-ios' do
   pod 'CryptoSwift'
   pod 'SVProgressHUD'
   pod 'RealmSwift'
+  pod 'ReachabilitySwift'
 
 end
