@@ -12,6 +12,14 @@ import SVProgressHUD
 
 class DBManager {
     
+    // MARK: - Helpers
+    
+    /// get on-disk location of the default Realm
+    class func dbLocation() {
+        let realm = try! Realm()
+        print("Realm is located at:", realm.configuration.fileURL!)
+    }
+    
     // MARK: - Search
     
     /// search DB for ticket objects using reg_ID
@@ -147,23 +155,9 @@ class DBManager {
         
         let realm = try! Realm()
         
-        for postObj in postData {
-            
-            let predicate = NSPredicate(format: "sync_id = %@", postObj.sync_id) // used for the other tickets
-            let postObjs = realm.objects(SyncObject.self).filter(predicate)
-            
-            // update object if existing
-            if let obj = postObjs.first {
-                try! realm.write {
-                    obj.checkin_date = postObj.checkin_date
-                    obj.quantity = postObj.quantity
-                }
-            } else {
-                
-                //write new object
-                try! realm.write {
-                    realm.add(postObj)
-                }
+        for postObj in postData {            
+            try! realm.write {
+                realm.add(postObj)
             }
         }
     }

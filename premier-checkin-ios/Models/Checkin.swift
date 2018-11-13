@@ -49,9 +49,9 @@ class SyncObject: Object, Codable {
         self.checkin_date = checkin_date
     }
 
-    override class func primaryKey() -> String? {
-        return "sync_id"
-    }
+//    override class func primaryKey() -> String? {
+//        return "sync_id"
+//    }
 
     private enum CodingKeys: String, CodingKey {
         case sync_id
