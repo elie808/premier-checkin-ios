@@ -22,7 +22,9 @@ class GroupCheckInViewController: UIViewController {
         var selected : Bool = false
     }
     
-    var passedETicket : ETicket = ETicket()
+    var passedETicket : ETicket?
+    var passedSTicket : STicket?
+    
     var adultsDataSource : [adultModel] = []
     var childrenDataSource : [childModel] = []
     
@@ -47,6 +49,8 @@ class GroupCheckInViewController: UIViewController {
     
     @IBAction func didTapAccept(_ sender: UIButton) {
 
+        var postData : [SyncObject] = []
+
         let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(Defaults.eventCode)&secret=\(Defaults.appSecret)"
         
         let selectedAdults = adultsDataSource.filter{ ($0.selected == true) }.count
@@ -54,14 +58,24 @@ class GroupCheckInViewController: UIViewController {
         
         let currentTime = Int64(NSDate().timeIntervalSince1970)
         
-        var postData : [SyncObject] = []
-        
-        if selectedAdults > 0 {
-            postData.append(SyncObject(sync_id: (passedETicket.adult?.sync_id)!, quantity: String(selectedAdults), checkin_date: String(currentTime)))
+        if let eTicket = passedETicket {
+            if selectedAdults > 0 {
+                postData.append(SyncObject(sync_id: (eTicket.adult?.sync_id)!, quantity: String(selectedAdults), checkin_date: String(currentTime)))
+            }
+            
+            if selectedChildren > 0 {
+                postData.append(SyncObject(sync_id: (eTicket.child?.sync_id)!, quantity: String(selectedChildren), checkin_date: String(currentTime)))
+            }
         }
         
-        if selectedChildren > 0 {
-            postData.append(SyncObject(sync_id: (passedETicket.child?.sync_id)!, quantity: String(selectedChildren), checkin_date: String(currentTime)))
+        if let sTicket = passedSTicket {
+            if selectedAdults > 0 {
+                postData.append(SyncObject(sync_id: sTicket.sync_id, quantity: String(selectedAdults), checkin_date: String(currentTime)))
+            }
+            
+            if selectedChildren > 0 {
+                postData.append(SyncObject(sync_id: sTicket.sync_id, quantity: String(selectedChildren), checkin_date: String(currentTime)))
+            }
         }
         
         // POST when there's data
@@ -200,16 +214,29 @@ extension GroupCheckInViewController {
     
     func configViewController() {
         
-        for _ in 0 ..< (passedETicket.adult?.checkins_pending)! {
-            adultsDataSource.append(adultModel())
+        if let eTicket = passedETicket {
+            for _ in 0 ..< (eTicket.adult?.checkins_pending)! {
+                adultsDataSource.append(adultModel())
+            }
+            
+            for _ in 0 ..< (eTicket.child?.checkins_pending)! {
+                childrenDataSource.append(childModel())
+            }
+            
+            adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
+            childCountLabel.text = "CHILD (\(childrenDataSource.count))"
         }
         
-        for _ in 0 ..< (passedETicket.child?.checkins_pending)! {
-            childrenDataSource.append(childModel())
+        if let sTicket = passedSTicket {
+            
+            for _ in 0 ..< (sTicket.checkins_pending) {
+                childrenDataSource.append(childModel())
+            }
+            
+            adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
+            childCountLabel.text = "CHILD (\(childrenDataSource.count))"
         }
-        
-        adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
-        childCountLabel.text = "CHILD (\(childrenDataSource.count))"
+
     }
     
 }

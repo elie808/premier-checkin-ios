@@ -46,18 +46,37 @@ class CheckInViewController: UIViewController {
         present(settingsAlertController(), animated: true, completion: nil)
     }
     
+    @IBAction func didTapSTicketsButton(_ sender : UIButton) {
+        
+        // Ghetto workaround
+        let realm = try! Realm()
+        
+        if let sTicket = realm.objects(STicket.self).first {
+            performSegue(withIdentifier: Segue.Checkin.toSpecialGroupCheckinVC, sender: sTicket)
+        }
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
 
+        case Segue.Checkin.toSpecialGroupCheckinVC:
+            let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
+            if let ticket = sender {
+                if ticket is STicket {
+                    vc.title = "Premiere Checkin"
+                    vc.passedSTicket = ticket as? STicket
+                }
+            }
+            
         case Segue.Checkin.toGroupCheckinVC:
             let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
             if let ticket = sender {
                 if ticket is ETicket {
                     vc.title = "Premiere Checkin"
-                    vc.passedETicket = ticket as! ETicket
+                    vc.passedETicket = ticket as? ETicket
                 }
             }
             

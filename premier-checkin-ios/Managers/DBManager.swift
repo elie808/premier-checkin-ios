@@ -21,28 +21,37 @@ extension UIViewController {
         let tPredicate = NSPredicate(format: "reg_id = %@", tTicketPrefix) // only used for t_tickets
         let predicate = NSPredicate(format: "reg_id = %@", regID) // used for the other tickets
         
-        let tTickets = realm.objects(TTicket.self).filter(tPredicate)
+        let sTickets = realm.objects(STicket.self).filter(predicate)
         
-        if tTickets.isEmpty == true {
+        if sTickets.isEmpty == false {
             
-            let eTickets = realm.objects(ETicket.self).filter(predicate)
+            return sTickets.first
             
-            if eTickets.isEmpty == true {
+        } else {
+            
+            let tTickets = realm.objects(TTicket.self).filter(tPredicate)
+            
+            if tTickets.isEmpty == true {
                 
-                let iTickets = realm.objects(ITicket.self).filter(predicate)
+                let eTickets = realm.objects(ETicket.self).filter(predicate)
                 
-                if iTickets.isEmpty == true {
-                    return nil
+                if eTickets.isEmpty == true {
+                    
+                    let iTickets = realm.objects(ITicket.self).filter(predicate)
+                    
+                    if iTickets.isEmpty == true {
+                        return nil
+                    } else {
+                        return iTickets.first
+                    }
+                    
                 } else {
-                    return iTickets.first
+                    return eTickets.first
                 }
                 
             } else {
-                return eTickets.first
+                return tTickets.first
             }
-            
-        } else {
-            return tTickets.first
         }
     }
     
@@ -51,33 +60,44 @@ extension UIViewController {
         
         let realm = try! Realm()
         
+//        let sTicketPrefix = "s" + syncID
+//        let sPredicate = NSPredicate(format: "sync_id = %@", sTicketPrefix) // only used for s_tickets
         let tTicketPrefix = "t" + syncID
         let tPredicate = NSPredicate(format: "sync_id = %@", tTicketPrefix) // only used for t_tickets
         let predicate = NSPredicate(format: "sync_id = %@", syncID) // used for the other tickets
         
-        let tTickets = realm.objects(TTicket.self).filter(tPredicate)
+        let sTickets = realm.objects(STicket.self).filter(predicate)
         
-        if tTickets.isEmpty == true {
+        if sTickets.isEmpty == false {
+           
+            return sTickets.first
             
-            // search GroupTickets because ETickets have no sync_id
-            let groupTickets = realm.objects(GroupTicket.self).filter(predicate)
+        } else {
+         
+            let tTickets = realm.objects(TTicket.self).filter(tPredicate)
             
-            if groupTickets.isEmpty == true {
+            if tTickets.isEmpty == true {
                 
-                let iTickets = realm.objects(ITicket.self).filter(predicate)
+                // search GroupTickets because ETickets have no sync_id
+                let groupTickets = realm.objects(GroupTicket.self).filter(predicate)
                 
-                if iTickets.isEmpty == true {
-                    return nil
+                if groupTickets.isEmpty == true {
+                    
+                    let iTickets = realm.objects(ITicket.self).filter(predicate)
+                    
+                    if iTickets.isEmpty == true {
+                        return nil
+                    } else {
+                        return iTickets.first
+                    }
+                    
                 } else {
-                    return iTickets.first
+                    return groupTickets.first
                 }
                 
             } else {
-                return groupTickets.first
+                return tTickets.first
             }
-            
-        } else {
-            return tTickets.first
         }
     }
     
@@ -118,6 +138,7 @@ extension UIViewController {
                     return
                 }
                 
+                // for debugging
                 let updatedObj = searchDB(forSyncID: postObj.sync_id)
                 print("\n \n Updated Obj: \n", updatedObj!)
             }

@@ -70,12 +70,23 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9WS-kb-i54">
                                 <rect key="frame" x="16" y="84" width="343" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Participant #" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zdq-LY-6JT">
-                                        <rect key="frame" x="0.0" y="3" width="275" height="54"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qpr-IH-7Wb">
+                                        <rect key="frame" x="0.0" y="16" width="30" height="28"/>
+                                        <color key="backgroundColor" red="0.1960784314" green="0.2470588235" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <state key="normal" title="S Tx">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSTicketsButton:" destination="BYZ-38-t0r" eventType="touchDown" id="v4e-xg-dEL"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Participant #" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zdq-LY-6JT">
+                                        <rect key="frame" x="38" y="6" width="237" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.56470588235294117" green="0.78431372549019607" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.19607843137254902" green="0.24705882352941178" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="YdD-R3-vMz"/>
@@ -128,6 +139,7 @@
                         <outlet property="textField" destination="Zdq-LY-6JT" id="NXl-H6-N3X"/>
                         <segue destination="8GZ-qa-pK3" kind="show" identifier="CheckinToGroupCheckinVC" id="Ov9-4m-k94"/>
                         <segue destination="02h-wY-gHj" kind="show" identifier="CheckinToParticipantCheckinVC" id="XQf-Jq-cjt"/>
+                        <segue destination="8GZ-qa-pK3" kind="show" identifier="CheckinToSpecialGroupCheckinVC" id="5wp-KU-3Ou"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -552,6 +564,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="o4I-Ty-NPm"/>
         <segue reference="XQf-Jq-cjt"/>
-        <segue reference="Ov9-4m-k94"/>
+        <segue reference="5wp-KU-3Ou"/>
     </inferredMetricsTieBreakers>
 </document>
