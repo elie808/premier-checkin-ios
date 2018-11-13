@@ -23,20 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyBoard : UIStoryboard = UIStoryboard.Main
         window?.rootViewController = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.Loading.rawValue)
         
-        // Get on-disk location of the default Realm
-        let realm = try! Realm()
-        print("Realm is located at:", realm.configuration.fileURL!)
-        
-//        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
-//        let realmURLs = [realmURL, realmURL.appendingPathExtension("lock"), realmURL.appendingPathExtension("note"), realmURL.appendingPathExtension("management") ]
-//
-//        for URL in realmURLs {
-//            do {
-//                try FileManager.default.removeItem(at: URL)
-//            } catch {
-//                // handle error
-//            }
-//        }
+        DBManager.dbLocation()
+
+//        DBManager.emptyDB()
         
         return true
     }
@@ -97,14 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         switch reachability.connection {
             
+        case .wifi:
+            NetworkManager.uploadCacheContent { (error) in }
+            
+        case .cellular:
+            NetworkManager.uploadCacheContent { (error) in }
+            
         case .none:
             print("----- Network not reachable")
-
-        default:
-            print("----- Back Online")
-            NetworkManager.uploadCacheContent { (error) in
-                // do nothing
-            }
         }
     }
 }
