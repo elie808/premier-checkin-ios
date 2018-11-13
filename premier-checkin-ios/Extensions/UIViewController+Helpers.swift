@@ -77,7 +77,7 @@ extension UIViewController {
         let storyBoard : UIStoryboard = UIStoryboard.Support
         let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.WebNVC.rawValue) as! UINavigationController
         let vc = navigationCtrl.children[0] as! WebViewController
-        vc.URLString = "https://www.premieronline.com/event/walkon2018"
+        vc.URLString = NetworkingConstants.aboutURL
         vc.title = "Event"
         present(navigationCtrl, animated: true, completion: nil)
     }
@@ -143,9 +143,7 @@ extension UIViewController {
     
     /// upload all records from cache to server
     func syncData() {
-        
-        let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(Defaults.eventCode)&secret=\(Defaults.appSecret)"
-        
+                
         let realm = try! Realm()
         let cachedObjects = realm.objects(SyncObject.self)
         
@@ -158,7 +156,7 @@ extension UIViewController {
             
             let params = ["data" : dictArray]
             
-            post(url: Url, parameterDictionary: params, completion: { (response : Checkin) in
+            post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response : Checkin) in
                 
                 // remove from cache all the returned objects (success/error)
                 var removeFromCacheData : [SyncObject] = []

@@ -50,8 +50,6 @@ class GroupCheckInViewController: UIViewController {
     @IBAction func didTapAccept(_ sender: UIButton) {
 
         var postData : [SyncObject] = []
-
-        let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(Defaults.eventCode)&secret=\(Defaults.appSecret)"
         
         let selectedAdults = adultsDataSource.filter{ ($0.selected == true) }.count
         let selectedChildren = childrenDataSource.filter{ ($0.selected == true) }.count
@@ -90,7 +88,7 @@ class GroupCheckInViewController: UIViewController {
             
             addToCache(postData)
             
-            post(url: Url, parameterDictionary: params, completion: { (response:Checkin) in
+            post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response:Checkin) in
                 
                 print("\n \n Updates")
                 response.updates.forEach() { print($0) }

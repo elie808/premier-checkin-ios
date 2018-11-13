@@ -65,10 +65,8 @@ extension EventViewController : KeyboardDelegate {
     func searchTapped() {
         
         guard let eventCode = textField.text  else { return }
- 
-        let urlString = "https://www.premieronline.com/webservice/checkin/index.php?secret=\(Defaults.appSecret)&code=\(eventCode)"
-        
-        get(url: urlString, completion: { (event:Event) in
+         
+        get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
             
             DispatchQueue.main.async {
             

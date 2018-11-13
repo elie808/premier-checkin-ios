@@ -22,12 +22,6 @@ enum FeedbackMessage: String {
     case CheckinLimitExceeded = "Check in limit reached"
 }
 
-//struct Errors : Decodable {
-//    var response_code : String
-//    var response_message : String
-//    var error : String
-//}
-
 enum Errors {
     case NotFound
     case AlreadyCheckedIn
@@ -35,6 +29,31 @@ enum Errors {
     case JSONError
     case NetworkError
 }
+
+struct NetworkingConstants {
+    
+    private struct Domains {
+        static let baseURL = "https://www.premieronline.com/"
+    }
+    
+    private struct Routes {
+        static let index = "webservice/checkin/index.php"
+        static let sync = "webservice/checkin/sync.php"
+        static let about = "event/walkon2018"
+    }
+    
+    private struct Credentials {
+        static let code = "code=\(Defaults.eventCode)"
+        static let secret = "secret=\(Defaults.appSecret)"
+        
+        static let credentials = "?\(Credentials.code)&\(Credentials.secret)"
+    }
+    
+    static let eventURL = Domains.baseURL + Routes.index + Credentials.credentials
+    static let syncURL  = Domains.baseURL + Routes.sync + Credentials.credentials
+    static let aboutURL = Domains.baseURL + Routes.about
+}
+
 
 extension UIViewController {
     

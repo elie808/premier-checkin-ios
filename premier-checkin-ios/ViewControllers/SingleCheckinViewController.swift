@@ -56,8 +56,6 @@ class SingleCheckinViewController: UIViewController {
     
     @IBAction func didTapAccept(_ sender: UIButton) {
         
-        let Url = "https://www.premieronline.com/webservice/checkin/sync.php?code=\(Defaults.eventCode)&secret=\(Defaults.appSecret)"
-        
         var postData : [SyncObject] = []
         var syncID = ""
         let currentTime = Int64(NSDate().timeIntervalSince1970)
@@ -84,7 +82,7 @@ class SingleCheckinViewController: UIViewController {
             
             addToCache(postData)
             
-            post(url: Url, parameterDictionary: params, completion: { (response:Checkin) in
+            post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response:Checkin) in
                 
                 print("\n \n Updates")
                 response.updates.forEach() { print($0) }
