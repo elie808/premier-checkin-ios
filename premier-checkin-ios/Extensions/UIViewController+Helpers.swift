@@ -43,7 +43,6 @@ extension UIViewController {
         present(actionSheet, animated: true, completion: nil)
     }
     
-    
     // MARK: - Settings Alert Controller
     
     func settingsAlertController() -> UIAlertController {
@@ -51,12 +50,14 @@ extension UIViewController {
         let alertController = UIAlertController(title: "Last sync: \(Defaults.lastSyncDate)", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
         let syncNowAction   = UIAlertAction(title: "Sync Now", style: UIAlertAction.Style.default)  { (action) in self.syncData() }
+        let updateDBAction   = UIAlertAction(title: "Update Database", style: UIAlertAction.Style.default)  { (action) in self.updateDB() }
         let aboutAction     = UIAlertAction(title: "About", style: UIAlertAction.Style.default)     { (action) in self.showAbout() }
         let eventPageAction = UIAlertAction(title: "Event Page", style: UIAlertAction.Style.default) { (action) in self.showEventWebPageViewController() }
         let deleteEventAction = UIAlertAction(title: "Delete Event Data", style: UIAlertAction.Style.destructive) { (action) in self.showDeleteData() }
         let cancelAction    = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
         alertController.addAction(syncNowAction)
+        alertController.addAction(updateDBAction)
         alertController.addAction(aboutAction)
         alertController.addAction(eventPageAction)
         alertController.addAction(deleteEventAction)
@@ -182,6 +183,41 @@ extension UIViewController {
             
         } else {
             show(alert: "Warning", message: "Cache is empty. No data to sync :)", buttonTitle: "Ok", onSuccess:nil)
+        }
+        
+    }
+    
+    func updateDB() {
+
+        get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
+            
+            DispatchQueue.main.async {
+                
+                self.emptyDB()
+                
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    realm.add(event)
+                }
+            }
+            
+        }) { (error) in
+            
+            switch error {
+                
+            case .NotFound:
+                DispatchQueue.main.async {
+                    self.show(alert: "Error", message: "Event not found code", buttonTitle: "Ok", onSuccess:nil)
+                }
+                
+            case .NetworkError:
+                DispatchQueue.main.async {
+                    self.show(alert: "Error", message: "Download failed. You seem to be offline.", buttonTitle: "Ok", onSuccess:nil)
+                }
+                
+            default: return
+            }
         }
         
     }
