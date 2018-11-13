@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Reachability
 
 class CheckInViewController: UIViewController {
     
@@ -33,7 +34,12 @@ class CheckInViewController: UIViewController {
         super.viewWillAppear(animated)
         messageLabel.text = ""
         textField.text = ""
+        
+
     }
+    
+
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
