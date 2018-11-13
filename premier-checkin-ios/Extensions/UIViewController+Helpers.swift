@@ -50,7 +50,7 @@ extension UIViewController {
         let alertController = UIAlertController(title: "Last sync: \(Defaults.lastSyncDate)", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
         let syncNowAction   = UIAlertAction(title: "Sync Now", style: UIAlertAction.Style.default)  { (action) in self.syncData() }
-        let updateDBAction   = UIAlertAction(title: "Update Database", style: UIAlertAction.Style.default)  { (action) in self.updateDB() }
+        let updateDBAction   = UIAlertAction(title: "Refresh Database", style: UIAlertAction.Style.default)  { (action) in self.downloadDB() }
         let aboutAction     = UIAlertAction(title: "About", style: UIAlertAction.Style.default)     { (action) in self.showAbout() }
         let eventPageAction = UIAlertAction(title: "Event Page", style: UIAlertAction.Style.default) { (action) in self.showEventWebPageViewController() }
         let deleteEventAction = UIAlertAction(title: "Delete Event Data", style: UIAlertAction.Style.destructive) { (action) in self.showDeleteData() }
@@ -140,38 +140,17 @@ extension UIViewController {
         }
     }
     
-    // MARK: DB Helpers
+    // MARK: - Helpers
     
     /// upload all records from cache to server
     func syncData() {
-                
-        let realm = try! Realm()
-        let cachedObjects = realm.objects(SyncObject.self)
         
-        if cachedObjects.isEmpty == false && cachedObjects.count > 0 {
+        NetworkManager.uploadCacheContent { (syncError) in
             
-            var dictArray : [Any] = []
-            for syncObj in cachedObjects {
-                dictArray.append(syncObj.convertToDict())
-            }
-            
-            let params = ["data" : dictArray]
-            
-            post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response : Checkin) in
+            if let error = syncError {
                 
-                // remove from cache all the returned objects (success/error)
-                var removeFromCacheData : [SyncObject] = []
-                removeFromCacheData.append(contentsOf: response.updates)
-                removeFromCacheData.append(contentsOf: response.errors)
-                
-                DispatchQueue.main.async {
-                    DBManager.updateDBWithValues(response.updates)
-                    DBManager.emptyCache()
-                    Defaults.saveLastSyncDate()
-                }
-                
-            }) { (error) in
                 switch error {
+                    
                 case .NetworkError:
                     DispatchQueue.main.async {
                         self.show(alert: "Error", message: "Failed to reach server. This check-in will be kept in the local cache.", buttonTitle: "Ok", onSuccess:nil)
@@ -180,17 +159,13 @@ extension UIViewController {
                 default: return
                 }
             }
-            
-        } else {
-            show(alert: "Warning", message: "Cache is empty. No data to sync :)", buttonTitle: "Ok", onSuccess:nil)
         }
-        
     }
     
     /// download a fresh copy of the DB
-    func updateDB() {
+    func downloadDB() {
 
-        get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
+        NetworkManager.get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
             
             DispatchQueue.main.async {
                 

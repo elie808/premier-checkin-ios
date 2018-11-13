@@ -54,10 +54,11 @@ struct NetworkingConstants {
     static let aboutURL = Domains.baseURL + Routes.about
 }
 
-
-extension UIViewController {
+class NetworkManager {
     
-    func get<T : Decodable>(url: String, completion: @escaping (T) -> (), errors: @escaping (Errors) -> ()) {
+    // MARK: - REST
+    
+    class func get<T : Decodable>(url: String, completion: @escaping (T) -> (), errors: @escaping (Errors) -> ()) {
         
         let url = URL(string: url)
         
@@ -102,7 +103,7 @@ extension UIViewController {
             }.resume()
     }
     
-    func post<T : Codable>(url: String, parameterDictionary : [String:Any], completion: @escaping (T) -> (), errors: @escaping (Errors) -> ()) {
+    class func post<T : Codable>(url: String, parameterDictionary : [String:Any], completion: @escaping (T) -> (), errors: @escaping (Errors) -> ()) {
         
         guard let serviceUrl = URL(string: url) else { return }
         
@@ -115,7 +116,7 @@ extension UIViewController {
         
         SVProgressHUD.show()
         DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = true }
-
+        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             SVProgressHUD.dismiss()
@@ -126,7 +127,7 @@ extension UIViewController {
                 errors(.NetworkError)
                 return
             }
-
+            
             guard let data = data else { return }
             
             if let resp : HTTPURLResponse = response as? HTTPURLResponse {
@@ -155,6 +156,45 @@ extension UIViewController {
             }
             }.resume()
     }
-
+    
+    // MARK: - Helpers
+    
+    /// upload  cache content then empty it on success
+    class func uploadCacheContent(errors: @escaping (Errors?) -> ()) {
+        
+        let realm = try! Realm()
+        let cachedObjects = realm.objects(SyncObject.self)
+        
+        if cachedObjects.isEmpty == false && cachedObjects.count > 0 {
+            
+            var dictArray : [Any] = []
+            for syncObj in cachedObjects {
+                dictArray.append(syncObj.convertToDict())
+            }
+            
+            let params = ["data" : dictArray]
+            
+            post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response : Checkin) in
+                
+                // remove from cache all the returned objects (success/error)
+                var removeFromCacheData : [SyncObject] = []
+                removeFromCacheData.append(contentsOf: response.updates)
+                removeFromCacheData.append(contentsOf: response.errors)
+                
+                DispatchQueue.main.async {
+                    DBManager.updateDBWithValues(response.updates)
+                    DBManager.emptyCache()
+                    Defaults.saveLastSyncDate()
+                }
+                
+                errors(nil)
+                
+            }) { (error) in
+                
+                errors(error)
+            }
+        }
+    }
+    
 }
 

@@ -88,7 +88,7 @@ class GroupCheckInViewController: UIViewController {
             
             DBManager.addToCache(postData)
             
-            post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response:Checkin) in
+            NetworkManager.post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response:Checkin) in
                 
                 print("\n \n Updates")
                 response.updates.forEach() { print($0) }

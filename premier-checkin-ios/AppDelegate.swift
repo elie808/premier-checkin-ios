@@ -48,19 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-
-        initializeReachabilityObserver()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        initializeReachabilityObserver()
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
         
-        removeReachibilityObserver()
+//        removeReachibilityObserver()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -77,6 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
         do {
             try reachability.startNotifier()
+            print("--- Listening to Network ---")
         } catch {
             print("--- could not start reachability notifier")
         }
@@ -96,12 +96,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let reachability = note.object as! Reachability
         
         switch reachability.connection {
-        case .wifi:
-            print("----- Reachable via WiFi")
-        case .cellular:
-            print("----- Reachable via Cellular")
+            
         case .none:
             print("----- Network not reachable")
+
+        default:
+            print("----- Back Online")
+            NetworkManager.uploadCacheContent { (error) in
+                // do nothing
+            }
         }
     }
 }

@@ -65,8 +65,8 @@ extension EventViewController : KeyboardDelegate {
     func searchTapped() {
         
         guard let eventCode = textField.text  else { return }
-         
-        get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
+        
+        NetworkManager.get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
             
             DispatchQueue.main.async {
             
