@@ -80,7 +80,7 @@ class SingleCheckinViewController: UIViewController {
             
             let params = ["data" : dictArray]
             
-            addToCache(postData)
+            DBManager.addToCache(postData)
             
             post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response:Checkin) in
                 
@@ -99,8 +99,8 @@ class SingleCheckinViewController: UIViewController {
                 updateDBData.append(contentsOf: response.updates)
                 
                 DispatchQueue.main.async {
-                    self.removeFromCache(removeFromCacheData)
-                    self.updateDBWithValues(updateDBData)
+                    DBManager.removeFromCache(removeFromCacheData)
+                    DBManager.updateDBWithValues(updateDBData)
                     Defaults.saveLastSyncDate()
                     _ = self.navigationController?.popViewController(animated: true)
                 }

@@ -10,10 +10,12 @@ import UIKit
 import RealmSwift
 import SVProgressHUD
 
-extension UIViewController {
+class DBManager {
     
-    /// search DB by reg_ID
-    func searchDB(forID regID : String) -> Any? {
+    // MARK: - Search
+    
+    /// search DB for ticket objects using reg_ID
+    class func searchDB(forID regID : String) -> Any? {
         
         let realm = try! Realm()
         
@@ -55,13 +57,11 @@ extension UIViewController {
         }
     }
     
-    /// search DB by sync_ID
-    func searchDB(forSyncID syncID : String) -> Any? {
+    /// search DB for ticket objects using sync_ID
+    class func searchDB(forSyncID syncID : String) -> Any? {
         
         let realm = try! Realm()
-        
-//        let sTicketPrefix = "s" + syncID
-//        let sPredicate = NSPredicate(format: "sync_id = %@", sTicketPrefix) // only used for s_tickets
+  
         let tTicketPrefix = "t" + syncID
         let tPredicate = NSPredicate(format: "sync_id = %@", tTicketPrefix) // only used for t_tickets
         let predicate = NSPredicate(format: "sync_id = %@", syncID) // used for the other tickets
@@ -69,11 +69,11 @@ extension UIViewController {
         let sTickets = realm.objects(STicket.self).filter(predicate)
         
         if sTickets.isEmpty == false {
-           
+            
             return sTickets.first
             
         } else {
-         
+            
             let tTickets = realm.objects(TTicket.self).filter(tPredicate)
             
             if tTickets.isEmpty == true {
@@ -101,17 +101,18 @@ extension UIViewController {
         }
     }
     
-    func updateDBWithValues(_ updatedRecords: [SyncObject]) {
+    // MARK: - Add/Update
+    
+    /// update an array of SyncObjects with new values
+    class func updateDBWithValues(_ updatedRecords: [SyncObject]) {
         
         let realm = try! Realm()
         
         for postObj in updatedRecords {
             
-            if let existingObj = searchDB(forSyncID: postObj.sync_id) {
+            if let existingObj = DBManager.searchDB(forSyncID: postObj.sync_id) {
                 
-                print("\n \n \n Existing Obj: ", existingObj)
-                
-                // update object if existing
+                // update object if it exists in DB
                 switch existingObj {
                     
                 case is GroupTicket:
@@ -137,17 +138,12 @@ extension UIViewController {
                 default:
                     return
                 }
-                
-                // for debugging
-                let updatedObj = searchDB(forSyncID: postObj.sync_id)
-                print("\n \n Updated Obj: \n", updatedObj!)
             }
-            
         }
     }
     
     /// cache SyncObjects for later use
-    func addToCache(_ postData: [SyncObject]) {
+    class func addToCache(_ postData: [SyncObject]) {
         
         let realm = try! Realm()
         
@@ -162,16 +158,20 @@ extension UIViewController {
                     obj.checkin_date = postObj.checkin_date
                     obj.quantity = postObj.quantity
                 }
-            } else { //write new object
+            } else {
+                
+                //write new object
                 try! realm.write {
                     realm.add(postObj)
                 }
             }
         }
     }
+   
+    // MARK: - Delete
     
     /// remove SyncObjects from cache
-    func removeFromCache(_ postData: [SyncObject]) {
+    class func removeFromCache(_ postData: [SyncObject]) {
         
         let realm = try! Realm()
         
@@ -187,7 +187,7 @@ extension UIViewController {
     }
     
     /// check if cache is empty
-    func cacheEmpty() -> Bool {
+    class func cacheEmpty() -> Bool {
         
         let realm = try! Realm()
         let cacheObj = realm.objects(SyncObject.self)
@@ -199,7 +199,7 @@ extension UIViewController {
         }
     }
     
-    func emptyCache() {
+    class func emptyCache() {
         
         let realm = try! Realm()
         let cacheObj = realm.objects(SyncObject.self)
@@ -209,7 +209,7 @@ extension UIViewController {
         }
     }
     
-    func emptyDB() {
+    class func emptyDB() {
         
         let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
         let realmURLs = [realmURL, realmURL.appendingPathExtension("lock"), realmURL.appendingPathExtension("note"), realmURL.appendingPathExtension("management") ]

@@ -123,7 +123,7 @@ extension UIViewController {
         let realm = try! Realm()
         let deleteCode = realm.objects(Event.self).first?.delete_code
         
-        if self.cacheEmpty() == false {
+        if DBManager.cacheEmpty() == false {
             message = "You have check-in data that hasn’t been uploaded to the server yet! By clicking continue you will lose that data. Enter the event admin code to delete all data."
         } else {
             message = "All your data for the current event will be deleted. Enter the event admin code to delete all data."
@@ -134,7 +134,7 @@ extension UIViewController {
             if (AdminCode == deleteCode) {
                 Defaults.clearLastSyncDate()
                 Defaults.clearEventCode()
-                self.emptyDB()
+                DBManager.emptyDB()
                 self.showEventViewController()
             }
         }
@@ -165,8 +165,8 @@ extension UIViewController {
                 removeFromCacheData.append(contentsOf: response.errors)
                 
                 DispatchQueue.main.async {
-                    self.updateDBWithValues(response.updates)
-                    self.emptyCache()
+                    DBManager.updateDBWithValues(response.updates)
+                    DBManager.emptyCache()
                     Defaults.saveLastSyncDate()
                 }
                 
@@ -187,16 +187,16 @@ extension UIViewController {
         
     }
     
+    /// download a fresh copy of the DB
     func updateDB() {
 
         get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
             
             DispatchQueue.main.async {
                 
-                self.emptyDB()
+                DBManager.emptyDB()
                 
                 let realm = try! Realm()
-                
                 try! realm.write {
                     realm.add(event)
                 }

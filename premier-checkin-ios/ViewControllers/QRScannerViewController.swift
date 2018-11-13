@@ -207,7 +207,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     func checkDBForParticipant(with regID : String) {
         if regID.count > 0 {
-            if let result = searchDB(forID: regID) {
+            if let result = DBManager.searchDB(forID: regID) {
                 
                 switch result {
                     
