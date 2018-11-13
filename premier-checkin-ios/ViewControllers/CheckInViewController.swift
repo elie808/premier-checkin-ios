@@ -126,8 +126,7 @@ extension CheckInViewController {
                 
                 case is STicket:
                     if (result as! STicket).checkins_pending > 0 {
-                        //TODO: CHange segue
-                        performSegue(withIdentifier: Segue.Checkin.toGroupCheckinVC, sender: result)
+                        performSegue(withIdentifier: Segue.Checkin.toSpecialGroupCheckinVC, sender: result)
                     } else {
                         showError(message: FeedbackMessage.CheckinLimitExceeded.rawValue)
                     }
