@@ -34,7 +34,7 @@ class SingleCheckinViewController: UIViewController {
     func configureView() {
         
         if passedTTicket != nil {
-//            titleLabel.text = ""
+            titleLabel.text = passedTTicket?.title
             adultImageView.image = UIImage(named: "adult_selected")
             childImageView.image = UIImage(named: "child_unselectable")
         }

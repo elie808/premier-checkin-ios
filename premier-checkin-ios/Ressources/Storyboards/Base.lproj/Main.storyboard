@@ -146,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="2039.2" y="133.5832083958021"/>
         </scene>
-        <!--Group Check In View Controller-->
+        <!--Premier check in-->
         <scene sceneID="UD6-B2-gck">
             <objects>
-                <viewController id="8GZ-qa-pK3" customClass="GroupCheckInViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Premier check in" id="8GZ-qa-pK3" customClass="GroupCheckInViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C7Y-fv-SCX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -327,12 +327,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mp3-fq-2oJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2829.5999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="2868" y="134"/>
         </scene>
-        <!--Single Checkin View Controller-->
+        <!--Premier check in-->
         <scene sceneID="rTg-Yo-cwA">
             <objects>
-                <viewController id="02h-wY-gHj" customClass="SingleCheckinViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Premier check in" id="02h-wY-gHj" customClass="SingleCheckinViewController" customModule="premier_checkin_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tBJ-lt-JqP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -416,7 +416,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mnW-0M-hER" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2830" y="918"/>
+            <point key="canvasLocation" x="2868" y="903"/>
         </scene>
         <!--Premier check in-->
         <scene sceneID="3cd-Ha-Ddo">
@@ -462,7 +462,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ObZ-94-ATH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021.5999999999999" y="917.99100449775119"/>
+            <point key="canvasLocation" x="2038" y="903"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="90l-3B-nM6">
@@ -564,7 +564,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="o4I-Ty-NPm"/>
-        <segue reference="y41-9C-3MG"/>
-        <segue reference="lh2-FS-i9d"/>
+        <segue reference="XQf-Jq-cjt"/>
+        <segue reference="5wp-KU-3Ou"/>
     </inferredMetricsTieBreakers>
 </document>
