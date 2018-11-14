@@ -7,9 +7,6 @@ target 'premier-checkin-ios' do
 
   # Pods for premier-checkin-ios
   pod 'Alamofire'
-  pod 'SwiftyJSON','~> 4.0'
-  pod 'SwiftyUserDefaults','~> 3.0'
-  pod 'CryptoSwift'
   pod 'SVProgressHUD'
   pod 'RealmSwift'
   pod 'ReachabilitySwift'
