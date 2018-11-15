@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SVProgressHUD
 
 extension UIViewController {
     
@@ -199,6 +200,8 @@ extension UIViewController {
             
             DBManager.addToCache(postData)
             
+            _ = self.navigationController?.popViewController(animated: true)
+            
             NetworkManager.post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response:Checkin) in
                 
                 print("\n \n Updates")
@@ -219,7 +222,6 @@ extension UIViewController {
                     DBManager.removeFromCache(removeFromCacheData)
                     DBManager.updateDBWithValues(updateDBData)
                     self.showBanner(message: .CheckinSuccess)
-                    _ = self.navigationController?.popViewController(animated: true)
                 }
                 
             }) { (error) in
@@ -229,7 +231,6 @@ extension UIViewController {
                     
                     DispatchQueue.main.async {
                         self.showBanner(message: .CachingSuccess)
-                        _ = self.navigationController?.popViewController(animated: true)
                     }
                     
                 default: return
@@ -266,9 +267,13 @@ extension UIViewController {
     /// download a fresh copy of the DB
     func downloadDB() {
 
+        SVProgressHUD.show()
+        
         NetworkManager.get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
             
             DispatchQueue.main.async {
+                
+                SVProgressHUD.dismiss()
                 
                 DBManager.emptyDB()
                 
@@ -288,11 +293,13 @@ extension UIViewController {
                 
             case .NotFound:
                 DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
                     self.show(alert: "Error", message: "Event not found code", buttonTitle: "Ok", onSuccess:nil)
                 }
                 
             case .NetworkError:
                 DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
                     self.show(alert: "Error", message: "Download failed. You seem to be offline.", buttonTitle: "Ok", onSuccess:nil)
                 }
                 

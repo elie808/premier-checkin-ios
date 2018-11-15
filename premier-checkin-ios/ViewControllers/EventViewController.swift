@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SVProgressHUD
 
 class EventViewController: UIViewController {
 
@@ -66,10 +67,14 @@ extension EventViewController : KeyboardDelegate {
         
         guard let eventCode = textField.text  else { return }
         
+        SVProgressHUD.show()
+
         NetworkManager.get(url: NetworkingConstants.eventURL, completion: { (event:Event) in
             
             DispatchQueue.main.async {
-            
+
+                SVProgressHUD.dismiss()
+
                 Defaults.saveEventCode(code: eventCode)
                 Defaults.saveLastDbRefreshDate()
                 
@@ -87,6 +92,7 @@ extension EventViewController : KeyboardDelegate {
                 
             case .NotFound:
                 DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
                     self.show(alert: "Error", message: "Incorrect event code", buttonTitle: "Try again", onSuccess:nil)
                 }
                 

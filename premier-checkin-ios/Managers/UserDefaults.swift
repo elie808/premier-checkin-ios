@@ -55,9 +55,9 @@ struct Defaults {
         let isCacheEmpty = (UserDefaults.standard.value(forKey: kCacheStatusKey)) as? Bool
         
         if isCacheEmpty == true {
-            return "Cache is empty"
+            return "Check-ins up to date"
         } else {
-            return "Cache has elements"
+            return "Unsynced checked-ins available"
         }
     }(())
     

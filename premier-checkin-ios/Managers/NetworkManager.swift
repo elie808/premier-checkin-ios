@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import SVProgressHUD
+//import SVProgressHUD
 
 enum FeedbackMessage: String {
     case Empty   = ""
@@ -62,12 +62,12 @@ class NetworkManager {
         
         let url = URL(string: url)
         
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
         DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = true }
         
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
-            SVProgressHUD.dismiss()
+//            SVProgressHUD.dismiss()
             DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = false }
             
             if let err = error {
@@ -114,12 +114,12 @@ class NetworkManager {
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parameterDictionary, options: []) else { return }
         request.httpBody = httpBody
         
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
         DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = true }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
-            SVProgressHUD.dismiss()
+//            SVProgressHUD.dismiss()
             DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = false }
             
             if let err = error {
@@ -187,7 +187,6 @@ class NetworkManager {
                     DBManager.updateDBWithValues(response.updates)
                     DBManager.emptyCache()
                     Defaults.saveLastSyncDate()
-                    Defaults.setCacheEmpty(flag: true)
                 }
                 
                 errors(nil)
