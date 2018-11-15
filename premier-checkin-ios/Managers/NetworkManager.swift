@@ -167,6 +167,8 @@ class NetworkManager {
         
         if cachedObjects.isEmpty == false && cachedObjects.count > 0 {
             
+            Defaults.setCacheEmpty(flag: false)
+            
             var dictArray : [Any] = []
             for syncObj in cachedObjects {
                 dictArray.append(syncObj.convertToDict())
@@ -185,6 +187,7 @@ class NetworkManager {
                     DBManager.updateDBWithValues(response.updates)
                     DBManager.emptyCache()
                     Defaults.saveLastSyncDate()
+                    Defaults.setCacheEmpty(flag: true)
                 }
                 
                 errors(nil)
@@ -193,6 +196,10 @@ class NetworkManager {
                 
                 errors(error)
             }
+        
+        } else {
+            
+            Defaults.setCacheEmpty(flag: true)
         }
     }
     

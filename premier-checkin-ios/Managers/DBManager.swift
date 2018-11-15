@@ -155,10 +155,19 @@ class DBManager {
         
         let realm = try! Realm()
         
-        for postObj in postData {            
-            try! realm.write {
-                realm.add(postObj)
+        if postData.isEmpty == false && postData.count > 0 {
+           
+            Defaults.setCacheEmpty(flag: false)
+            
+            for postObj in postData {
+                try! realm.write {
+                    realm.add(postObj)
+                }
             }
+            
+        } else {
+            
+            Defaults.setCacheEmpty(flag: true)
         }
     }
    
@@ -187,8 +196,10 @@ class DBManager {
         let cacheObj = realm.objects(SyncObject.self)
         
         if cacheObj.isEmpty == true {
+            Defaults.setCacheEmpty(flag: true)
             return true
         } else {
+            Defaults.setCacheEmpty(flag: false)
             return false
         }
     }
@@ -201,6 +212,8 @@ class DBManager {
         try! realm.write {
             realm.delete(cacheObj)
         }
+        
+        Defaults.setCacheEmpty(flag: true)
     }
     
     class func emptyDB() {

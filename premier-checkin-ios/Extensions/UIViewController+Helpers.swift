@@ -11,6 +11,15 @@ import RealmSwift
 
 extension UIViewController {
     
+    // MARK: - Properties
+    
+    enum BannerMessage : String {
+        case CheckinSuccess = "Participant(s) succesfully checked-in"
+        case CachingSuccess = "Could not reach server. Check-in saved on device"
+        case CacheSyncSuccess = "Check-ins successfully uploaded to server"
+        case DBRefreshSuccess = "Database successfully updated"
+    }
+    
     // MARK: - AlertControllers
     
     func show(alert title:String, message:String, buttonTitle:String, onSuccess success: (() -> Void)?)  {
@@ -47,9 +56,9 @@ extension UIViewController {
     
     func settingsAlertController() -> UIAlertController {
         
-        let alertController = UIAlertController(title: "Last sync: \(Defaults.lastSyncDate)", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let alertController = UIAlertController(title: "Data Stats", message: "\(Defaults.cacheStatus) \n Cache last synced on: \(Defaults.lastSyncDate) \n Database last refeshed: 12/12 09:23", preferredStyle: UIAlertController.Style.actionSheet)
         
-        let syncNowAction   = UIAlertAction(title: "Sync Now", style: UIAlertAction.Style.default)  { (action) in self.syncData() }
+        let syncNowAction   = UIAlertAction(title: "Sync Cache", style: UIAlertAction.Style.default)  { (action) in self.syncData() }
         let updateDBAction   = UIAlertAction(title: "Refresh Database", style: UIAlertAction.Style.default)  { (action) in self.downloadDB() }
         let aboutAction     = UIAlertAction(title: "About", style: UIAlertAction.Style.default)     { (action) in self.presentAboutView() }
         let eventPageAction = UIAlertAction(title: "Event Page", style: UIAlertAction.Style.default) { (action) in self.showEventWebPageViewController() }
@@ -143,13 +152,6 @@ extension UIViewController {
     }
     
     // MARK: - Top Banner
-    
-    enum BannerMessage : String {
-        case CheckinSuccess = "Participant(s) succesfully checked-in"
-        case CachingSuccess = "Could not reach server. Check-in saved on device"
-        case CacheSyncSuccess = "Check-ins successfully uploaded to server"
-        case DBRefreshSuccess = "Database successfully updated"
-    }
     
     func showBanner(message : BannerMessage) {
         
