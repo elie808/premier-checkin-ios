@@ -10,5 +10,6 @@ target 'premier-checkin-ios' do
   pod 'SVProgressHUD'
   pod 'RealmSwift'
   pod 'ReachabilitySwift'
+  pod 'MaterialComponents/Snackbar'
 
 end
