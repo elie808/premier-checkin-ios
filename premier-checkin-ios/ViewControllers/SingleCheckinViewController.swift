@@ -40,7 +40,7 @@ class SingleCheckinViewController: UIViewController {
         }
         
         if let iTicket = passedITicket {
-//            titleLabel.text = ""
+            titleLabel.text = "\(iTicket.first_name) \(iTicket.last_name)"
             if Int(iTicket.age)! > 18 {
                 adultImageView.image = UIImage(named: "adult_selected")
                 childImageView.image = UIImage(named: "child_unselectable")
@@ -101,7 +101,6 @@ class SingleCheckinViewController: UIViewController {
                 DispatchQueue.main.async {
                     DBManager.removeFromCache(removeFromCacheData)
                     DBManager.updateDBWithValues(updateDBData)
-                    Defaults.saveLastSyncDate()
                     _ = self.navigationController?.popViewController(animated: true)
                 }
                 

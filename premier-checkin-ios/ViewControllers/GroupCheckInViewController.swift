@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import Alamofire
 
 class GroupCheckInViewController: UIViewController {
 
@@ -107,7 +106,6 @@ class GroupCheckInViewController: UIViewController {
                 DispatchQueue.main.async {
                     DBManager.removeFromCache(removeFromCacheData)
                     DBManager.updateDBWithValues(updateDBData)
-                    Defaults.saveLastSyncDate()
                     _ = self.navigationController?.popViewController(animated: true)
                 }
                
