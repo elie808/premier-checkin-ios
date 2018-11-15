@@ -70,8 +70,8 @@ class DBManager {
         
         let realm = try! Realm()
   
-        let tTicketPrefix = "t" + syncID
-        let tPredicate = NSPredicate(format: "sync_id = %@", tTicketPrefix) // only used for t_tickets
+//        let tTicketPrefix = "t" + syncID
+//        let tPredicate = NSPredicate(format: "sync_id = %@", tTicketPrefix) // only used for t_tickets
         let predicate = NSPredicate(format: "sync_id = %@", syncID) // used for the other tickets
         
         let sTickets = realm.objects(STicket.self).filter(predicate)
@@ -82,7 +82,7 @@ class DBManager {
             
         } else {
             
-            let tTickets = realm.objects(TTicket.self).filter(tPredicate)
+            let tTickets = realm.objects(TTicket.self).filter(predicate)
             
             if tTickets.isEmpty == true {
                 
