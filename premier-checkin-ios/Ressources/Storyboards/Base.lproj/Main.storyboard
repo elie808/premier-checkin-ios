@@ -84,7 +84,7 @@
                                             <action selector="didTapSTicketsButton:" destination="BYZ-38-t0r" eventType="touchDown" id="v4e-xg-dEL"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Participant #" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zdq-LY-6JT">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Ticket #" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zdq-LY-6JT">
                                         <rect key="frame" x="68" y="9" width="207" height="42"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.56470588235294117" green="0.78431372549019607" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

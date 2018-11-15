@@ -73,7 +73,7 @@ class CheckInViewController: UIViewController {
             let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
             if let ticket = sender {
                 if ticket is STicket {
-                    vc.title = "Premiere Checkin"
+                    vc.title = "Premier Checkin"
                     vc.passedSTicket = ticket as? STicket
                 }
             }
@@ -82,7 +82,7 @@ class CheckInViewController: UIViewController {
             let vc : GroupCheckInViewController = segue.destination as! GroupCheckInViewController
             if let ticket = sender {
                 if ticket is ETicket {
-                    vc.title = "Premiere Checkin"
+                    vc.title = "Premier Checkin"
                     vc.passedETicket = ticket as? ETicket
                 }
             }
@@ -91,7 +91,7 @@ class CheckInViewController: UIViewController {
             let vc : SingleCheckinViewController = segue.destination as! SingleCheckinViewController
             if let ticket = sender {
                 if (ticket is ITicket) {
-                    vc.title = "Premiere Checkin"
+                    vc.title = "Premier Checkin"
                     vc.passedITicket = ticket as? ITicket
                 } else if (ticket is TTicket) {
                     vc.passedTTicket = ticket as? TTicket
