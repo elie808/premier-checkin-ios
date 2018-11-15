@@ -6,10 +6,8 @@ target 'premier-checkin-ios' do
   use_frameworks!
 
   # Pods for premier-checkin-ios
-  pod 'Alamofire'
   pod 'SVProgressHUD'
   pod 'RealmSwift'
   pod 'ReachabilitySwift'
-  pod 'MaterialComponents/Snackbar'
 
 end

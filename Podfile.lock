@@ -1,43 +1,4 @@
 PODS:
-  - Alamofire (4.7.3)
-  - MaterialComponents/AnimationTiming (58.0.0)
-  - MaterialComponents/Buttons (58.0.0):
-    - MaterialComponents/Ink
-    - MaterialComponents/private/Math
-    - MaterialComponents/private/Shapes
-    - MaterialComponents/ShadowElevations
-    - MaterialComponents/ShadowLayer
-    - MaterialComponents/Typography
-    - MDFInternationalization
-    - MDFTextAccessibility
-  - MaterialComponents/Ink (58.0.0):
-    - MaterialComponents/private/Math
-  - MaterialComponents/OverlayWindow (58.0.0):
-    - MaterialComponents/private/Application
-  - MaterialComponents/private/Application (58.0.0)
-  - MaterialComponents/private/KeyboardWatcher (58.0.0):
-    - MaterialComponents/private/Application
-  - MaterialComponents/private/Math (58.0.0)
-  - MaterialComponents/private/Overlay (58.0.0)
-  - MaterialComponents/private/Shapes (58.0.0):
-    - MaterialComponents/private/Math
-    - MaterialComponents/ShadowLayer
-  - MaterialComponents/ShadowElevations (58.0.0)
-  - MaterialComponents/ShadowLayer (58.0.0):
-    - MaterialComponents/ShadowElevations
-  - MaterialComponents/Snackbar (58.0.0):
-    - MaterialComponents/AnimationTiming
-    - MaterialComponents/Buttons
-    - MaterialComponents/OverlayWindow
-    - MaterialComponents/private/Application
-    - MaterialComponents/private/KeyboardWatcher
-    - MaterialComponents/private/Overlay
-    - MaterialComponents/Typography
-  - MaterialComponents/Typography (58.0.0):
-    - MaterialComponents/private/Application
-    - MaterialComponents/private/Math
-  - MDFInternationalization (1.0.4)
-  - MDFTextAccessibility (1.2.0)
   - ReachabilitySwift (4.1.0)
   - Realm (3.7.4):
     - Realm/Headers (= 3.7.4)
@@ -47,33 +8,23 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
-  - Alamofire
-  - MaterialComponents/Snackbar
   - ReachabilitySwift
   - RealmSwift
   - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - Alamofire
-    - MaterialComponents
-    - MDFInternationalization
-    - MDFTextAccessibility
     - ReachabilitySwift
     - Realm
     - RealmSwift
     - SVProgressHUD
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  MaterialComponents: 0520466595b729ebd106e84b96626803aca4a8d2
-  MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
-  MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Realm: a469bb59e33f9926102ccaea4349822c53b9117e
   RealmSwift: a45861b21c180f5cf0f122144b9759fa8dde3e9e
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: d0189373eb064c6681cb33e5188f49f431e861e9
+PODFILE CHECKSUM: 4e642c309066fe7534d1b4d52910337d31c89b5e
 
 COCOAPODS: 1.5.0
