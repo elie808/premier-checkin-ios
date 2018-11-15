@@ -75,55 +75,7 @@ class GroupCheckInViewController: UIViewController {
             }
         }
         
-        // POST when there's data
-        if postData.isEmpty == false && postData.count > 0 {
-        
-            var dictArray : [Any] = []
-            for syncObj in postData {
-                dictArray.append(syncObj.convertToDict())
-            }
-            
-            let params = ["data" : dictArray]
-            
-            DBManager.addToCache(postData)
-            
-            NetworkManager.post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response:Checkin) in
-                
-                print("\n \n Updates")
-                response.updates.forEach() { print($0) }
-                print("Errors")
-                response.errors.forEach() { print($0) }
-                
-                // remove from cache all the returned objects (success/error)
-                var removeFromCacheData : [SyncObject] = []
-                removeFromCacheData.append(contentsOf: response.updates)
-                removeFromCacheData.append(contentsOf: response.errors)
-                
-                // update DB with the successfully processed records
-                var updateDBData : [SyncObject] = []
-                updateDBData.append(contentsOf: response.updates)
-                
-                DispatchQueue.main.async {
-                    DBManager.removeFromCache(removeFromCacheData)
-                    DBManager.updateDBWithValues(updateDBData)
-                    _ = self.navigationController?.popViewController(animated: true)
-                }
-               
-            }) { (error) in
-                switch error {
-
-                case .NetworkError:
-                    DispatchQueue.main.async {
-                        self.show(alert: "Error", message: "Failed to reach server. This check-in will be saved in the local cache.", buttonTitle: "Ok", onSuccess: {
-                            _ = self.navigationController?.popViewController(animated: true)
-                        })
-                    }
-
-                default: return
-                }
-            }
-        
-        }
+        postCheckinData(postData)
     }
     
     /*

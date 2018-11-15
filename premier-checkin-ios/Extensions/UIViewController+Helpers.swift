@@ -51,7 +51,7 @@ extension UIViewController {
         
         let syncNowAction   = UIAlertAction(title: "Sync Now", style: UIAlertAction.Style.default)  { (action) in self.syncData() }
         let updateDBAction   = UIAlertAction(title: "Refresh Database", style: UIAlertAction.Style.default)  { (action) in self.downloadDB() }
-        let aboutAction     = UIAlertAction(title: "About", style: UIAlertAction.Style.default)     { (action) in self.showAbout() }
+        let aboutAction     = UIAlertAction(title: "About", style: UIAlertAction.Style.default)     { (action) in self.presentAboutView() }
         let eventPageAction = UIAlertAction(title: "Event Page", style: UIAlertAction.Style.default) { (action) in self.showEventWebPageViewController() }
         let deleteEventAction = UIAlertAction(title: "Delete Event Data", style: UIAlertAction.Style.destructive) { (action) in self.showDeleteData() }
         let cancelAction    = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
@@ -66,7 +66,9 @@ extension UIViewController {
         return alertController
     }
 
-    func showAbout() {
+    // MARK: - Alert Controller Actions
+    
+    func presentAboutView() {
         let storyBoard : UIStoryboard = UIStoryboard.Support
         let navigationCtrl = storyBoard.instantiateViewController(withIdentifier: ViewControllerStoryboardIdentifier.AboutNVC.rawValue) as! UINavigationController
         let vc = navigationCtrl.children[0] as! AboutViewController
@@ -140,7 +142,99 @@ extension UIViewController {
         }
     }
     
+    // MARK: - Top Banner
+    
+    enum BannerMessage : String {
+        case CheckinSuccess = "Participant(s) succesfully checked-in"
+        case CachingSuccess = "Could not reach server. Check-in saved on device"
+        case CacheSyncSuccess = "Check-ins successfully uploaded to server"
+        case DBRefreshSuccess = "Database successfully updated"
+    }
+    
+    func showBanner(message : BannerMessage) {
+        
+        var title = "Success"
+        var image = UIImage(named: "checkmark_icon")
+        
+        switch message {
+            
+        case .CheckinSuccess:
+            image = UIImage(named: "banner_checkmark")
+
+        case .CachingSuccess:
+            title = "Info"
+            image = UIImage(named: "banner_cache")
+            
+        case .CacheSyncSuccess:
+            title = "Info"
+            image = UIImage(named: "banner_sync")
+
+        case .DBRefreshSuccess:
+            image = UIImage(named: "banner_download")
+        }
+        
+        let banner = Banner(title: title, subtitle: message.rawValue, image: image, backgroundColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1) )
+//        banner.detailLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
+        banner.titleLabel.textColor = #colorLiteral(red: 0.4973498583, green: 0.7919111848, blue: 0.1769197583, alpha: 1)
+        banner.dismissesOnTap = true
+        banner.show(duration: 2.4)
+    }
+    
     // MARK: - Helpers
+    
+    /// perform POST. Remove updated objects from cache. Update local DB with successfully returned objects
+    func postCheckinData(_ postData: [SyncObject]) {
+        
+        // POST when there's data
+        if postData.isEmpty == false && postData.count > 0 {
+            
+            var dictArray : [Any] = []
+            for syncObj in postData {
+                dictArray.append(syncObj.convertToDict())
+            }
+            
+            let params = ["data" : dictArray]
+            
+            DBManager.addToCache(postData)
+            
+            NetworkManager.post(url: NetworkingConstants.syncURL, parameterDictionary: params, completion: { (response:Checkin) in
+                
+                print("\n \n Updates")
+                response.updates.forEach() { print($0) }
+                print("Errors")
+                response.errors.forEach() { print($0) }
+                
+                // remove from cache all the returned objects (success/error)
+                var removeFromCacheData : [SyncObject] = []
+                removeFromCacheData.append(contentsOf: response.updates)
+                removeFromCacheData.append(contentsOf: response.errors)
+                
+                // update DB with the successfully processed records
+                var updateDBData : [SyncObject] = []
+                updateDBData.append(contentsOf: response.updates)
+                
+                DispatchQueue.main.async {
+                    DBManager.removeFromCache(removeFromCacheData)
+                    DBManager.updateDBWithValues(updateDBData)
+                    self.showBanner(message: .CheckinSuccess)
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+                
+            }) { (error) in
+                switch error {
+                    
+                case .NetworkError:
+                    
+                    DispatchQueue.main.async {
+                        self.showBanner(message: .CachingSuccess)
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }
+                    
+                default: return
+                }
+            }
+        }
+    }
     
     /// upload all records from cache to server
     func syncData() {
@@ -153,10 +247,15 @@ extension UIViewController {
                     
                 case .NetworkError:
                     DispatchQueue.main.async {
-                        self.show(alert: "Error", message: "Failed to reach server. This check-in will be kept in the local cache.", buttonTitle: "Ok", onSuccess:nil)
+                        self.show(alert: "Error", message: "Failed to reach server. Cached check-ins will be kept on device.", buttonTitle: "Ok", onSuccess:nil)
                     }
                     
                 default: return
+                }
+            
+            } else {
+                DispatchQueue.main.async {
+                    self.showBanner(message: .CacheSyncSuccess)
                 }
             }
         }
@@ -175,6 +274,8 @@ extension UIViewController {
                 try! realm.write {
                     realm.add(event)
                 }
+                
+                self.showBanner(message: .DBRefreshSuccess)
             }
             
         }) { (error) in
