@@ -34,13 +34,14 @@ class GroupCheckInViewController: UIViewController {
     @IBOutlet weak var adultCollectionView: UICollectionView!
     @IBOutlet weak var childCollectionView: UICollectionView!
     @IBOutlet weak var adultCountLabel : UILabel!
+    @IBOutlet weak var selectedAdultsCountLabel: UILabel!
     @IBOutlet weak var childCountLabel : UILabel!
+    @IBOutlet weak var selecterdChildrenCountLabel: UILabel!
     
     // MARK: - Views Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configViewController()
     }
     
@@ -152,6 +153,7 @@ extension GroupCheckInViewController : UICollectionViewDelegate, UICollectionVie
         }
         
         collectionView.reloadData()
+        setHeaderLabelValues()
     }
     
 }
@@ -171,8 +173,7 @@ extension GroupCheckInViewController {
                 childrenDataSource.append(childModel())
             }
             
-            adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
-            childCountLabel.text = "CHILD (\(childrenDataSource.count))"
+            setHeaderLabelValues()
         }
         
         if let sTicket = passedSTicket {
@@ -181,10 +182,16 @@ extension GroupCheckInViewController {
                 childrenDataSource.append(childModel())
             }
             
-            adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
-            childCountLabel.text = "CHILD (\(childrenDataSource.count))"
+            setHeaderLabelValues()
         }
+    }
 
+    func setHeaderLabelValues() {
+        selectedAdultsCountLabel.text = "\(adultsDataSource.filter{ ($0.selected == true) }.count) selected"
+        selecterdChildrenCountLabel.text = "\(childrenDataSource.filter{ ($0.selected == true) }.count) selected"
+        
+        adultCountLabel.text = "ADULT (\(adultsDataSource.count))"
+        childCountLabel.text = "CHILD (\(childrenDataSource.count))"
     }
     
 }
