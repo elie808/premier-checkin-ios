@@ -34,8 +34,6 @@ class CheckInViewController: UIViewController {
         super.viewWillAppear(animated)
         messageLabel.text = ""
         textField.text = ""
-        
-
     }
     
 
@@ -57,7 +55,10 @@ class CheckInViewController: UIViewController {
         // Ghetto workaround
         let realm = try! Realm()
         
-        if let sTicket = realm.objects(STicket.self).first {
+        let regID = "8"
+        let predicate = NSPredicate(format: "reg_id = %@", regID)
+
+        if let sTicket = realm.objects(STicket.self).filter(predicate).first {
             performSegue(withIdentifier: Segue.Checkin.toSpecialGroupCheckinVC, sender: sTicket)
         }
     }

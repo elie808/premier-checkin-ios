@@ -178,10 +178,22 @@ extension GroupCheckInViewController {
         
         if let sTicket = passedSTicket {
             
-            for _ in 0 ..< (sTicket.checkins_pending) {
-                childrenDataSource.append(childModel())
+            titleLabel.text = sTicket.title
+
+            // children special ticket
+            if sTicket.reg_id == "8" && sTicket.sync_id == "s8" {
+                for _ in 0 ..< (sTicket.checkins_pending) {
+                    childrenDataSource.append(childModel())
+                }
             }
             
+            // VIP special tickets
+            if sTicket.reg_id == "0" && sTicket.sync_id == "s0" {
+                for _ in 0 ..< (sTicket.checkins_pending) {
+                    adultsDataSource.append(adultModel())
+                }
+            }
+           
             setHeaderLabelValues()
         }
     }
