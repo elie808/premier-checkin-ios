@@ -20,7 +20,8 @@ struct Defaults {
     private static let kEventCodeKey = "premiere_sports_event_code"
     private static let kAppSecretKey = "premiere_sports_secret"
     private static let kCacheStatusKey  = "premiere_cache_status"
-    private static let kLastSyncKey  = "premiere_sports_last_sync"
+    private static let kLastSyncKey     = "premiere_sports_last_sync"
+    private static let kDBLastRefreshKey = "premiere_sports_DB_last_refresh"
     
     // Mark: - Save Methods
     
@@ -30,6 +31,10 @@ struct Defaults {
     
     static func setCacheEmpty(flag : Bool) {
         UserDefaults.standard.set(flag, forKey: kCacheStatusKey)
+    }
+    
+    static func saveLastDbRefreshDate() {
+        UserDefaults.standard.set(Date(), forKey: kDBLastRefreshKey)
     }
     
     static func saveEventCode(code:String) {
@@ -50,7 +55,7 @@ struct Defaults {
         let isCacheEmpty = (UserDefaults.standard.value(forKey: kCacheStatusKey)) as? Bool
         
         if isCacheEmpty == true {
-            return "Cache is empty"
+            return "Cache is empty - no need to sync"
         } else {
             return "Cache needs syncing"
         }
@@ -63,19 +68,26 @@ struct Defaults {
     static var appSecret = { _ -> String in
         return ((UserDefaults.standard.value(forKey: kAppSecretKey) as? String) ?? kAppSecret)
     }(())
-   
-    static var lastSyncDate = { _ -> String in
+
+    static var lastDbRefreshDate = { _ -> String in
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd - HH:mm"
-        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        let savedDate = (UserDefaults.standard.value(forKey: kDBLastRefreshKey)) as? Date
+        
+        if savedDate == nil {
+            return "_"
+        } else {
+            return savedDate!.getElapsedInterval()
+        }
+    }(())
+    
+    static var lastSyncDate = { _ -> String in
         
         let savedDate = (UserDefaults.standard.value(forKey: kLastSyncKey)) as? Date
         
         if savedDate == nil {
             return "_"
         } else {
-            return dateFormatter.string(from: savedDate!)
+            return savedDate!.getElapsedInterval()
         }
     }(())
     
@@ -93,6 +105,8 @@ struct Defaults {
         UserDefaults.standard.removeObject(forKey: kEventCodeKey)
         UserDefaults.standard.removeObject(forKey: kAppSecretKey)
         UserDefaults.standard.removeObject(forKey: kLastSyncKey)
+        UserDefaults.standard.removeObject(forKey: kCacheStatusKey)
+        UserDefaults.standard.removeObject(forKey: kDBLastRefreshKey)
     }
 
 }

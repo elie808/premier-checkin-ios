@@ -56,10 +56,10 @@ extension UIViewController {
     
     func settingsAlertController() -> UIAlertController {
         
-        let alertController = UIAlertController(title: "Data Stats", message: "\(Defaults.cacheStatus) \n Cache last synced on: \(Defaults.lastSyncDate) \n Database last refeshed: 12/12 09:23", preferredStyle: UIAlertController.Style.actionSheet)
+        let alertController = UIAlertController(title: "Data Stats", message: "\(Defaults.cacheStatus) \n Cache last synced \(Defaults.lastSyncDate) ago \n Database last refeshed \(Defaults.lastDbRefreshDate) ago", preferredStyle: UIAlertController.Style.actionSheet)
         
         let syncNowAction   = UIAlertAction(title: "Sync Cache", style: UIAlertAction.Style.default)  { (action) in self.syncData() }
-        let updateDBAction   = UIAlertAction(title: "Refresh Database", style: UIAlertAction.Style.default)  { (action) in self.downloadDB() }
+        let updateDBAction  = UIAlertAction(title: "Refresh Database", style: UIAlertAction.Style.default)  { (action) in self.downloadDB() }
         let aboutAction     = UIAlertAction(title: "About", style: UIAlertAction.Style.default)     { (action) in self.presentAboutView() }
         let eventPageAction = UIAlertAction(title: "Event Page", style: UIAlertAction.Style.default) { (action) in self.showEventWebPageViewController() }
         let deleteEventAction = UIAlertAction(title: "Delete Event Data", style: UIAlertAction.Style.destructive) { (action) in self.showDeleteData() }
@@ -276,6 +276,8 @@ extension UIViewController {
                 try! realm.write {
                     realm.add(event)
                 }
+                
+                Defaults.saveLastDbRefreshDate()
                 
                 self.showBanner(message: .DBRefreshSuccess)
             }

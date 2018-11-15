@@ -71,6 +71,7 @@ extension EventViewController : KeyboardDelegate {
             DispatchQueue.main.async {
             
                 Defaults.saveEventCode(code: eventCode)
+                Defaults.saveLastDbRefreshDate()
                 
                 let realm = try! Realm()
 

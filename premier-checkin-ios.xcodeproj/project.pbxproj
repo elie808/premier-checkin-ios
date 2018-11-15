@@ -41,6 +41,7 @@
 		47E57DAA218F5D3600542BF0 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E57DA9218F5D3600542BF0 /* AboutViewController.swift */; };
 		47E57DAC218F5ED300542BF0 /* Support.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E57DAB218F5ED300542BF0 /* Support.storyboard */; };
 		47F26AAF219D0EB000DFA70B /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F26AAE219D0EB000DFA70B /* Banner.swift */; };
+		47F26AB1219D358900DFA70B /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F26AB0219D358900DFA70B /* Date+Helpers.swift */; };
 		F3F4D2B87D4CF32475BF1580 /* Pods_premier_checkin_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		47E57DA9218F5D3600542BF0 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		47E57DAB218F5ED300542BF0 /* Support.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Support.storyboard; sourceTree = "<group>"; };
 		47F26AAE219D0EB000DFA70B /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		47F26AB0219D358900DFA70B /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		592CEA4081B5ADAA1C47ACF3 /* Pods_premier_checkin_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_premier_checkin_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB0AE5B4D50A190873F217 /* Pods-premier-checkin-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-premier-checkin-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-premier-checkin-ios/Pods-premier-checkin-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				471D7D912166E54500124C87 /* UIStoryboards+Helpers.swift */,
+				47F26AB0219D358900DFA70B /* Date+Helpers.swift */,
 				475C41932168DE4E00429EB4 /* UIViewController+Helpers.swift */,
 				47E57DA7218F545B00542BF0 /* String+Helpers.swift */,
 			);
@@ -410,6 +413,7 @@
 				47425709219088D10006BDAE /* ETicket.swift in Sources */,
 				47E3AEF82199C2150090734C /* STicket.swift in Sources */,
 				475C419D2169924700429EB4 /* EventViewController.swift in Sources */,
+				47F26AB1219D358900DFA70B /* Date+Helpers.swift in Sources */,
 				47E57DA0218F2A0B00542BF0 /* NetworkManager.swift in Sources */,
 				475C41972168E90F00429EB4 /* UIAppearanceManager.swift in Sources */,
 				475C41992168EA4300429EB4 /* KeyboardButton.swift in Sources */,
@@ -570,7 +574,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6WQVEM27Z;
 				INFOPLIST_FILE = "$(SRCROOT)/premier-checkin-ios/Ressources/Supporting files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Elie.premier-checkin-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -588,7 +595,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6WQVEM27Z;
 				INFOPLIST_FILE = "$(SRCROOT)/premier-checkin-ios/Ressources/Supporting files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Elie.premier-checkin-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
